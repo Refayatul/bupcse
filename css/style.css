@@ -179,7 +179,13 @@ header {
     gap: 0.5rem;
 }
 
-.logo svg {
+#siteLogo {
+    height: 40px; /* Adjust as needed */
+    width: auto;
+    margin-right: 5px; /* Space between logo and "CSE" */
+}
+
+.logo svg { /* This was for the old SVG logo, can be removed or kept if SVG might be used elsewhere */
     width: 1.5rem;
     height: 1.5rem;
 }
@@ -451,4 +457,94 @@ footer {
     .material-links {
         grid-template-columns: 1fr;
     }
+}
+
+/* General Modal Styles (reusable) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    padding-top: 60px;
+    animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content-large {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 900px; /* Max width */
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slideInModal 0.4s ease-out;
+}
+
+@keyframes slideInModal {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Course List Modal Specific Styles */
+.course-list-container {
+    max-height: 70vh; /* Make content scrollable */
+    overflow-y: auto;
+    padding-right: 15px; /* For scrollbar */
+    margin-top: 20px;
+}
+
+.course-list-container h3 {
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.3rem;
+}
+
+.course-list-container p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.course-list-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.course-list-container li {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    border-radius: 4px;
+    font-size: 0.95rem;
 }

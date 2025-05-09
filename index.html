@@ -20,19 +20,16 @@
     <header>
         <div class="nav-container">
             <div class="logo">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <img src="assets/images/logo/BUP_Logopng.png" alt="BUP Logo" id="siteLogo">
                 <span>CSE</span>
                 <span class="batch-indicator" id="currentBatch">Batch 1</span>
             </div>
             
             <nav class="nav-links" id="mobile-nav">
-                <a href="#semester6">Current Semester</a>
                 <a href="#all-semesters">All Semesters</a>
                 <a href="#resources">Resources</a>
+                <a href="#" id="courseListBtn">Course List</a>
+                <a href="https://bup.edu.bd/department_home/8" target="_blank">About Dept.</a>
             </nav>
             
             <div class="hamburger" onclick="toggleMenu()">
@@ -268,12 +265,23 @@
             <p>&copy; 2024 BUP CSE Batch. All rights reserved.</p>
             <p class="mt-1">Developed by Refayatul (Batch - 01)</p>
             <div class="footer-links">
-                <a href="#semester6">Current Semester</a>
                 <a href="#all-semesters">All Semesters</a>
                 <a href="#resources">Resources</a>
+                <a href="https://bup.edu.bd/department_home/8" target="_blank">About Dept.</a>
             </div>
         </div>
     </footer>
+
+    <!-- Course List Modal -->
+    <div id="courseListModal" class="modal">
+        <div class="modal-content-large">
+            <span class="close-btn" id="closeCourseListModal">&times;</span>
+            <h2>Course List</h2>
+            <div id="courseListContent" class="course-list-container">
+                <!-- Content will be populated by JS -->
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
