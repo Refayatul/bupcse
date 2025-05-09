@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUP CSE Batch 1</title>
+    <title>BUP CSE Batch Selection</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
         <svg viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
         </svg>
-        Important Notice: Midterm Exam Date Changed - Please check the notice section inside Semester 6
+        Important Notice: Midterm Exam Date Changed - Please check the notice section inside your current semester
     </div>
     -->
     <!-- Header -->
@@ -25,11 +25,12 @@
                     <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span>CSE Batch 1</span>
+                <span>CSE</span>
+                <span class="batch-indicator" id="currentBatch">Batch 1</span>
             </div>
             
             <nav class="nav-links" id="mobile-nav">
-                <a href="#semester6">Semester 6</a>
+                <a href="#semester6">Current Semester</a>
                 <a href="#all-semesters">All Semesters</a>
                 <a href="#resources">Resources</a>
             </nav>
@@ -45,13 +46,25 @@
     <!-- Hero Section -->
     <section class="hero">
         <h1>Department of Computer Science & Engineering</h1>
-        <p>Batch 1 Academic Resources</p>
+        <p id="heroBatchText">Batch 1 Academic Resources</p>
+    </section>
+
+    <!-- Batch Selection Section -->
+    <section class="batch-selection-container">
+        <h2 class="batch-selection-title">Select Your Batch</h2>
+        <div class="batch-selector" id="batchSelector">
+            <button class="batch-select-btn" data-batch="1">Batch 1</button>
+            <button class="batch-select-btn" data-batch="2">Batch 2</button>
+            <button class="batch-select-btn" data-batch="3">Batch 3</button>
+            <button class="batch-select-btn" data-batch="4">Batch 4</button>
+        </div>
     </section>
 
     <!-- Quick Resources -->
     <section class="resources-section" id="resources">
         <h2 class="section-title">Quick Resources</h2>
-        <div class="resource-grid">
+        <div class="resource-grid" id="resourceGrid">
+            <!-- Resources will be populated by JavaScript -->
             <a href="https://drive.google.com/drive/folders/18Z5Z-eEovSHLiwt52UvS4pyrzy-WMNtd?usp=drive_link " target="_blank" class="resource-card">
                 <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
@@ -90,8 +103,11 @@
             </a>
         </div>
         <div style="text-align: center; margin-top: 20px;">
-            <a href="assets/images/3-2 Routine_a.png" target="_blank" class="resource-card" style="display: inline-flex; width: auto; padding: 10px 20px;">
+            <a href="assets/images/3-2 Routine_a.png" target="_blank" class="resource-card" style="display: inline-flex; width: auto; padding: 10px 20px;" id="sectionARoutineBtn">
                 Section A Routine
+            </a>
+            <a href="assets/images/3-2_Routine_b.png" target="_blank" class="resource-card" style="display: inline-flex; width: auto; padding: 10px 20px; margin-left: 10px;" id="sectionBRoutineBtn">
+                Section B Routine
             </a>
         </div>
     </section>
@@ -100,8 +116,8 @@
     <section class="semesters-section" id="all-semesters">
         <h2 class="section-title">All Semesters</h2>
         
-        <div class="accordion">
-            <!-- Repeat for 8 semesters -->
+        <div class="accordion" id="semesterAccordion">
+            <!-- Accordion items will be populated by JavaScript -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <span class="accordion-title">Semester 1</span>
@@ -249,10 +265,10 @@
     <!-- Footer -->
     <footer>
         <div class="container mx-auto">
-            <p>&copy; {new Date().getFullYear()} BUP CSE Batch 1. All rights reserved.</p>
-            <p class="mt-1">Developed by Batch 1 Students</p>
+            <p>&copy; 2024 BUP CSE Batch. All rights reserved.</p>
+            <p class="mt-1">Developed by Refayatul (Batch - 01)</p>
             <div class="footer-links">
-                <a href="#semester6">Semester 6</a>
+                <a href="#semester6">Current Semester</a>
                 <a href="#all-semesters">All Semesters</a>
                 <a href="#resources">Resources</a>
             </div>
