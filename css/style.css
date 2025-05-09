@@ -470,8 +470,10 @@ footer {
     height: 100%;
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-    padding-top: 60px;
-    animation: fadeInModal 0.3s ease-out;
+    /* display: flex; 
+    align-items: center; 
+    justify-content: center;  Removed for absolute positioning of child */
+    animation: fadeInModal 0.3s ease-out; /* This is for the overlay fade-in */
 }
 
 @keyframes fadeInModal {
@@ -481,21 +483,24 @@ footer {
 
 .modal-content-large {
     background-color: #fefefe;
-    margin: 5% auto;
     padding: 25px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
     max-width: 900px; /* Max width */
     border-radius: 8px;
-    position: relative;
+    position: absolute; /* Position relative to .modal */
+    top: 15vh; /* Position higher, 15% of viewport height from the top */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    animation: slideInModal 0.4s ease-out;
+    /* animation: slideInModal 0.4s ease-out; Temporarily remove animation */
+    /* transform: translateY(-50px); Replaced by top: 40% and only X transform */
 }
 
-@keyframes slideInModal {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
+/* @keyframes slideInModal {
+    from { transform: translateY(0px); opacity: 0; } 
+    to { transform: translateY(-50px); opacity: 1; }
+} */
 
 .close-btn {
     color: #aaa;
@@ -516,7 +521,7 @@ footer {
 
 /* Course List Modal Specific Styles */
 .course-list-container {
-    max-height: 70vh; /* Make content scrollable */
+    max-height: 60vh; /* Make content scrollable, reduced height */
     overflow-y: auto;
     padding-right: 15px; /* For scrollbar */
     margin-top: 20px;
