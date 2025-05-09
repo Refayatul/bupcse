@@ -157,146 +157,60 @@ const courseListBtn = document.getElementById('courseListBtn');
 const closeCourseListModalBtn = document.getElementById('closeCourseListModal');
 const courseListContent = document.getElementById('courseListContent');
 
-const courseDataText = `Faculty: Faculty of Science & Technology (FST)
-Department: Department of Computer Science and Engineering
-Program: Bachelor of Science in Computer Science and Engineering
---
+// const courseDataText = `...`; // Removed, will fetch from JSON
 
-PHY1116 | Physics Laboratory
-PHY1115 | Physics
-MATH1113 | Discrete Math
-GED1119 | Bangladesh Studies
-ICE2211 | Statistics and Queuing Theory
-GERM3211 | Environment, Sustainability and Law
-LANG1211 | Foreign Language (German)
-1st Semester
-
-CHEM1103 | Fundamentals of Chemistry
-PHY1112 | Physics Laboratory
-ENG1102 | Communicative English-I
-CHEM1104 | Chemistry Laboratory
-ICE1105 | Electrical Circuits Analysis
-ICE1106 | Electrical Circuits Analysis Laboratory
-GEBS1107 | Bangladesh Studies
-MATH1109 | Differential and Integral Calculus
-PHY1111 | Waves and Oscillations, Optics & Modern Physics
-2nd Semester
-
-CSE1201 | Digital Logic Design
-MATH1209 | Linear Algebra
-CSE1202 | Digital Logic Design Laboratory
-CSE1203 | Structured Programming Language
-CSE1204 | Structured Programming Language Laboratory
-ICE1205 | Electronic Devices and Circuits
-ICE1206 | Electronic Devices and Circuits Laboratory
-MATH1207 | Discrete Mathematics
-LANG1211 | Foreign Language (French)
-3rd Semester
-
-ICE2108 | Electrical Drives and Instrumentation Laboratory
-CSE2101 | Data Structures and Algorithms-I
-CSE2102 | Data Structures and Algorithms- I Laboratory
-CSE2103 | Object Oriented Programming Language
-CSE2104 | Object Oriented Programming Language Laboratory-I
-CSE2105 | Theory of Computation
-ICE2107 | Electrical Drives and Instrumentation
-ENG2110 | Presentation Skill Development
-MATH2111 | Differential Equations, Laplace Transform and Fourier Transform
-4th Semester
-
-GEEM2207 | Engineering Ethics and Moral Philosophy
-CSE2202 | Engineering Drawing and CAD Laboratory
-CSE2203 | Computer Architecture
-CSE2205 | Data Structures and Algorithms-II
-CSE2206 | Data Structures and Algorithms-II Laboratory
-CSE2208 | Object Oriented Programming Laboratory-II
-ICE2209 | Digital Electronics and Pulse Technique
-ICE2210 | Digital Electronics and Pulse Technique Laboratory
-MATH2211 | Statistics
-5th Semester
-
-CSE3103 | Compiler
-CSE3101 | Database Management Systems
-CSE3110 | Data Communication Laboratory
-CSE3109 | Data Communication
-CSE3102 | Database Management Systems Laboratory
-CSE3104 | Compiler Laboratory
-CSE3105 | Microprocessors, Micro-controllers and Assembly Language
-CSE3106 | Microprocessors, Micro-controllers and Assembly Language Laboratory
-CSE3107 | Operating System
-CSE3108 | Operating System Laboratory
-6th Semester
-
-CSE3201 | Computer Network
-GEESL3211 | Environment, Sustainability and Law
-CSE3200 | Industrial Training
-CSE3208 | Software Development Project – I
-CSE3202 | Computer Network Laboratory
-CSE3203 | Digital System Design
-CSE3204 | Digital System Design Laboratory
-CSE3205 | Software Engineering
-GERM3209 | Fundamentals of Research Methodology
-CSE3206 | Software Engineering Laboratory
-7th Semester
-
-CSE4102 | Computer Interfacing Laboratory
-CSE4100 | Final Year - Thesis/Project
-CSE4105 | Mathematical Analysis for Computer Science
-CSE4133 | Telecommunication Engineering
-CSE4129 | Basic Multimedia Theory
-CSE4119 | Advanced Algorithms
-CSE4117 | Blockchain and Crypto currency
-CSE4104 | Software Development Project-II
-CSE4109 | Artificial Neural Networks and Fuzzy Systems
-CSE4107 | Digital Image Processing
-CSE4101 | Computer Interfacing
-8th Semester
-
-CSE4200 | Final Year - Thesis/Project
-CSE4201 | Artificial Intelligence
-CSE4202 | Artificial Intelligence Laboratory
-CSE4209 | Mobile and Ubiquitous Computing
-CSE4210 | Mobile and Ubiquitous Computing Laboratory
-CSE4217 | Machine Learning
-CSE4218 | Machine Learning Laboratory
-GEPM4205 | ICT Project Management and Finance`;
-
-function populateCourseListModal() {
-    let htmlContent = '';
-    const sections = courseDataText.split(/\n\n(?=\S+ Semester)/); // Split by semester headers
-
-    const headerInfo = courseDataText.substring(0, courseDataText.indexOf('--')).trim();
-    const programInfoLines = headerInfo.split('\n');
-    programInfoLines.forEach(line => {
-        htmlContent += `<p>${line}</p>`;
-    });
-    htmlContent += '<hr style="margin: 15px 0;">';
-
-
-    const semesterCourseText = courseDataText.substring(courseDataText.indexOf('--') + 2).trim();
-    const semesterBlocks = semesterCourseText.split(/\n\n(?=\S+ Semester)/);
-
-
-    semesterBlocks.forEach(block => {
-        const lines = block.trim().split('\n');
-        if (lines.length > 0) {
-            const semesterName = lines.pop(); // The last line is the semester name
-            htmlContent += `<h3>${semesterName}</h3><ul>`;
-            lines.forEach(course => {
-                htmlContent += `<li>${course.trim()}</li>`;
-            });
-            htmlContent += `</ul>`;
+async function populateCourseListModal() {
+    try {
+        const response = await fetch('./data/courses.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-    });
-    courseListContent.innerHTML = htmlContent;
+        const data = await response.json();
+        const courseDataText = data.courseListText; // Assuming the key in JSON is courseListText
+
+        if (!courseDataText) {
+            courseListContent.innerHTML = '<p>Error: Course list data not found in JSON.</p>';
+            return;
+        }
+
+        let htmlContent = '';
+        // const sections = courseDataText.split(/\n\n(?=\S+ Semester)/); // This split might not be needed if parsing logic is robust
+
+        const headerInfo = courseDataText.substring(0, courseDataText.indexOf('--')).trim();
+        const programInfoLines = headerInfo.split('\n');
+        programInfoLines.forEach(line => {
+            htmlContent += `<p>${line}</p>`;
+        });
+        htmlContent += '<hr style="margin: 15px 0;">';
+
+        const semesterCourseText = courseDataText.substring(courseDataText.indexOf('--') + 2).trim();
+        const semesterBlocks = semesterCourseText.split(/\n\n(?=\S+ Semester)/);
+
+        semesterBlocks.forEach(block => {
+            const lines = block.trim().split('\n');
+            if (lines.length > 0) {
+                const semesterName = lines.pop(); // The last line is the semester name
+                htmlContent += `<h3>${semesterName}</h3><ul>`;
+                lines.forEach(course => {
+                    htmlContent += `<li>${course.trim()}</li>`;
+                });
+                htmlContent += `</ul>`;
+            }
+        });
+        courseListContent.innerHTML = htmlContent;
+
+    } catch (error) {
+        console.error("Could not fetch or parse course data:", error);
+        courseListContent.innerHTML = '<p>Error loading course list. Please try again later.</p>';
+    }
 }
 
 
 // Event Listeners for Course List Modal
 if (courseListBtn) {
-    courseListBtn.onclick = function(event) {
+    courseListBtn.onclick = async function(event) { // Make onclick async
         event.preventDefault(); // Prevent default anchor behavior
-        populateCourseListModal();
+        await populateCourseListModal(); // Await the async function
         courseListModal.style.display = "block";
     }
 }

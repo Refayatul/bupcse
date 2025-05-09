@@ -527,29 +527,52 @@ footer {
     margin-top: 20px;
 }
 
-.course-list-container h3 {
-    color: var(--primary-color);
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 0.3rem;
-}
-
-.course-list-container p {
+/* Style for the initial program info paragraphs */
+.course-list-container > p {
     margin-bottom: 0.5rem;
     line-height: 1.5;
+    color: #444; /* Slightly darker text for program info */
+    font-size: 0.9rem;
+}
+.course-list-container > hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+    margin: 1rem 0 1.5rem 0;
+}
+
+
+.course-list-container h3 {
+    color: var(--primary-color);
+    background-color: #eef2f7; /* Light background for semester headers */
+    padding: 0.5rem 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid var(--secondary-color);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 4px 4px 0 0;
 }
 
 .course-list-container ul {
     list-style-type: none;
     padding-left: 0;
+    margin-bottom: 1.5rem; /* Space after each semester's list */
 }
 
 .course-list-container li {
-    background-color: #f9f9f9;
-    border: 1px solid #eee;
-    padding: 8px 12px;
+    background-color: #fdfdfe; /* Default very light background for odd items */
+    border: 1px solid #eef2f7;
+    padding: 10px 15px; /* Increased padding */
     margin-bottom: 6px;
     border-radius: 4px;
     font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+
+.course-list-container li:nth-child(even) {
+    background-color: #f7f9fc; /* Slightly different for even items (zebra striping) */
+}
+
+.course-list-container li:hover {
+    background-color: #e9edf1; /* Hover effect */
 }
