@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUP CSE Batch 1</title>
+    <style>
+        :root {
+            --primary-color: #0D47A1;
+            --secondary-color: #008080;
+            --accent-color: #4CAF50;
+            --yellow: #FBBF24;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* Important Notice Banner */
+        .notice-banner {
+            background-color: var(--yellow);
+            border-left: 4px solid #F59E0B;
+            padding: 0.75rem 1rem;
+            color: #B45309;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .notice-banner svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 24px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+        }
+
+        /* Quick Resources */
+        .resources-section {
+            background-color: #f9fafb;
+            padding: 2rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: white;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            color: var(--accent-color);
+        }
+
+        /* Semester Accordion */
+        .semesters-section {
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion {
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .accordion-header {
+            background-color: #fff;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #f3f4f6;
+        }
+
+        .accordion-title {
+            font-weight: 600;
+        }
+
+        .accordion-arrow {
+            width: 1.2rem;
+            height: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #f9fafb;
+        }
+
+        .accordion-content.open {
+            max-height: 500px;
+            padding: 1rem 1.5rem;
+        }
+
+        .notice-box {
+            background-color: var(--yellow);
+            border-left: 4px solid #F59E0B;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 6px;
+        }
+
+        .notice-box h4 {
+            color: #B45309;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .notice-box p {
+            color: #994F06;
+            font-size: 0.95rem;
+        }
+
+        .material-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .material-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: white;
+            border-left: 4px solid var(--accent-color);
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .material-link:hover {
+            transform: translateX(5px);
+        }
+
+        .material-icon {
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: var(--primary-color);
+                padding: 1rem 1.5rem;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .material-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Important Notice Banner -->
+    <div class="notice-banner">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+        </svg>
+        Important Notice: Midterm Exam Date Changed - Please check the notice section inside Semester 6
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>CSE Batch 1</span>
+            </div>
+            
+            <nav class="nav-links" id="mobile-nav">
+                <a href="#semester6">Semester 6</a>
+                <a href="#all-semesters">All Semesters</a>
+                <a href="#resources">Resources</a>
+            </nav>
+            
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Department of Computer Science & Engineering</h1>
+        <p>Batch 1 Academic Resources</p>
+    </section>
+
+    <!-- Quick Resources -->
+    <section class="resources-section" id="resources">
+        <h2 class="section-title">Quick Resources</h2>
+        <div class="resource-grid">
+            <a href="https://drive.google.com/drive/folders/18Z5Z-eEovSHLiwt52UvS4pyrzy-WMNtd?usp=drive_link " target="_blank" class="resource-card">
+                <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                </svg>
+                Computer Network
+            </a>
+            <a href="https://drive.google.com/drive/folders/1q1EA5qH7GKnuLxP_1LkpRzBm4K8WRSyB?usp=drive_link " target="_blank" class="resource-card">
+                <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                </svg>
+                DSD
+            </a>
+            <a href="https://drive.google.com/drive/folders/1wDYf2TPmRupzpCElgsHt5nAMkRfa3c-S?usp=drive_link " target="_blank" class="resource-card">
+                <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                </svg>
+                Environmental Sustainability
+            </a>
+            <a href="https://drive.google.com/drive/folders/1LbqyPhcxdOazSEj8LOGkpS_m_KLzHG8U?usp=drive_link " target="_blank" class="resource-card">
+                <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                </svg>
+                Research Methodology
+            </a>
+            <a href="https://drive.google.com/drive/folders/1hKbfUn7FRf7i2eQPYyzqHb7oFy3x8Zt1?usp=drive_link " target="_blank" class="resource-card">
+                <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                </svg>
+                SDP
+            </a>
+            <a href="https://drive.google.com/drive/folders/1-WvzoF3YWRNs4UXdiYZLzLf-LsnllZ_p?usp=drive_link " target="_blank" class="resource-card">
+                <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                </svg>
+                Software Engineering
+            </a>
+        </div>
+    </section>
+
+    <!-- Semester Accordion -->
+    <section class="semesters-section" id="all-semesters">
+        <h2 class="section-title">All Semesters</h2>
+        
+        <div class="accordion">
+            <!-- Repeat for 8 semesters -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Semester 1</span>
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>This section contains resources for Semester 1.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Semester 2</span>
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>This section contains resources for Semester 2.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Semester 3</span>
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>This section contains resources for Semester 3.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Semester 4</span>
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>This section contains resources for Semester 4.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Semester 5</span>
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>This section contains resources for Semester 5.</p>
+                </div>
+            </div>
+
+            <!-- Semester 6 (Default Open) -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Semester 6 (Current)</span>
+                    <svg class="accordion-arrow rotate" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="accordion-content open">
+                    <!-- Important Notice -->
+                    <div class="notice-box">
+                        <h4>Important Notice: Midterm Exam Date Changed</h4>
+                        <p>The midterm exam for all courses has been rescheduled to April 15-17, 2024. Please check the official notice in the Google Drive for more details.</p>
+                    </div>
+                    
+                    <!-- Google Drive Links -->
+                    <div class="material-links">
+                        <a href="https://drive.google.com/drive/folders/18Z5Z-eEovSHLiwt52UvS4pyrzy-WMNtd?usp=drive_link " target="_blank" class="material-link">
+                            <svg class="material-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                            </svg>
+                            Computer Network
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1q1EA5qH7GKnuLxP_1LkpRzBm4K8WRSyB?usp=drive_link " target="_blank" class="material-link">
+                            <svg class="material-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                            </svg>
+                            DSD
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1wDYf2TPmRupzpCElgsHt5nAMkRfa3c-S?usp=drive_link " target="_blank" class="material-link">
+                            <svg class="material-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                            </svg>
+                            Environmental Sustainability
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1LbqyPhcxdOazSEj8LOGkpS_m_KLzHG8U?usp=drive_link " target="_blank" class="material-link">
+                            <svg class="material-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                            </svg>
+                            Research Methodology
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1hKbfUn7FRf7i2eQPYyzqHb7oFy3x8Zt1?usp=drive_link " target="_blank" class="material-link">
+                            <svg class="material-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                            </svg>
+                            SDP
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1-WvzoF3YWRNs4UXdiYZLzLf-LsnllZ_p?usp=drive_link " target="_blank" class="material-link">
+                            <svg class="material-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                            </svg>
+                            Software Engineering
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Semester 7</span>
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>This section contains resources for Semester 7.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">Semester 8</span>
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="accordion-content">
+                    <p>This section contains resources for Semester 8.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container mx-auto">
+            <p>&copy; {new Date().getFullYear()} BUP CSE Batch 1. All rights reserved.</p>
+            <p class="mt-1">Developed by Batch 1 Students</p>
+            <div class="footer-links">
+                <a href="#semester6">Semester 6</a>
+                <a href="#all-semesters">All Semesters</a>
+                <a href="#resources">Resources</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById('mobile-nav');
+            nav.classList.toggle('active');
+        }
+
+        // Accordion toggle
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const arrow = element.querySelector('.accordion-arrow');
+            
+            // Close all accordion items
+            document.querySelectorAll('.accordion-content').forEach(el => {
+                if (el !== content) {
+                    el.classList.remove('open');
+                    el.previousElementSibling.querySelector('.accordion-arrow').classList.remove('rotate');
+                }
+            });
+            
+            // Toggle the clicked item
+            content.classList.toggle('open');
+            arrow.classList.toggle('rotate');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mobile-nav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!nav.contains(event.target) && !hamburger.contains(event.target) && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        });
+
+        // Initialize semester 6 as open
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.accordion-content.open')?.classList.add('open');
+        });
+    </script>
+</body>
+</html>
