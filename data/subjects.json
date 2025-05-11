@@ -1,135 +1,210 @@
 {
   "batches": [
     {
-      "name": "Batch 2",
+      "id": "1",
+      "name": "Batch 1",
+      "heroText": "Batch 1 Academic Resources",
+      "currentSemesterName": "Semester 6 (Current)",
+      "resources": [
+        { "name": "Computer Network", "link": "https://drive.google.com/drive/folders/18Z5Z-eEovSHLiwt52UvS4pyrzy-WMNtd?usp=drive_link" },
+        { "name": "DSD", "link": "https://drive.google.com/drive/folders/1q1EA5qH7GKnuLxP_1LkpRzBm4K8WRSyB?usp=drive_link" },
+        { "name": "Environmental Sustainability", "link": "https://drive.google.com/drive/folders/1wDYf2TPmRupzpCElgsHt5nAMkRfa3c-S?usp=drive_link" },
+        { "name": "Research Methodology", "link": "https://drive.google.com/drive/folders/1LbqyPhcxdOazSEj8LOGkpS_m_KLzHG8U?usp=drive_link" },
+        { "name": "SDP", "link": "https://drive.google.com/drive/folders/1hKbfUn7FRf7i2eQPYyzqHb7oFy3x8Zt1?usp=drive_link" },
+        { "name": "Software Engineering", "link": "https://drive.google.com/drive/folders/1-WvzoF3YWRNs4UXdiYZLzLf-LsnllZ_p?usp=drive_link" },
+        { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
+        { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
+        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
+      ],
+      "routineLink": "assets/images/3-2 Routine_a.png",
       "semesters": [
-        {
-          "name": "Semester 1",
+        { 
+          "name": "Semester 6 (Current)", 
+          "notice": { "title": "Midterm Exam Date Changed (Batch 1)", "text": "The midterm exam for Batch 1 has been rescheduled. Please check Google Drive." }, 
           "subjects": [
-            {
-              "name": "Chemistry",
-              "link": "https://drive.google.com/drive/folders/1rEWVJPAO1B5w-UwbW8-5C5e84g80PqLU"
-            },
-            {
-              "name": "ECA",
-              "link": "https://drive.google.com/drive/folders/1sbkcOaBAzZa6jk5ntoqvU0msvNwSmLnr"
-            },
-            {
-              "name": "English",
-              "link": "https://drive.google.com/drive/folders/1tLAcM61XAXry2Li_jnXf_xecdedcoDqX"
-            },
-            {
-              "name": "GEBS",
-              "link": "https://drive.google.com/drive/folders/1sDRPEzxuguQEeU0fXiLg9TUstw9rD62y"
-            },
-            {
-              "name": "Lab Materials",
-              "link": "https://drive.google.com/drive/folders/1u0Mn74NTtQwHjLk83FFTsyxGdwu7mIBs"
-            },
-            {
-              "name": "Math",
-              "link": "https://drive.google.com/drive/folders/1nQHiBc2uawhqdzD_TMoAlESL6MmuaRgI"
-            },
-            {
-              "name": "Physics",
-              "link": "https://drive.google.com/drive/folders/1nv3JeL7p7Au7ZfuKD27gxbTd9HPanEdv"
-            }
-          ]
+            { "name": "Computer Network", "link": "https://drive.google.com/drive/folders/18Z5Z-eEovSHLiwt52UvS4pyrzy-WMNtd?usp=drive_link" },
+            { "name": "DSD", "link": "https://drive.google.com/drive/folders/1q1EA5qH7GKnuLxP_1LkpRzBm4K8WRSyB?usp=drive_link" },
+            { "name": "Environmental Sustainability", "link": "https://drive.google.com/drive/folders/1wDYf2TPmRupzpCElgsHt5nAMkRfa3c-S?usp=drive_link" },
+            { "name": "Research Methodology", "link": "https://drive.google.com/drive/folders/1LbqyPhcxdOazSEj8LOGkpS_m_KLzHG8U?usp=drive_link" },
+            { "name": "SDP", "link": "https://drive.google.com/drive/folders/1hKbfUn7FRf7i2eQPYyzqHb7oFy3x8Zt1?usp=drive_link" },
+            { "name": "Software Engineering", "link": "https://drive.google.com/drive/folders/1-WvzoF3YWRNs4UXdiYZLzLf-LsnllZ_p?usp=drive_link" }
+          ], 
+          "isOpen": true
         },
-        {
-          "name": "Semester 2",
+        { 
+          "name": "Semester 5", 
           "subjects": [
-            {
-              "name": "MATH1209-Linear Algebra",
-              "link": "https://drive.google.com/drive/folders/154e-tximFZL2ef5C2eQweIHI0feWZGrS"
-            },
-            {
-              "name": "MATH1207-Discrete Mathematics",
-              "link": "https://drive.google.com/drive/folders/15020fVWgi-t7_28rm2idCZ1SXkhddHmS"
-            },
-            {
-              "name": "LANG1211-Foreign Language (French)",
-              "link": "https://drive.google.com/drive/folders/15AlfdbQYdslzWeeQfL5GRifGaoIbYF1I"
-            },
-            {
-              "name": "Lab Materials",
-              "link": "https://drive.google.com/drive/folders/16EVKhaxDWyOFYnnOBtLTqmX4O7GQS-Ip"
-            },
-            {
-              "name": "ICE1205-Electronic Devices and Circuits",
-              "link": "https://drive.google.com/drive/folders/14zkYBNV0QyZZEH7MaiDrEto1K25WDTo8"
-            },
-            {
-              "name": "CSE1203-Structured Programming Language",
-              "link": "https://drive.google.com/drive/folders/14t2vW6wBQpYoKmzpBW22zTnn0Oru61Wv"
-            },
-            {
-              "name": "CSE1201-Digital Logic Design",
-              "link": "https://drive.google.com/drive/folders/14vz3yRHQ0bUhLj2IS3edZBFR5KrvMr_0"
-            }
-          ]
+            { "name": "Compiler", "link": "https://drive.google.com/drive/folders/1jZSLwQhKPZrdIByNEkmgw3NK7EOnrxRf?usp=drive_link" },
+            { "name": "Data Communication", "link": "https://drive.google.com/drive/folders/11YQa3n_hGFMfjrsn1c5YtPWxB9Pa8JEP?usp=drive_link" },
+            { "name": "DBMS", "link": "https://drive.google.com/drive/folders/14_DHUqZNCludaFY14qQSmcakoyFz_t7t?usp=drive_link" },
+            { "name": "MMAL", "link": "https://drive.google.com/drive/folders/1XMop-MkMX1-E1k2Q5oY5jAdb_iffoPys?usp=drive_link" },
+            { "name": "OS", "link": "https://drive.google.com/drive/folders/1PNqyk9DRJI8JDj1HmSRzFoTTrCtpzVmY?usp=drive_link" },
+            { "name": "Required Softwares", "link": "https://drive.google.com/drive/folders/12MFNYIN0g9nyrgRnQu7EtKYT66JUvfom?usp=drive_link" }
+          ],
+          "isOpen": false
         },
-        {
-          "name": "Semester 3",
+        { 
+          "name": "Semester 4", 
           "subjects": [
-            {
-              "name": "ToC - CSE 2105",
-              "link": "https://drive.google.com/drive/folders/1lM6tJFTMjNhPJfHMIb726zvNkwGyUbrY"
-            },
-            {
-              "name": "PSD - ENG 2110",
-              "link": "https://drive.google.com/drive/folders/1BAYhSA82gUtK7B8257Fc6bG-HoXKON78"
-            },
-            {
-              "name": "OOP - CSE 2103",
-              "link": "https://drive.google.com/drive/folders/1-VddYs_nJ0PiLEqDBTtsI83OHYOFTc7d"
-            },
-            {
-              "name": "EDI - ICE 2107",
-              "link": "https://drive.google.com/drive/folders/1kFd6i3TkroPd9E7rZzaiUHdDX-uNnKOp"
-            },
-            {
-              "name": "DSA - CSE 2101",
-              "link": "https://drive.google.com/drive/folders/1-UHh5LLvyrX99fjpcxg3bE8Vji4xNQo4"
-            },
-            {
-              "name": "DE - Math 2111",
-              "link": "https://drive.google.com/drive/folders/1dChrg7OMKhPZlshsRKGnq6fEIkCnm0vY"
-            }
-          ]
+            { "name": "Computer Architecture", "link": "https://drive.google.com/drive/folders/1PL7JctaxqaGfZuGDgpvwO81LxTVJnngO?usp=drive_link" },
+            { "name": "DEPT", "link": "https://drive.google.com/drive/folders/1VQomr5ZNGpAF380sz42VK0BJFl2Oh1Lt?usp=drive_link" },
+            { "name": "DSA - 2", "link": "https://drive.google.com/drive/folders/1lTH-vB-b0bd5bHA7YMT6a7gRDGIwdOHW?usp=drive_link" },
+            { "name": "GEEM", "link": "https://drive.google.com/drive/folders/1CeUB_SXwHTLkC3ZjOyyfLZCBzRdBS5q6?usp=drive_link" },
+            { "name": "OOP-2", "link": "https://drive.google.com/drive/folders/1zhTRSVyMyDqYRNOZ3pfopcwsK0lp9_fp?usp=drive_link" },
+            { "name": "Statistics", "link": "https://drive.google.com/drive/folders/1Tz4J1mYEHaIHEgni_g2S85rnMsildTJ0?usp=drive_link" },
+            { "name": "ED & CAD", "link": "https://drive.google.com/drive/folders/1u3qzdaipCdeEwdJXl-20LybxzHsQ2o6Q?usp=drive_link" }
+          ],
+          "isOpen": false
         },
-        {
-          "name": "Semester 4 (Current)",
+        { 
+          "name": "Semester 3", 
           "subjects": [
-            {
-              "name": "Statistics - MATH 2211",
-              "link": "https://drive.google.com/drive/folders/144xtB0-5jV4-vVe4vjhFBHail9MSi0zw"
-            },
-            {
-              "name": "OOP II - CSE 2208",
-              "link": "https://drive.google.com/drive/folders/13uWNMuOD0TLDOjSBKZ65D-QxoGh-Km-0"
-            },
-            {
-              "name": "EEMP - GEEM 2207",
-              "link": "https://drive.google.com/drive/folders/14t-k7eihCXvP_kxHczMN1osrZisGG3nm"
-            },
-            {
-              "name": "ED & CAD - CSE 2202",
-              "link": "https://drive.google.com/drive/folders/13njYEUSq7Zk22GkC95D6qxYzEozVwmHb"
-            },
-            {
-              "name": "DSA II - CSE 2205",
-              "link": "https://drive.google.com/drive/folders/13qXrYYJCMT9KM0hxoc5D4KviSdYPwqI3"
-            },
-            {
-              "name": "DEPT - ICE 2209",
-              "link": "https://drive.google.com/drive/folders/13ulSBpRdNJDaRKyjAi9wFdOJPmRfJsIY"
-            },
-            {
-              "name": "CA - CSE 2203",
-              "link": "https://drive.google.com/drive/folders/13p5gQA8ZrTq5jVDVGyr6jn_CvS6Y5jgf"
-            }
-          ]
+            { "name": "DSA", "link": "https://drive.google.com/drive/folders/1_Md1V1-a5Vsdh6lO2lrHVkvkcY6A7lSf?usp=drive_link" },
+            { "name": "OOP", "link": "https://drive.google.com/drive/folders/196nnQbBhEyooxbLTtPh8mmwXa53Ccos3?usp=drive_link" },
+            { "name": "TOC", "link": "https://drive.google.com/drive/folders/13pmOFgrRtdg58iaeDKfcxM9VVQSmMfyG?usp=drive_link" },
+            { "name": "PSD", "link": "https://drive.google.com/drive/folders/1moes0z7lqeK57pHby8kP99TvsF0-JBae?usp=drive_link" },
+            { "name": "EDI", "link": "https://drive.google.com/drive/folders/1FKlFxG0yvCq0rGxeuLeI7-OUSNInzBvr?usp=drive_link" },
+            { "name": "Differential Equations, Laplace Transform and Fourier Transform", "link": "https://drive.google.com/drive/folders/1v7HMhRMkn7UqWj82i7ipQyni4z9O1PFv?usp=drive_link" }
+          ],
+          "isOpen": false
+        },
+        { 
+          "name": "Semester 2", 
+          "subjects": [
+            { "name": "Digital Logic Design", "link": "https://drive.google.com/drive/folders/1lxVaSLqu67KUIAj8QDyYZwByNeOxERVH?usp=drive_link" },
+            { "name": "Structured Programming Language", "link": "https://drive.google.com/drive/folders/1dCi6NTXPlF18j9NgPSn6t99z-jtagAdr?usp=drive_link" },
+            { "name": "Electronics Devices and Circuits", "link": "https://drive.google.com/drive/folders/1KzksD44RURQKBMBL-agPh-hblnlMfr3J?usp=drive_link" },
+            { "name": "French", "link": "https://drive.google.com/drive/folders/1EYrO6x8jG0RuMD5Vw6v64eiuhDBBXEg_?usp=drive_link" },
+            { "name": "Discrete Math", "link": "https://drive.google.com/drive/folders/14rcLnVr4N9s3sJE5goL8gY_10fRaA2z1?usp=drive_link" },
+            { "name": "Linear Algebra", "link": "https://drive.google.com/drive/folders/1JV5UQwB2d0YGNapr1jsInLix6nZ62ASP?usp=drive_link" }
+          ],
+          "isOpen": false
+        },
+        { 
+          "name": "Semester 1", 
+          "subjects": [
+            { "name": "Chemistry", "link": "https://drive.google.com/drive/folders/144bT5YPyGAUEKgnx_h9DfUrqaqmdxhQT?usp=drive_link" },
+            { "name": "English", "link": "https://drive.google.com/drive/folders/1LH97VOVXg5Xcvpzk4n9CFReAEewzTRLj?usp=drive_link" },
+            { "name": "GEBS", "link": "https://drive.google.com/drive/folders/1RFg6lO-lCLc5nMz6V5MtNtnZKSpwO5tj?usp=drive_link" },
+            { "name": "ICE", "link": "https://drive.google.com/drive/folders/1ARuK4LKjWKyxlJmlDmAS0gMW13-pSKMT?usp=drive_link" },
+            { "name": "Math", "link": "https://drive.google.com/drive/folders/1llRCHE1EQX8LpiCUsIqrb8oYMo45OSvN?usp=drive_link" },
+            { "name": "Physics", "link": "https://drive.google.com/drive/folders/1fWflEPeUWjjjY-oKgD9VPDQ6JbculIVi?usp=drive_link" }
+          ],
+          "isOpen": false
+        },
+        { "name": "Semester 7", "content": "Resources for Batch 1, Semester 7.", "isOpen": false },
+        { "name": "Semester 8", "content": "Resources for Batch 1, Semester 8.", "isOpen": false }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Batch 2",
+      "heroText": "Batch 2 Academic Resources",
+      "currentSemesterName": "Semester 4 (Current)",
+      "resources": [
+        { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
+        { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
+        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
+      ], 
+      "routineLink": "assets/images/routine_b2_placeholder.png",
+      "semesters": [
+        { "name": "Semester 5", "subjects": [], "isOpen": false, "notice": null }, 
+        { 
+          "name": "Semester 4 (Current)", 
+          "notice": { "title": "Project Submission (Batch 2)", "text": "Submit your projects by next week." }, 
+          "subjects": [
+            { "name": "Statistics - MATH 2211", "link": "https://drive.google.com/drive/folders/144xtB0-5jV4-vVe4vjhFBHail9MSi0zw" },
+            { "name": "OOP II - CSE 2208", "link": "https://drive.google.com/drive/folders/13uWNMuOD0TLDOjSBKZ65D-QxoGh-Km-0" },
+            { "name": "EEMP - GEEM 2207", "link": "https://drive.google.com/drive/folders/14t-k7eihCXvP_kxHczMN1osrZisGG3nm" },
+            { "name": "ED & CAD - CSE 2202", "link": "https://drive.google.com/drive/folders/13njYEUSq7Zk22GkC95D6qxYzEozVwmHb" },
+            { "name": "DSA II - CSE 2205", "link": "https://drive.google.com/drive/folders/13qXrYYJCMT9KM0hxoc5D4KviSdYPwqI3" },
+            { "name": "DEPT - ICE 2209", "link": "https://drive.google.com/drive/folders/13ulSBpRdNJDaRKyjAi9wFdOJPmRfJsIY" },
+            { "name": "CA - CSE 2203", "link": "https://drive.google.com/drive/folders/13p5gQA8ZrTq5jVDVGyr6jn_CvS6Y5jgf" }
+          ], 
+          "isOpen": true 
+        },
+        { 
+          "name": "Semester 3", 
+          "subjects": [
+            { "name": "ToC - CSE 2105", "link": "https://drive.google.com/drive/folders/1lM6tJFTMjNhPJfHMIb726zvNkwGyUbrY" },
+            { "name": "PSD - ENG 2110", "link": "https://drive.google.com/drive/folders/1BAYhSA82gUtK7B8257Fc6bG-HoXKON78" },
+            { "name": "OOP - CSE 2103", "link": "https://drive.google.com/drive/folders/1-VddYs_nJ0PiLEqDBTtsI83OHYOFTc7d" },
+            { "name": "EDI - ICE 2107", "link": "https://drive.google.com/drive/folders/1kFd6i3TkroPd9E7rZzaiUHdDX-uNnKOp" },
+            { "name": "DSA - CSE 2101", "link": "https://drive.google.com/drive/folders/1-UHh5LLvyrX99fjpcxg3bE8Vji4xNQo4" },
+            { "name": "DE - Math 2111", "link": "https://drive.google.com/drive/folders/1dChrg7OMKhPZlshsRKGnq6fEIkCnm0vY" }
+          ],
+          "isOpen": false, "notice": null 
+        },
+        { 
+          "name": "Semester 2", 
+          "subjects": [
+            { "name": "MATH1209-Linear Algebra", "link": "https://drive.google.com/drive/folders/154e-tximFZL2ef5C2eQweIHI0feWZGrS" },
+            { "name": "MATH1207-Discrete Mathematics", "link": "https://drive.google.com/drive/folders/15020fVWgi-t7_28rm2idCZ1SXkhddHmS" },
+            { "name": "LANG1211-Foreign Language (French)", "link": "https://drive.google.com/drive/folders/15AlfdbQYdslzWeeQfL5GRifGaoIbYF1I" },
+            { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/16EVKhaxDWyOFYnnOBtLTqmX4O7GQS-Ip" },
+            { "name": "ICE1205-Electronic Devices and Circuits", "link": "https://drive.google.com/drive/folders/14zkYBNV0QyZZEH7MaiDrEto1K25WDTo8" },
+            { "name": "CSE1203-Structured Programming Language", "link": "https://drive.google.com/drive/folders/14t2vW6wBQpYoKmzpBW22zTnn0Oru61Wv" },
+            { "name": "CSE1201-Digital Logic Design", "link": "https://drive.google.com/drive/folders/14vz3yRHQ0bUhLj2IS3edZBFR5KrvMr_0" }
+          ],
+          "isOpen": false, "notice": null 
+        },
+        { 
+          "name": "Semester 1", 
+          "subjects": [
+            { "name": "Chemistry", "link": "https://drive.google.com/drive/folders/1rEWVJPAO1B5w-UwbW8-5C5e84g80PqLU" },
+            { "name": "ECA", "link": "https://drive.google.com/drive/folders/1sbkcOaBAzZa6jk5ntoqvU0msvNwSmLnr" },
+            { "name": "English", "link": "https://drive.google.com/drive/folders/1tLAcM61XAXry2Li_jnXf_xecdedcoDqX" },
+            { "name": "GEBS", "link": "https://drive.google.com/drive/folders/1sDRPEzxuguQEeU0fXiLg9TUstw9rD62y" },
+            { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/1u0Mn74NTtQwHjLk83FFTsyxGdwu7mIBs" },
+            { "name": "Math", "link": "https://drive.google.com/drive/folders/1nQHiBc2uawhqdzD_TMoAlESL6MmuaRgI" },
+            { "name": "Physics", "link": "https://drive.google.com/drive/folders/1nv3JeL7p7Au7ZfuKD27gxbTd9HPanEdv" }
+          ],
+          "isOpen": false, "notice": null 
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Batch 3",
+      "heroText": "Batch 3 Academic Resources",
+      "currentSemesterName": "Semester 2 (Current)",
+      "resources": [
+        { "name": "Intro to Programming (B3)", "link": "#" },
+        { "name": "Discrete Maths (B3)", "link": "#" },
+        { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
+        { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
+        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
+      ],
+      "routineLink": "assets/images/routine_b3_placeholder.png",
+      "semesters": [
+        { 
+          "name": "Semester 2 (Current)", 
+          "notice": { "title": "Quiz Announcement (Batch 3)", "text": "Quiz next Friday on Chapter 1-3." }, 
+          "subjects": [{ "name": "Programming Slides B3", "link": "#"}], 
+          "isOpen": true 
+        },
+        { "name": "Semester 1", "content": "Resources for Batch 3, Semester 1.", "isOpen": false }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Batch 4",
+      "heroText": "Batch 4 Academic Resources",
+      "currentSemesterName": "Semester 1 (Current)",
+      "resources": [
+        { "name": "Fundamentals of CS (B4)", "link": "#" },
+        { "name": "English I (B4)", "link": "#" },
+        { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
+        { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
+        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
+      ],
+      "routineLink": "assets/images/routine_b4_placeholder.png",
+      "semesters": [
+        { 
+          "name": "Semester 1 (Current)", 
+          "notice": { "title": "Welcome Batch 4!", "text": "Orientation details are in Google Drive." }, 
+          "subjects": [{ "name": "CS101 Syllabus B4", "link": "#"}], 
+          "isOpen": true 
         }
       ]
     }
