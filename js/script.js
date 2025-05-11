@@ -1,4 +1,4 @@
-const batchData = {
+let batchData = { // Changed const to let to allow modification
     "1": {
         heroText: "Batch 1 Academic Resources",
         currentSemesterName: "Semester 6 (Current)",
@@ -88,22 +88,19 @@ const batchData = {
     "2": {
         heroText: "Batch 2 Academic Resources",
         currentSemesterName: "Semester 4 (Current)",
-        resources: [
-            { name: "Data Structures (B2)", link: "#" },
-            { name: "Algorithms (B2)", link: "#" },
-            { name: "Calculus II (B2)", link: "#" }
-        ],
+        // resources will be populated by current semester's materials
+        resources: [], 
         semesters: [ // Order: 5, 4(Current), 3, 2, 1
-            { name: "Semester 5", content: "Resources for Batch 2, Semester 5." }, // Assuming it should be materials if data provided
+            { name: "Semester 5", materials: [] }, 
             { 
                 name: "Semester 4 (Current)", 
                 notice: { title: "Project Submission (Batch 2)", text: "Submit your projects by next week." }, 
-                materials: [{ name: "DSA Notes B2", link: "#"}], 
+                materials: [], // Will be populated from subjects.json
                 isOpen: true 
             },
-            { name: "Semester 3", content: "Resources for Batch 2, Semester 3." },
-            { name: "Semester 2", content: "Resources for Batch 2, Semester 2." },
-            { name: "Semester 1", content: "Resources for Batch 2, Semester 1." }
+            { name: "Semester 3", materials: [] }, 
+            { name: "Semester 2", materials: [] }, 
+            { name: "Semester 1", materials: [] }
         ],
         routineLink: "assets/images/routine_b2_placeholder.png" // Placeholder
     },
@@ -230,9 +227,18 @@ window.onclick = function(event) {
 
 
 function updateQuickResources(batchId) {
-    const data = batchData[batchId].resources;
+    let resourcesToShow = batchData[batchId].resources;
+
+    // For Batch 2, show current semester's materials as quick resources
+    if (batchId === "2") {
+        const currentSemester = batchData[batchId].semesters.find(s => s.name === batchData[batchId].currentSemesterName);
+        if (currentSemester && currentSemester.materials) {
+            resourcesToShow = currentSemester.materials;
+        }
+    }
+
     resourceGrid.innerHTML = ''; // Clear existing resources
-    data.forEach(resource => {
+    resourcesToShow.forEach(resource => {
         const resourceEl = `
             <a href="${resource.link}" target="_blank" class="resource-card">
                 <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -253,6 +259,11 @@ function updateSemesterAccordion(batchId) {
             semester.name !== "Semester 7" && semester.name !== "Semester 8"
         );
     }
+    // For Batch 2, only filter out Semester 5
+    if (batchId === "2") {
+        semestersToDisplay = semestersToDisplay.filter(semester => semester.name !== "Semester 5");
+    }
+
 
     semesterAccordion.innerHTML = ''; // Clear existing items
     semestersToDisplay.forEach(semester => {
@@ -280,8 +291,10 @@ function updateSemesterAccordion(batchId) {
         }
 
         const contentHTML = semester.content ? `<p>${semester.content}</p>` : '';
-        const isOpenClass = semester.isOpen ? 'open' : '';
-        const arrowRotateClass = semester.isOpen ? 'rotate' : '';
+        // For Batch 2, ensure other semesters are not open by default
+        const isOpenClass = (batchId === "2" && semester.name !== batchData[batchId].currentSemesterName) ? '' : (semester.isOpen ? 'open' : '');
+        const arrowRotateClass = (batchId === "2" && semester.name !== batchData[batchId].currentSemesterName) ? '' : (semester.isOpen ? 'rotate' : '');
+
 
         const itemEl = `
             <div class="accordion-item">
@@ -342,8 +355,44 @@ batchSelector.addEventListener('click', (event) => {
 });
 
 // Load saved batch or default to Batch 1
-document.addEventListener('DOMContentLoaded', () => {
+async function loadExternalSubjectData() {
+    try {
+        const response = await fetch('./data/subjects.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const externalData = await response.json();
+
+        // Integrate externalData into batchData
+        externalData.batches.forEach(batch => {
+            const batchIdStr = batch.name.replace('Batch ', ''); // Assuming "Batch X" format
+            if (batchData[batchIdStr]) {
+                batch.semesters.forEach(semester => {
+                    const semesterIndex = batchData[batchIdStr].semesters.findIndex(s => s.name === semester.name);
+                    if (semesterIndex !== -1) {
+                        // Replace/update materials for the specific semester
+                        batchData[batchIdStr].semesters[semesterIndex].materials = semester.subjects.map(subject => ({
+                            name: subject.name,
+                            link: subject.link
+                        }));
+                        console.log(`Updated Batch ${batchIdStr}, ${semester.name} with external subjects.`);
+                    } else {
+                        // Optionally add the semester if it doesn't exist, or log a warning
+                        console.warn(`Semester ${semester.name} not found in batchData for Batch ${batchIdStr}.`);
+                    }
+                });
+            } else {
+                console.warn(`Batch ${batchIdStr} not found in batchData.`);
+            }
+        });
+    } catch (error) {
+        console.error("Could not fetch or parse external subject data:", error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => { // Make async
     console.log("DOMContentLoaded event"); // DEBUG
+    await loadExternalSubjectData(); // Load external data first
     const savedBatch = localStorage.getItem('selectedBatch') || '1';
     console.log(`Loading saved batch: ${savedBatch}`); // DEBUG
     updateUIForBatch(savedBatch);

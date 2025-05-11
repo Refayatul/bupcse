@@ -1,0 +1,137 @@
+{
+  "batches": [
+    {
+      "name": "Batch 2",
+      "semesters": [
+        {
+          "name": "Semester 1",
+          "subjects": [
+            {
+              "name": "Chemistry",
+              "link": "https://drive.google.com/drive/folders/1rEWVJPAO1B5w-UwbW8-5C5e84g80PqLU"
+            },
+            {
+              "name": "ECA",
+              "link": "https://drive.google.com/drive/folders/1sbkcOaBAzZa6jk5ntoqvU0msvNwSmLnr"
+            },
+            {
+              "name": "English",
+              "link": "https://drive.google.com/drive/folders/1tLAcM61XAXry2Li_jnXf_xecdedcoDqX"
+            },
+            {
+              "name": "GEBS",
+              "link": "https://drive.google.com/drive/folders/1sDRPEzxuguQEeU0fXiLg9TUstw9rD62y"
+            },
+            {
+              "name": "Lab Materials",
+              "link": "https://drive.google.com/drive/folders/1u0Mn74NTtQwHjLk83FFTsyxGdwu7mIBs"
+            },
+            {
+              "name": "Math",
+              "link": "https://drive.google.com/drive/folders/1nQHiBc2uawhqdzD_TMoAlESL6MmuaRgI"
+            },
+            {
+              "name": "Physics",
+              "link": "https://drive.google.com/drive/folders/1nv3JeL7p7Au7ZfuKD27gxbTd9HPanEdv"
+            }
+          ]
+        },
+        {
+          "name": "Semester 2",
+          "subjects": [
+            {
+              "name": "MATH1209-Linear Algebra",
+              "link": "https://drive.google.com/drive/folders/154e-tximFZL2ef5C2eQweIHI0feWZGrS"
+            },
+            {
+              "name": "MATH1207-Discrete Mathematics",
+              "link": "https://drive.google.com/drive/folders/15020fVWgi-t7_28rm2idCZ1SXkhddHmS"
+            },
+            {
+              "name": "LANG1211-Foreign Language (French)",
+              "link": "https://drive.google.com/drive/folders/15AlfdbQYdslzWeeQfL5GRifGaoIbYF1I"
+            },
+            {
+              "name": "Lab Materials",
+              "link": "https://drive.google.com/drive/folders/16EVKhaxDWyOFYnnOBtLTqmX4O7GQS-Ip"
+            },
+            {
+              "name": "ICE1205-Electronic Devices and Circuits",
+              "link": "https://drive.google.com/drive/folders/14zkYBNV0QyZZEH7MaiDrEto1K25WDTo8"
+            },
+            {
+              "name": "CSE1203-Structured Programming Language",
+              "link": "https://drive.google.com/drive/folders/14t2vW6wBQpYoKmzpBW22zTnn0Oru61Wv"
+            },
+            {
+              "name": "CSE1201-Digital Logic Design",
+              "link": "https://drive.google.com/drive/folders/14vz3yRHQ0bUhLj2IS3edZBFR5KrvMr_0"
+            }
+          ]
+        },
+        {
+          "name": "Semester 3",
+          "subjects": [
+            {
+              "name": "ToC - CSE 2105",
+              "link": "https://drive.google.com/drive/folders/1lM6tJFTMjNhPJfHMIb726zvNkwGyUbrY"
+            },
+            {
+              "name": "PSD - ENG 2110",
+              "link": "https://drive.google.com/drive/folders/1BAYhSA82gUtK7B8257Fc6bG-HoXKON78"
+            },
+            {
+              "name": "OOP - CSE 2103",
+              "link": "https://drive.google.com/drive/folders/1-VddYs_nJ0PiLEqDBTtsI83OHYOFTc7d"
+            },
+            {
+              "name": "EDI - ICE 2107",
+              "link": "https://drive.google.com/drive/folders/1kFd6i3TkroPd9E7rZzaiUHdDX-uNnKOp"
+            },
+            {
+              "name": "DSA - CSE 2101",
+              "link": "https://drive.google.com/drive/folders/1-UHh5LLvyrX99fjpcxg3bE8Vji4xNQo4"
+            },
+            {
+              "name": "DE - Math 2111",
+              "link": "https://drive.google.com/drive/folders/1dChrg7OMKhPZlshsRKGnq6fEIkCnm0vY"
+            }
+          ]
+        },
+        {
+          "name": "Semester 4 (Current)",
+          "subjects": [
+            {
+              "name": "Statistics - MATH 2211",
+              "link": "https://drive.google.com/drive/folders/144xtB0-5jV4-vVe4vjhFBHail9MSi0zw"
+            },
+            {
+              "name": "OOP II - CSE 2208",
+              "link": "https://drive.google.com/drive/folders/13uWNMuOD0TLDOjSBKZ65D-QxoGh-Km-0"
+            },
+            {
+              "name": "EEMP - GEEM 2207",
+              "link": "https://drive.google.com/drive/folders/14t-k7eihCXvP_kxHczMN1osrZisGG3nm"
+            },
+            {
+              "name": "ED & CAD - CSE 2202",
+              "link": "https://drive.google.com/drive/folders/13njYEUSq7Zk22GkC95D6qxYzEozVwmHb"
+            },
+            {
+              "name": "DSA II - CSE 2205",
+              "link": "https://drive.google.com/drive/folders/13qXrYYJCMT9KM0hxoc5D4KviSdYPwqI3"
+            },
+            {
+              "name": "DEPT - ICE 2209",
+              "link": "https://drive.google.com/drive/folders/13ulSBpRdNJDaRKyjAi9wFdOJPmRfJsIY"
+            },
+            {
+              "name": "CA - CSE 2203",
+              "link": "https://drive.google.com/drive/folders/13p5gQA8ZrTq5jVDVGyr6jn_CvS6Y5jgf"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
