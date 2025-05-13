@@ -102,6 +102,7 @@
       "heroText": "Batch 2 Academic Resources",
       "currentSemesterName": "Semester 4 (Current)",
       "resources": [
+        { "name": "Full Google Drive CSE-2", "link":"https://drive.google.com/drive/folders/1nIFPmV0Y4l8bHY0-TlSX-dbLnVJ-waA1?usp=drive_link" },
         { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
         { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
         { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
@@ -179,7 +180,8 @@
     { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/1KKxJ10Rl6f9ape7VfxdTtiyx7EtCYjOD " },
         { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
         { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
-        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
+        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" },
+           { "name": "Full Google Drive CSE-3", "link": "https://drive.google.com/drive/folders/1xMGLZRZ1Wg5zqUeTvOJWb1PZ3DM7voCj" }
       ],
       "routineLink": "assets/images/routine_b3_placeholder.png",
       "semesters": [
@@ -241,7 +243,8 @@
           { "name": "Physics Laboratory", "link": "https://drive.google.com/drive/folders/1giZl_wkpuGOKv4jbYVC8zD716zF6y1NK  "},
           { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
           { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
-          { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
+          { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" },
+           { "name": "Full Google Drive CSE-4", "link": "https://drive.google.com/drive/folders/1QXoO-g7hDH063CE_Cud1feJwlN2ip_Tv?usp=sharing" }
         
       ],
       "routineLink": "assets/images/routine_b4_placeholder.png",
