@@ -170,13 +170,13 @@
       "currentSemesterName": "Semester 2 (Current)",
       "resources": [
   
-        { "name": "Chemistry", "link": "https://drive.google.com/drive/folders/1cbQ4bsBEZgGq1ShK7fPqyifpaPssE3dS " },
-        { "name": "ECA", "link": "https://drive.google.com/drive/folders/1M9L-WBqWApKsiU727eCjYfJcZD5oRnMX " },
-        { "name": "English", "link": "https://drive.google.com/drive/folders/1GD1hAKueVGOB3UF60smAgXdr1PVOhKIh " },
-        { "name": "GEBS", "link": "https://drive.google.com/drive/folders/1-WtYJGkNTCnu4prKPjxSFMuWSHNZ_-A5 " },
-        { "name": "Math", "link": "https://drive.google.com/drive/folders/1tyg8vnafEPNeQEX_Te3Hj_Gas4LRj4cK " },
-        { "name": "Physics", "link": "https://drive.google.com/drive/folders/1RhV9Q66e691CPgKmTahznX6VyHCHGVu9 " },
-        { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/1G4JO9ntC6Me9djuE572Q7pMjpqd-j4Jt " },
+        { "name": "DSA", "link": "https://drive.google.com/drive/folders/11veb5qTdh8iou9HngAYtZ2A0qPNBnPIf " },
+    { "name": "EDI", "link": "https://drive.google.com/drive/folders/1tq7OLTBE00_ltfMxVnfNMjWQH8x6fSFR " },
+    { "name": "Math", "link": "https://drive.google.com/drive/folders/1LdWhyC5ZLbWHo-j7wPZLlZz1Kx3A1NJs " },
+    { "name": "OOP-1", "link": "https://drive.google.com/drive/folders/14kxidJp2T-RzX5NN2hcQU5ElFMlXmzHH " },
+    { "name": "Presentation Skill Development", "link": "https://drive.google.com/drive/folders/1o4WlGFh59qEwDS465GbuQ3ncxcuT1x2V " },
+    { "name": "TOC", "link": "https://drive.google.com/drive/folders/1xuf4jfTr25ll8RBtfGDQJNqzmvwnCM8Z " },
+    { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/1KKxJ10Rl6f9ape7VfxdTtiyx7EtCYjOD " },
         { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
         { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
         { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
@@ -184,12 +184,44 @@
       "routineLink": "assets/images/routine_b3_placeholder.png",
       "semesters": [
         { 
-          "name": "Semester 2 (Current)", 
-          "notice": { "title": "Quiz Announcement (Batch 3)", "text": "Quiz next Friday on Chapter 1-3." }, 
-          "subjects": [{ "name": "Programming Slides B3", "link": "#"}], 
-          "isOpen": true 
+          "name": "Semester 3(Current)", 
+          "subjects": [
+        { "name": "DSA", "link": "https://drive.google.com/drive/folders/11veb5qTdh8iou9HngAYtZ2A0qPNBnPIf " },
+        { "name": "EDI", "link": "https://drive.google.com/drive/folders/1tq7OLTBE00_ltfMxVnfNMjWQH8x6fSFR " },
+        { "name": "Math", "link": "https://drive.google.com/drive/folders/1LdWhyC5ZLbWHo-j7wPZLlZz1Kx3A1NJs " },
+        { "name": "OOP-1", "link": "https://drive.google.com/drive/folders/14kxidJp2T-RzX5NN2hcQU5ElFMlXmzHH " },
+        { "name": "Presentation Skill Development", "link": "https://drive.google.com/drive/folders/1o4WlGFh59qEwDS465GbuQ3ncxcuT1x2V " },
+        { "name": "TOC", "link": "https://drive.google.com/drive/folders/1xuf4jfTr25ll8RBtfGDQJNqzmvwnCM8Z " },
+        { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/1KKxJ10Rl6f9ape7VfxdTtiyx7EtCYjOD " }
+    ],
+          "isOpen": true, "notice": null 
         },
-        { "name": "Semester 1", "content": "Resources for Batch 3, Semester 1.", "isOpen": false }
+        { 
+          "name": "Semester 2", 
+          "subjects": [
+            { "name": "CML", "link": "https://drive.google.com/drive/folders/1phvFp88Rjtjd9OfDGD4a7OcFsjE5tc3a " },
+            { "name": "Digital Logic Design", "link": "https://drive.google.com/drive/folders/1twHkaJx_Fp6Le1m8tPrkEA2I3YwyZWSI " },
+            { "name": "Discrete Math", "link": "https://drive.google.com/drive/folders/1uvl_DYBeo5PqTRE_P6Ap87BiPs2UyDn6 " },
+            { "name": "EDC", "link": "https://drive.google.com/drive/folders/1mxnNoFHL5VB9Zq6lpYU8WYJvqSkgLL2q " },
+            { "name": "Linear Algebra", "link": "https://drive.google.com/drive/folders/1ZrNMjEIhqfwRdXHmR9KgTvC-6YnsCsfx " },
+            { "name": "SPL", "link": "https://drive.google.com/drive/folders/1YEEYVejqgv79jmCCGZEqG4WsGLcEbAfu " },
+            { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/1WJKVUnZwFF6amqPamoFNsT3bTqLmThZC " }
+        ],
+          "isOpen": false, "notice": null 
+        },
+        { 
+          "name": "Semester 1", 
+         "subjects": [
+            { "name": "Chemistry", "link": "https://drive.google.com/drive/folders/1cbQ4bsBEZgGq1ShK7fPqyifpaPssE3dS " },
+            { "name": "ECA", "link": "https://drive.google.com/drive/folders/1M9L-WBqWApKsiU727eCjYfJcZD5oRnMX " },
+            { "name": "English", "link": "https://drive.google.com/drive/folders/1GD1hAKueVGOB3UF60smAgXdr1PVOhKIh " },
+            { "name": "GEBS", "link": "https://drive.google.com/drive/folders/1-WtYJGkNTCnu4prKPjxSFMuWSHNZ_-A5 " },
+            { "name": "Math", "link": "https://drive.google.com/drive/folders/1tyg8vnafEPNeQEX_Te3Hj_Gas4LRj4cK " },
+            { "name": "Physics", "link": "https://drive.google.com/drive/folders/1RhV9Q66e691CPgKmTahznX6VyHCHGVu9 " },
+            { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/1G4JO9ntC6Me9djuE572Q7pMjpqd-j4Jt " }
+        ],
+          "isOpen": false, "notice": null 
+        }
       ]
     },
     {
