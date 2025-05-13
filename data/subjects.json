@@ -169,8 +169,14 @@
       "heroText": "Batch 3 Academic Resources",
       "currentSemesterName": "Semester 2 (Current)",
       "resources": [
-        { "name": "Intro to Programming (B3)", "link": "#" },
-        { "name": "Discrete Maths (B3)", "link": "#" },
+  
+        { "name": "Chemistry", "link": "https://drive.google.com/drive/folders/1cbQ4bsBEZgGq1ShK7fPqyifpaPssE3dS " },
+        { "name": "ECA", "link": "https://drive.google.com/drive/folders/1M9L-WBqWApKsiU727eCjYfJcZD5oRnMX " },
+        { "name": "English", "link": "https://drive.google.com/drive/folders/1GD1hAKueVGOB3UF60smAgXdr1PVOhKIh " },
+        { "name": "GEBS", "link": "https://drive.google.com/drive/folders/1-WtYJGkNTCnu4prKPjxSFMuWSHNZ_-A5 " },
+        { "name": "Math", "link": "https://drive.google.com/drive/folders/1tyg8vnafEPNeQEX_Te3Hj_Gas4LRj4cK " },
+        { "name": "Physics", "link": "https://drive.google.com/drive/folders/1RhV9Q66e691CPgKmTahznX6VyHCHGVu9 " },
+        { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/1G4JO9ntC6Me9djuE572Q7pMjpqd-j4Jt " },
         { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
         { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
         { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
@@ -192,18 +198,36 @@
       "heroText": "Batch 4 Academic Resources",
       "currentSemesterName": "Semester 1 (Current)",
       "resources": [
-        { "name": "Fundamentals of CS (B4)", "link": "#" },
-        { "name": "English I (B4)", "link": "#" },
-        { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
-        { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
-        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
+          { "name": "Fundamentals of Chemistry", "link": "https://drive.google.com/drive/folders/1yBoZ2bDFmrqiNppLeosGiaivRx2Vz5Yh  " },
+          { "name": "Discrete Math", "link": "https://drive.google.com/drive/folders/1tIt3oouYdd_R4nfKFx8DkmpIumxANeke  " },
+          { "name": "Communicative English-I", "link": "https://drive.google.com/drive/folders/1XusPT42QHroi5uNqv69yWvS35WFDCl3x  " },
+          { "name": "Bangladesh Studies", "link": "https://drive.google.com/drive/folders/1jPV95ev6FjBYXbL_wOjJN3HPu5pJ7bjq  " },
+          { "name": "Electrical Circuits Analysis", "link": "https://drive.google.com/drive/folders/1X14pBGGw4vxXdk2WRWX-HAkzQmNFrEg-  " },
+          { "name": "Electrical Circuits Analysis Laboratory", "link": "https://drive.google.com/drive/folders/1tifqKQfzWYRAgzb1eT9c4SfUIDt4UrKR  " },
+          { "name": "Differential and Integral Calculus", "link": "https://drive.google.com/drive/folders/1B-VfjepZBbSa2h5OmfTZ8BYxY2hea4n9  " },
+          { "name": "Physics", "link": "https://drive.google.com/drive/folders/1xnyp6qgWvR75ICrPDzbwTZ72hViWoouM  " },
+          { "name": "Physics Laboratory", "link": "https://drive.google.com/drive/folders/1giZl_wkpuGOKv4jbYVC8zD716zF6y1NK  "},
+          { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
+          { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
+          { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
+        
       ],
       "routineLink": "assets/images/routine_b4_placeholder.png",
       "semesters": [
         { 
           "name": "Semester 1 (Current)", 
           "notice": { "title": "Welcome Batch 4!", "text": "Orientation details are in Google Drive." }, 
-          "subjects": [{ "name": "CS101 Syllabus B4", "link": "#"}], 
+          "subjects": [
+        { "name": "Fundamentals of Chemistry", "link": "https://drive.google.com/drive/folders/1yBoZ2bDFmrqiNppLeosGiaivRx2Vz5Yh  " },
+        { "name": "Discrete Math", "link": "https://drive.google.com/drive/folders/1tIt3oouYdd_R4nfKFx8DkmpIumxANeke  " },
+        { "name": "Communicative English-I", "link": "https://drive.google.com/drive/folders/1XusPT42QHroi5uNqv69yWvS35WFDCl3x  " },
+        { "name": "Bangladesh Studies", "link": "https://drive.google.com/drive/folders/1jPV95ev6FjBYXbL_wOjJN3HPu5pJ7bjq  " },
+        { "name": "Electrical Circuits Analysis", "link": "https://drive.google.com/drive/folders/1X14pBGGw4vxXdk2WRWX-HAkzQmNFrEg-  " },
+        { "name": "Electrical Circuits Analysis Laboratory", "link": "https://drive.google.com/drive/folders/1tifqKQfzWYRAgzb1eT9c4SfUIDt4UrKR  " },
+        { "name": "Differential and Integral Calculus", "link": "https://drive.google.com/drive/folders/1B-VfjepZBbSa2h5OmfTZ8BYxY2hea4n9  " },
+        { "name": "Physics", "link": "https://drive.google.com/drive/folders/1xnyp6qgWvR75ICrPDzbwTZ72hViWoouM  " },
+        { "name": "Physics Laboratory", "link": "https://drive.google.com/drive/folders/1giZl_wkpuGOKv4jbYVC8zD716zF6y1NK  " }
+         ],
           "isOpen": true 
         }
       ]
