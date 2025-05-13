@@ -16,7 +16,7 @@
         { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
         { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
       ],
-      "routineLink": "assets/images/3-2 Routine_a.png",
+      "routineLink": "./assets/images/batch_1/sec_A_batch_1_sem_6.png",
       "semesters": [
         { 
           "name": "Semester 6 (Current)", 
