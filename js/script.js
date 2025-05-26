@@ -1,4 +1,4 @@
-let allBatchesData = []; // Holds all batch data, loaded from JSON
+let allBatchesData = [];
 
 const batchSelector = document.getElementById('batchSelector');
 const currentBatchIndicator = document.getElementById('currentBatch');
@@ -7,7 +7,7 @@ const resourceGrid = document.getElementById('resourceGrid');
 const semesterAccordion = document.getElementById('semesterAccordion');
 const sectionARoutineBtn = document.getElementById('sectionARoutineBtn');
 
-// Course List Modal Elements
+
 const courseListModal = document.getElementById('courseListModal');
 const courseListBtn = document.getElementById('courseListBtn');
 const closeCourseListModalBtn = document.getElementById('closeCourseListModal');
@@ -15,7 +15,7 @@ const courseListContent = document.getElementById('courseListContent');
 
 async function populateCourseListModal() {
     try {
-        const response = await fetch('./data/courses.json'); // Assuming courses.json still exists and is separate
+        const response = await fetch('./data/courses.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -94,17 +94,12 @@ function updateQuickResources(batchId) {
             semesterSubjects = currentSemester.subjects;
         }
     }
-    // For other batches, their specific quick links are already in batchConfig.resources.
-    // We need to separate PDFs from other links in baseResources for correct ordering.
+    
+    //  to separate PDFs from other links in baseResources for correct ordering.
 
     const pdfLinks = baseResources.filter(r => r.link.toLowerCase().endsWith('.pdf'));
     const otherBaseLinks = baseResources.filter(r => !r.link.toLowerCase().endsWith('.pdf'));
 
-    // Desired order: PDFs, then other base links, then (for Batch 2) semester subjects.
-    // Or for Batch 1,3,4: PDFs, then their specific quick links (which are in otherBaseLinks).
-    // For Batch 2: PDFs (from its batchConfig.resources), then its semester subjects.
-    // The batchConfig.resources for Batch 2 *only* contains the PDFs as per data/subjects.json.
-    // So, for Batch 2, pdfLinks will be the PDFs, otherBaseLinks will be empty.
     
     let orderedResourcesToShow;
     if (batchId === "2") {
@@ -149,9 +144,8 @@ function updateSemesterAccordion(batchId) {
         );
     }
     if (batchId === "2") {
-        // For Batch 2, Quick Resources shows current semester (e.g. Sem 4).
-        // Accordion should show other past semesters (1, 2, 3) and the current semester (Sem 4).
-        // Hide future ones (e.g. Sem 5).
+
+        // Hide  Sem 5.
         semestersToDisplay = semestersToDisplay.filter(semester => semester.name !== "Semester 5");
     }
 
