@@ -12,34 +12,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="nav-container">
-            <div class="logo">
-                <img src="assets/images/logo/BUP_Logopng.png" alt="BUP Logo" id="siteLogo">
-                <span>CSE</span>
-                <span class="batch-indicator" id="currentBatch">Batch 1</span>
-            </div>
-            
-            <nav class="nav-links" id="mobile-nav">
-                <a href="#all-semesters"><i class="fas fa-graduation-cap"></i> All Semesters</a>
-                <a href="https://drive.google.com/drive/folders/1rtMMO0iTKQCMBesbmRIVS3COeyEbfsPv?usp=sharing" target="_blank"><i class="fas fa-folder-open"></i> Resources</a>
-                <a href="https://bup.edu.bd/department_home/8" target="_blank"><i class="fas fa-building"></i> About Dept.</a>
-            </nav>
-            
-            <!-- Dark Mode Toggle in Navbar -->
-            <div class="navbar-controls">
-                <button id="darkModeToggle" class="dark-mode-toggle-navbar">
-                    <i class="fas fa-moon"></i>
+   <!-- Header -->
+<header>
+    <div class="nav-container">
+        <div class="logo">
+            <img src="assets/images/logo/BUP_Logopng.png" alt="BUP Logo" id="siteLogo">
+            <span>CSE</span>
+            <span class="batch-indicator" id="currentBatch">Batch 1</span>
+        </div>
+        
+        <div class="search-container-nav">
+            <div class="search-wrapper-nav">
+                <i class="fas fa-search search-icon-nav"></i>
+                <input type="text" id="resourceSearchNav" placeholder="Search resources...">
+                <button id="clearSearchNav" class="clear-search-nav">
+                    <i class="fas fa-times"></i>
                 </button>
-                <div class="hamburger" onclick="toggleMenu()">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+            </div>
+            <div id="searchResultsNav" class="search-results-nav"></div>
+        </div>
+        
+        <nav class="nav-links" id="mobile-nav">
+            <a href="#all-semesters"><i class="fas fa-graduation-cap"></i> Semesters</a>
+            <a href="https://drive.google.com/drive/folders/1rtMMO0iTKQCMBesbmRIVS3COeyEbfsPv?usp=sharing" target="_blank"><i class="fas fa-folder-open"></i> Resources</a>
+            <a href="https://bup.edu.bd/department_home/8" target="_blank"><i class="fas fa-building"></i> Department</a>
+            <a href="https://bupbloodbank.xyz/" target="_blank"><i class="fas fa-tint"></i> Blood Bank</a>
+        </nav>
+        
+        <!-- Enhanced Navbar Controls -->
+        <div class="navbar-controls">
+            <button id="darkModeToggle" class="dark-mode-toggle-navbar">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
     <section class="hero">
         <div class="hero-content">
@@ -60,18 +72,6 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Search Bar -->
-    <section class="search-container">
-        <div class="search-wrapper">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="resourceSearch" placeholder="Search resources, courses, or keywords...">
-            <button id="clearSearch" class="clear-search">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div id="searchResults" class="search-results"></div>
     </section>
 
     <!-- Quick Actions Dashboard -->
@@ -188,7 +188,7 @@
                     <span class="faq-arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
-                    <p>This website is updated regularly with new resources and announcements. Check back frequently for the latest materials.</p>
+                    <p>This website is updated every 2/3 months with new resources and announcements. Check back frequently for the latest materials.</p>
                 </div>
             </div>
         </div>
@@ -202,6 +202,9 @@
                 <a href="#all-semesters"><i class="fas fa-graduation-cap"></i> All Semesters</a>
                 <a href="#resources"><i class="fas fa-book"></i> Resources</a>
                 <a href="https://bup.edu.bd/department_home/8" target="_blank"><i class="fas fa-building"></i> About Dept.</a>
+                <a href="https://github.com/Refayatul/" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.facebook.com/refayatul" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="mailto:refayatul7@gmail.com"><i class="fas fa-envelope"></i> Email</a>
             </div>
         </div>
     </footer>

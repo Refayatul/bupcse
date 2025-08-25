@@ -8,9 +8,9 @@ const currentBatchIndicator = document.getElementById('currentBatch');
 const heroBatchText = document.getElementById('heroBatchText');
 const resourceGrid = document.getElementById('resourceGrid');
 const semesterAccordion = document.getElementById('semesterAccordion');
-const resourceSearch = document.getElementById('resourceSearch');
-const searchResults = document.getElementById('searchResults');
-const clearSearch = document.getElementById('clearSearch');
+const resourceSearchNav = document.getElementById('resourceSearchNav');
+const searchResultsNav = document.getElementById('searchResultsNav');
+const clearSearchNav = document.getElementById('clearSearchNav');
 
 // Modals
 const courseListModal = document.getElementById('courseListModal');
@@ -63,20 +63,27 @@ function setupEventListeners() {
     // Batch selection
     if (batchSelector) {
         batchSelector.addEventListener('click', (event) => {
-            if (event.target.classList.contains('batch-select-btn') || event.target.parentElement.classList.contains('batch-select-btn')) {
-                const button = event.target.classList.contains('batch-select-btn') ? event.target : event.target.parentElement;
+            let button = event.target;
+            
+            // Find the button element (could be the icon or the button itself)
+            while (button && !button.classList.contains('batch-select-btn')) {
+                button = button.parentElement;
+                if (!button) break;
+            }
+            
+            if (button && button.classList.contains('batch-select-btn')) {
                 const selectedBatch = button.dataset.batch;
                 updateUIForBatch(selectedBatch);
             }
         });
     }
 
-    // Search functionality
-    if (resourceSearch) {
-        resourceSearch.addEventListener('input', handleSearch);
+    // Search functionality in navbar
+    if (resourceSearchNav) {
+        resourceSearchNav.addEventListener('input', handleSearchNav);
     }
-    if (clearSearch) {
-        clearSearch.addEventListener('click', clearSearchInput);
+    if (clearSearchNav) {
+        clearSearchNav.addEventListener('click', clearSearchNavInput);
     }
 
     // Filter buttons
@@ -157,6 +164,9 @@ function setupEventListeners() {
         }
         if (event.target == bookmarksModal) {
             bookmarksModal.style.display = "none";
+        }
+        if (event.target == searchResultsNav) {
+            searchResultsNav.style.display = "none";
         }
     });
 }
@@ -302,18 +312,18 @@ function updateBookmarkIcons() {
     });
 }
 
-function handleSearch() {
-    if (!resourceSearch || !searchResults || !clearSearch) return;
+function handleSearchNav() {
+    if (!resourceSearchNav || !searchResultsNav || !clearSearchNav) return;
     
-    const searchTerm = resourceSearch.value.toLowerCase().trim();
+    const searchTerm = resourceSearchNav.value.toLowerCase().trim();
     
     if (searchTerm === '') {
-        searchResults.style.display = 'none';
-        clearSearch.style.display = 'none';
+        searchResultsNav.style.display = 'none';
+        clearSearchNav.style.display = 'none';
         return;
     }
 
-    clearSearch.style.display = 'block';
+    clearSearchNav.style.display = 'block';
     
     const batchConfig = allBatchesData.find(b => b.id === currentBatchId);
     if (!batchConfig) return;
@@ -330,32 +340,35 @@ function handleSearch() {
     );
 
     if (filteredResources.length === 0) {
-        searchResults.innerHTML = '<div class="search-result-item">No resources found</div>';
+        searchResultsNav.innerHTML = '<div class="search-result-item-nav">No resources found</div>';
     } else {
         let html = '';
-        filteredResources.slice(0, 10).forEach(resource => {
+        filteredResources.slice(0, 8).forEach(resource => {
             html += `
-                <div class="search-result-item" onclick="window.open('${resource.link}', '_blank')">
-                    <strong>${resource.name}</strong>
-                    <div style="font-size: 0.8rem; color: #666; margin-top: 4px;">
-                        ${resource.link.includes('drive.google.com') ? 'Google Drive' : 'Resource'}
+                <div class="search-result-item-nav" onclick="window.open('${resource.link}', '_blank')">
+                    <i class="fas fa-file"></i>
+                    <div>
+                        <strong>${resource.name}</strong>
+                        <div style="font-size: 0.8rem; color: #666; margin-top: 2px;">
+                            ${resource.link.includes('drive.google.com') ? 'Google Drive' : 'Resource'}
+                        </div>
                     </div>
                 </div>
             `;
         });
-        searchResults.innerHTML = html;
+        searchResultsNav.innerHTML = html;
     }
 
-    searchResults.style.display = 'block';
+    searchResultsNav.style.display = 'block';
 }
 
-function clearSearchInput() {
-    if (!resourceSearch || !searchResults || !clearSearch) return;
+function clearSearchNavInput() {
+    if (!resourceSearchNav || !searchResultsNav || !clearSearchNav) return;
     
-    resourceSearch.value = '';
-    searchResults.style.display = 'none';
-    clearSearch.style.display = 'none';
-    resourceSearch.focus();
+    resourceSearchNav.value = '';
+    searchResultsNav.style.display = 'none';
+    clearSearchNav.style.display = 'none';
+    resourceSearchNav.focus();
 }
 
 function initDarkMode() {
@@ -385,16 +398,19 @@ function initKeyboardShortcuts() {
         // Ctrl/Cmd + K for search
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
-            if (resourceSearch) {
-                resourceSearch.focus();
+            if (resourceSearchNav) {
+                resourceSearchNav.focus();
             }
         }
         
-        // Escape to close modals
+        // Escape to close modals and search results
         if (e.key === 'Escape') {
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.style.display = "none";
             });
+            if (searchResultsNav) {
+                searchResultsNav.style.display = "none";
+            }
         }
         
         // Number keys for batch selection
@@ -751,5 +767,12 @@ document.addEventListener('click', function(event) {
     
     if (nav && hamburger && !nav.contains(event.target) && !hamburger.contains(event.target) && nav.classList.contains('active')) {
         nav.classList.remove('active');
+    }
+    
+    // Close search results when clicking outside
+    if (searchResultsNav && !searchResultsNav.contains(event.target) && 
+        !resourceSearchNav.contains(event.target) && 
+        !clearSearchNav.contains(event.target)) {
+        searchResultsNav.style.display = "none";
     }
 });
