@@ -18,18 +18,12 @@ const courseListBtn = document.getElementById('courseListBtn');
 const closeCourseListModalBtn = document.getElementById('closeCourseListModal');
 const courseListContent = document.getElementById('courseListContent');
 
-const feedbackModal = document.getElementById('feedbackModal');
-const feedbackBtn = document.getElementById('feedbackBtn');
-const closeFeedbackModalBtn = document.getElementById('closeFeedbackModal');
-const feedbackForm = document.getElementById('feedbackForm');
-
 const bookmarksModal = document.getElementById('bookmarksModal');
 const showBookmarksBtn = document.getElementById('showBookmarks');
 const closeBookmarksModalBtn = document.getElementById('closeBookmarksModal');
 const bookmarksList = document.getElementById('bookmarksList');
 
 const darkModeToggle = document.getElementById('darkModeToggle');
-const filterButtons = document.querySelectorAll('.filter-btn');
 const printOverviewBtn = document.getElementById('printOverview');
 
 // Initialize the application
@@ -86,37 +80,6 @@ function setupEventListeners() {
         clearSearchNav.addEventListener('click', clearSearchNavInput);
     }
 
-    // Filter buttons
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.dataset.filter;
-            updateQuickResources(currentBatchId);
-        });
-    });
-
-    // Feedback modal
-    if (feedbackBtn) {
-        feedbackBtn.addEventListener('click', () => {
-            if (feedbackModal) {
-                feedbackModal.style.display = "block";
-            }
-        });
-    }
-
-    if (closeFeedbackModalBtn) {
-        closeFeedbackModalBtn.addEventListener('click', () => {
-            if (feedbackModal) {
-                feedbackModal.style.display = "none";
-            }
-        });
-    }
-
-    if (feedbackForm) {
-        feedbackForm.addEventListener('submit', handleFeedbackSubmit);
-    }
-
     // Bookmarks modal
     if (showBookmarksBtn) {
         showBookmarksBtn.addEventListener('click', showBookmarks);
@@ -149,18 +112,10 @@ function setupEventListeners() {
         });
     }
 
-    // Print overview
-    if (printOverviewBtn) {
-        printOverviewBtn.addEventListener('click', printSemesterOverview);
-    }
-
     // Modal close on outside click
     window.addEventListener('click', (event) => {
         if (event.target == courseListModal) {
             courseListModal.style.display = "none";
-        }
-        if (event.target == feedbackModal) {
-            feedbackModal.style.display = "none";
         }
         if (event.target == bookmarksModal) {
             bookmarksModal.style.display = "none";
@@ -216,33 +171,6 @@ async function populateCourseListModal() {
         if (courseListContent) {
             courseListContent.innerHTML = '<p>Error loading course list. Please try again later.</p>';
         }
-    }
-}
-
-function handleFeedbackSubmit(e) {
-    e.preventDefault();
-    
-    // Get form elements safely
-    const nameInput = document.getElementById('feedbackName');
-    const emailInput = document.getElementById('feedbackEmail');
-    const messageInput = document.getElementById('feedbackMessage');
-    
-    const name = nameInput ? nameInput.value : '';
-    const email = emailInput ? emailInput.value : '';
-    const message = messageInput ? messageInput.value : '';
-
-    // In a real app, you would send this to a server
-    console.log('Feedback submitted:', { name, email, message });
-
-    // Show success message
-    alert('Thank you for your feedback! We appreciate your input.');
-
-    // Reset form and close modal
-    if (feedbackForm) {
-        feedbackForm.reset();
-    }
-    if (feedbackModal) {
-        feedbackModal.style.display = "none";
     }
 }
 
@@ -436,51 +364,6 @@ function initKeyboardShortcuts() {
             }, 5000);
         }, 1000);
     }, 3000);
-}
-
-function printSemesterOverview() {
-    const batchConfig = allBatchesData.find(b => b.id === currentBatchId);
-    if (!batchConfig) return;
-
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) {
-        alert('Please allow popups to print the overview');
-        return;
-    }
-    
-    printWindow.document.write(`
-        <html>
-        <head>
-            <title>Semester Overview - ${batchConfig.name}</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 20px; }
-                h1 { color: #0D47A1; }
-                h2 { color: #008080; margin-top: 20px; }
-                ul { list-style-type: none; padding-left: 0; }
-                li { padding: 5px 0; border-bottom: 1px solid #eee; }
-                .semester { margin-bottom: 30px; }
-            </style>
-        </head>
-        <body>
-            <h1>${batchConfig.heroText || 'BUP CSE Resources'}</h1>
-            <h2>Current Semester: ${batchConfig.currentSemesterName || 'Not specified'}</h2>
-            ${(batchConfig.semesters || []).map(semester => `
-                <div class="semester">
-                    <h2>${semester.name || 'Semester'}</h2>
-                    ${(semester.subjects || []).length > 0 ? `
-                        <ul>
-                            ${(semester.subjects || []).map(subject => `
-                                <li>${subject.name || 'Subject'}</li>
-                            `).join('')}
-                        </ul>
-                    ` : '<p>No detailed subjects available</p>'}
-                </div>
-            `).join('')}
-        </body>
-        </html>
-    `);
-    printWindow.document.close();
-    printWindow.print();
 }
 
 function updateQuickResources(batchId) {
@@ -717,10 +600,14 @@ async function loadExternalSubjectData() {
     }
 }
 
+// Improved mobile menu toggle
 function toggleMenu() {
     const nav = document.getElementById('mobile-nav');
-    if (nav) {
+    const hamburger = document.querySelector('.hamburger');
+    
+    if (nav && hamburger) {
         nav.classList.toggle('active');
+        hamburger.classList.toggle('active');
     }
 }
 
@@ -761,18 +648,29 @@ function toggleFAQ(element) {
     }
 }
 
+// Close mobile menu and search results when clicking outside
 document.addEventListener('click', function(event) {
     const nav = document.getElementById('mobile-nav');
     const hamburger = document.querySelector('.hamburger');
     
-    if (nav && hamburger && !nav.contains(event.target) && !hamburger.contains(event.target) && nav.classList.contains('active')) {
-        nav.classList.remove('active');
+    if (nav && hamburger && nav.classList.contains('active')) {
+        // Check if click is outside nav and hamburger
+        if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+            nav.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
     }
     
     // Close search results when clicking outside
-    if (searchResultsNav && !searchResultsNav.contains(event.target) && 
-        !resourceSearchNav.contains(event.target) && 
-        !clearSearchNav.contains(event.target)) {
-        searchResultsNav.style.display = "none";
+    const searchResultsNav = document.getElementById('searchResultsNav');
+    const resourceSearchNav = document.getElementById('resourceSearchNav');
+    const clearSearchNav = document.getElementById('clearSearchNav');
+    
+    if (searchResultsNav && resourceSearchNav && clearSearchNav) {
+        if (!searchResultsNav.contains(event.target) && 
+            event.target !== resourceSearchNav && 
+            event.target !== clearSearchNav) {
+            searchResultsNav.style.display = "none";
+        }
     }
 });

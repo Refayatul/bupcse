@@ -89,38 +89,9 @@
                 <i class="fas fa-globe"></i>
                 <span>BUP Website</span>
             </a>
-            <button class="action-btn" id="feedbackBtn">
-                <i class="fas fa-comment"></i>
-                <span>Feedback</span>
-            </button>
-            <button class="action-btn" id="printOverview">
-                <i class="fas fa-print"></i>
-                <span>Print Overview</span>
-            </button>
             <button class="action-btn" id="showBookmarks">
                 <i class="fas fa-bookmark"></i>
                 <span>My Bookmarks</span>
-            </button>
-        </div>
-    </section>
-
-    <!-- Resource Filter -->
-    <section class="filter-section">
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">
-                <i class="fas fa-th-large"></i> All Resources
-            </button>
-            <button class="filter-btn" data-filter="pdf">
-                <i class="fas fa-file-pdf"></i> PDFs
-            </button>
-            <button class="filter-btn" data-filter="drive">
-                <i class="fab fa-google-drive"></i> Google Drive
-            </button>
-            <button class="filter-btn" data-filter="routine">
-                <i class="fas fa-calendar-alt"></i> Routines
-            </button>
-            <button class="filter-btn" data-filter="full">
-                <i class="fas fa-folder"></i> Full Semesters
             </button>
         </div>
     </section>
@@ -216,30 +187,6 @@
             <h2><i class="fas fa-list"></i> Course List</h2>
             <div id="courseListContent" class="course-list-container">
             </div>
-        </div>
-    </div>
-
-    <div id="feedbackModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeFeedbackModal">&times;</span>
-            <h2><i class="fas fa-comment"></i> Send Feedback</h2>
-            <form id="feedbackForm">
-                <div class="form-group">
-                    <label for="feedbackName"><i class="fas fa-user"></i> Name (Optional):</label>
-                    <input type="text" id="feedbackName" placeholder="Your name">
-                </div>
-                <div class="form-group">
-                    <label for="feedbackEmail"><i class="fas fa-envelope"></i> Email (Optional):</label>
-                    <input type="email" id="feedbackEmail" placeholder="your.email@bup.edu.bd">
-                </div>
-                <div class="form-group">
-                    <label for="feedbackMessage"><i class="fas fa-comment-dots"></i> Message *:</label>
-                    <textarea id="feedbackMessage" placeholder="Your feedback or suggestions..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> Send Feedback
-                </button>
-            </form>
         </div>
     </div>
 
