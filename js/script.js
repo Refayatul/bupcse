@@ -11,6 +11,8 @@ const semesterAccordion = document.getElementById('semesterAccordion');
 const resourceSearchNav = document.getElementById('resourceSearchNav');
 const searchResultsNav = document.getElementById('searchResultsNav');
 const clearSearchNav = document.getElementById('clearSearchNav');
+const searchContainerNav = document.querySelector('.search-container-nav');
+const searchIconNav = document.querySelector('.search-icon-nav');
 
 // Modals
 const courseListModal = document.getElementById('courseListModal');
@@ -24,7 +26,6 @@ const closeBookmarksModalBtn = document.getElementById('closeBookmarksModal');
 const bookmarksList = document.getElementById('bookmarksList');
 
 const darkModeToggle = document.getElementById('darkModeToggle');
-const printOverviewBtn = document.getElementById('printOverview');
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
@@ -32,9 +33,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Initialize dark mode
     initDarkMode();
-    
-    // Initialize keyboard shortcuts
-    initKeyboardShortcuts();
     
     // Load data
     await loadExternalSubjectData();
@@ -79,6 +77,31 @@ function setupEventListeners() {
     if (clearSearchNav) {
         clearSearchNav.addEventListener('click', clearSearchNavInput);
     }
+    
+    // Search icon click to expand search
+    if (searchIconNav) {
+        searchIconNav.addEventListener('click', function() {
+            if (searchContainerNav) {
+                searchContainerNav.classList.add('active');
+                if (resourceSearchNav) {
+                    setTimeout(() => {
+                        resourceSearchNav.focus();
+                    }, 100);
+                }
+            }
+        });
+    }
+    
+    // Close search when clicking outside
+    document.addEventListener('click', function(event) {
+        if (searchContainerNav && !searchContainerNav.contains(event.target) && 
+            searchIconNav !== event.target) {
+            searchContainerNav.classList.remove('active');
+            if (searchResultsNav) {
+                searchResultsNav.style.display = 'none';
+            }
+        }
+    });
 
     // Bookmarks modal
     if (showBookmarksBtn) {
@@ -319,51 +342,6 @@ function initDarkMode() {
             darkModeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         });
     }
-}
-
-function initKeyboardShortcuts() {
-    document.addEventListener('keydown', function(e) {
-        // Ctrl/Cmd + K for search
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            if (resourceSearchNav) {
-                resourceSearchNav.focus();
-            }
-        }
-        
-        // Escape to close modals and search results
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = "none";
-            });
-            if (searchResultsNav) {
-                searchResultsNav.style.display = "none";
-            }
-        }
-        
-        // Number keys for batch selection
-        if (e.key >= '1' && e.key <= '4') {
-            const batchBtn = document.querySelector(`[data-batch="${e.key}"]`);
-            if (batchBtn) {
-                batchBtn.click();
-            }
-        }
-    });
-
-    // Show keyboard shortcuts hint
-    setTimeout(() => {
-        const hint = document.createElement('div');
-        hint.className = 'keyboard-shortcuts';
-        hint.innerHTML = '⌨️ Keyboard shortcuts: Ctrl+K to search, Esc to close, 1-4 for batches';
-        document.body.appendChild(hint);
-        
-        setTimeout(() => {
-            hint.style.display = 'block';
-            setTimeout(() => {
-                hint.style.display = 'none';
-            }, 5000);
-        }, 1000);
-    }, 3000);
 }
 
 function updateQuickResources(batchId) {
@@ -648,7 +626,7 @@ function toggleFAQ(element) {
     }
 }
 
-// Close mobile menu and search results when clicking outside
+// Close mobile menu when clicking outside
 document.addEventListener('click', function(event) {
     const nav = document.getElementById('mobile-nav');
     const hamburger = document.querySelector('.hamburger');
@@ -658,19 +636,6 @@ document.addEventListener('click', function(event) {
         if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
             nav.classList.remove('active');
             hamburger.classList.remove('active');
-        }
-    }
-    
-    // Close search results when clicking outside
-    const searchResultsNav = document.getElementById('searchResultsNav');
-    const resourceSearchNav = document.getElementById('resourceSearchNav');
-    const clearSearchNav = document.getElementById('clearSearchNav');
-    
-    if (searchResultsNav && resourceSearchNav && clearSearchNav) {
-        if (!searchResultsNav.contains(event.target) && 
-            event.target !== resourceSearchNav && 
-            event.target !== clearSearchNav) {
-            searchResultsNav.style.display = "none";
         }
     }
 });
