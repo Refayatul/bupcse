@@ -21,12 +21,13 @@
             <span class="batch-indicator" id="currentBatch">Batch 1</span>
         </div>
         
-        <nav class="nav-links" id="mobile-nav">
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
             <a href="#all-semesters"><i class="fas fa-graduation-cap"></i> Semesters</a>
             <a href="https://drive.google.com/drive/folders/1rtMMO0iTKQCMBesbmRIVS3COeyEbfsPv?usp=sharing" target="_blank"><i class="fas fa-folder-open"></i> Resources</a>
             <a href="https://bup.edu.bd/department_home/8" target="_blank"><i class="fas fa-building"></i> Department</a>
             <a href="https://bupbloodbank.xyz/" target="_blank"><i class="fas fa-tint"></i> Blood Bank</a>
-        </nav>
+        </div>
         
         <!-- Mobile Nav Links in Navbar -->
         <div class="mobile-nav-links">
@@ -53,7 +54,7 @@
             <button id="darkModeToggle" class="dark-mode-toggle-navbar">
                 <i class="fas fa-sun"></i>
             </button>
-            <div class="hamburger" onclick="toggleMenu()">
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -245,14 +246,6 @@
                 });
             });
         }
-        
-        // Add mobile bookmarks button functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileBookmarksBtn = document.getElementById('showBookmarksMobile');
-            if (mobileBookmarksBtn) {
-                mobileBookmarksBtn.addEventListener('click', showBookmarks);
-            }
-        });
     </script>
 </body>
 </html>
