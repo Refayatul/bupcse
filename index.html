@@ -6,8 +6,13 @@
     <title>BUP CSE</title>
     <link rel="icon" href="assets/images/logo/BUP_Logopng.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+    
     <!-- Header -->
     <header>
         <div class="nav-container">
@@ -34,6 +39,38 @@
     <section class="hero">
         <h1>Department of Computer Science & Engineering</h1>
         <p id="heroBatchText">Batch 1 Academic Resources</p>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="search-container">
+        <div class="search-wrapper">
+            <input type="text" id="resourceSearch" placeholder="Search resources, courses, or keywords...">
+            <button id="clearSearch" class="clear-search" style="display: none;">×</button>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+    </section>
+
+    <!-- Quick Actions Dashboard -->
+    <section class="quick-actions">
+        <div class="action-grid">
+            <a href="#all-semesters" class="action-btn">📚 Browse Courses</a>
+            <a href="mailto:cse@bup.edu.bd" class="action-btn">📧 Contact Dept</a>
+            <a href="https://bup.edu.bd" class="action-btn" target="_blank">🌐 BUP Website</a>
+            <button class="action-btn" id="feedbackBtn">💬 Feedback</button>
+            <button class="action-btn" id="printOverview">🖨️ Print Overview</button>
+            <button class="action-btn" id="showBookmarks">🔖 My Bookmarks</button>
+        </div>
+    </section>
+
+    <!-- Resource Filter -->
+    <section class="filter-section">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Resources</button>
+            <button class="filter-btn" data-filter="pdf">PDFs</button>
+            <button class="filter-btn" data-filter="drive">Google Drive</button>
+            <button class="filter-btn" data-filter="routine">Routines</button>
+            <button class="filter-btn" data-filter="full">Full Semesters</button>
+        </div>
     </section>
 
     <!-- Batch Selection Section -->
@@ -63,6 +100,40 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I access Google Drive resources?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>All Google Drive links require BUP email authentication. Make sure you're logged into your BUP Google account before clicking on any Drive links.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What should I do if a link is not working?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>If any resource link is broken, please report it using the Feedback button. You can also check the main Google Drive folder for the most up-to-date resources.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How often is this website updated?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>This website is updated regularly with new resources and announcements. Check back frequently for the latest materials.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container mx-auto">
             <p>&copy; 2024 BUP CSE Batch. All rights reserved.</p>
@@ -75,6 +146,7 @@
         </div>
     </footer>
 
+    <!-- Modals -->
     <div id="courseListModal" class="modal">
         <div class="modal-content-large">
             <span class="close-btn" id="closeCourseListModal">&times;</span>
@@ -84,6 +156,52 @@
         </div>
     </div>
 
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeFeedbackModal">&times;</span>
+            <h2>Send Feedback</h2>
+            <form id="feedbackForm">
+                <div class="form-group">
+                    <label for="feedbackName">Name (Optional):</label>
+                    <input type="text" id="feedbackName" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="feedbackEmail">Email (Optional):</label>
+                    <input type="email" id="feedbackEmail" placeholder="your.email@bup.edu.bd">
+                </div>
+                <div class="form-group">
+                    <label for="feedbackMessage">Message *:</label>
+                    <textarea id="feedbackMessage" placeholder="Your feedback or suggestions..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="bookmarksModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeBookmarksModal">&times;</span>
+            <h2>My Bookmarked Resources</h2>
+            <div id="bookmarksList" class="bookmarks-list">
+                <p>No bookmarks yet. Click the bookmark icon on any resource to save it here.</p>
+            </div>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('SW registered: ', registration);
+                })
+                .catch(function(registrationError) {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
