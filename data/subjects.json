@@ -6,6 +6,7 @@
       "heroText": "Batch 1 Academic Resources",
       "currentSemesterName": "Semester 7 (Current)",
       "resources": [
+        { "name": "Full Semester 7 Drive", "link": "https://drive.google.com/drive/folders/1zxuvHHnCIT2JRiqy08wGeOIkrtv9cXdA?usp=drive_link" },
         { "name": "Blockchain and Crypto Currency (CSE-4117)", "link": "https://drive.google.com/drive/folders/1xq9Fy-Gjw8m_2kj6C2sgGmzvmEWgDpG7?usp=drive_link" },
         { "name": "Computer Interfacing (CSE-4101)", "link": "https://drive.google.com/drive/folders/1AINHOMpS66G2VvP3IwR2XY1D3mI81w4A?usp=drive_link" },
         { "name": "Human Computer Interaction (CSE-4115)", "link": "https://drive.google.com/drive/folders/1bMJb7wGBrQARoIpJzPd2Xjggm-5iBUDx?usp=drive_link" },
@@ -22,6 +23,7 @@
         { 
           "name": "Semester 7 (Current)", 
           "subjects": [
+            { "name": "Full Semester 7 Drive", "link": "https://drive.google.com/drive/folders/1zxuvHHnCIT2JRiqy08wGeOIkrtv9cXdA?usp=drive_link" },
             { "name": "Blockchain and Crypto Currency (CSE-4117)", "link": "https://drive.google.com/drive/folders/1xq9Fy-Gjw8m_2kj6C2sgGmzvmEWgDpG7?usp=drive_link" },
             { "name": "Computer Interfacing (CSE-4101)", "link": "https://drive.google.com/drive/folders/1AINHOMpS66G2VvP3IwR2XY1D3mI81w4A?usp=drive_link" },
             { "name": "Human Computer Interaction (CSE-4115)", "link": "https://drive.google.com/drive/folders/1bMJb7wGBrQARoIpJzPd2Xjggm-5iBUDx?usp=drive_link" },
