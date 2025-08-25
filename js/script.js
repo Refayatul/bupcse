@@ -5,8 +5,6 @@ const currentBatchIndicator = document.getElementById('currentBatch');
 const heroBatchText = document.getElementById('heroBatchText');
 const resourceGrid = document.getElementById('resourceGrid');
 const semesterAccordion = document.getElementById('semesterAccordion');
-const sectionARoutineBtn = document.getElementById('sectionARoutineBtn');
-
 
 const courseListModal = document.getElementById('courseListModal');
 const courseListBtn = document.getElementById('courseListBtn');
@@ -86,34 +84,36 @@ function updateQuickResources(batchId) {
     }
 
     let baseResources = batchConfig.resources ? [...batchConfig.resources] : [];
-    let semesterSubjects = [];
-
-    if (batchId === "2") {
-        const currentSemester = batchConfig.semesters.find(s => s.name === batchConfig.currentSemesterName);
-        if (currentSemester && currentSemester.subjects) {
-            semesterSubjects = currentSemester.subjects;
-        }
+    
+    // Remove any existing routine buttons container
+    const existingRoutineContainer = document.getElementById('routineButtons');
+    if (existingRoutineContainer) {
+        existingRoutineContainer.remove();
     }
     
-    //  to separate PDFs from other links in baseResources for correct ordering.
-
+    // Separate PDFs from other links for correct ordering
     const pdfLinks = baseResources.filter(r => r.link.toLowerCase().endsWith('.pdf'));
-    const otherBaseLinks = baseResources.filter(r => !r.link.toLowerCase().endsWith('.pdf'));
-
+    const otherBaseLinks = baseResources.filter(r => !r.link.toLowerCase().endsWith('.pdf') && !r.name.includes('Routine'));
     
-    let orderedResourcesToShow;
-    if (batchId === "2") {
-        orderedResourcesToShow = pdfLinks.concat(semesterSubjects);
-    } else {
-        orderedResourcesToShow = pdfLinks.concat(otherBaseLinks);
-    }
+    // Only show routine links for the current semester
+    const currentSemester = batchConfig.semesters.find(s => s.name === batchConfig.currentSemesterName);
+    let routineLinks = [];
+    
+    // Look for routine links in the main resources first
+    const mainRoutineLinks = baseResources.filter(r => 
+        r.name.includes('Routine') || r.name.includes('routine')
+    );
+    routineLinks = routineLinks.concat(mainRoutineLinks);
 
+    // Combine resources in proper order: PDFs first, then other links
+    let orderedResourcesToShow = pdfLinks.concat(otherBaseLinks);
 
     resourceGrid.innerHTML = ''; 
     if (orderedResourcesToShow.length === 0) {
         resourceGrid.innerHTML = '<p>No quick resources available for this batch.</p>';
         return;
     }
+    
     orderedResourcesToShow.forEach(resource => {
         const isPdf = resource.link.toLowerCase().endsWith('.pdf');
         const cardClass = isPdf ? 'resource-card resource-card-pdf' : 'resource-card';
@@ -126,6 +126,29 @@ function updateQuickResources(batchId) {
             </a>`;
         resourceGrid.innerHTML += resourceEl;
     });
+
+    // Add routine buttons only if there are routine links
+    if (routineLinks.length > 0) {
+        const routineContainer = document.createElement('div');
+        routineContainer.id = 'routineButtons';
+        
+        routineLinks.forEach((routine, index) => {
+            const routineBtn = document.createElement('a');
+            routineBtn.href = routine.link;
+            routineBtn.target = '_blank';
+            routineBtn.className = 'resource-card';
+            routineBtn.innerHTML = `
+                <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                </svg>
+                ${routine.name}
+            `;
+            routineContainer.appendChild(routineBtn);
+        });
+        
+        // Insert routine buttons after the resource grid
+        resourceGrid.parentNode.insertBefore(routineContainer, resourceGrid.nextSibling);
+    }
 }
 
 function updateSemesterAccordion(batchId) {
@@ -136,33 +159,16 @@ function updateSemesterAccordion(batchId) {
         return;
     }
 
-    let semestersToDisplay = [...batchConfig.semesters]; // Create a copy to filter
-    
-    if (batchId === "1") {
-        semestersToDisplay = semestersToDisplay.filter(semester => 
-            semester.name !== "Semester 7" && semester.name !== "Semester 8"
-        );
-    }
-    if (batchId === "2") {
-
-        // Hide  Sem 5.
-        semestersToDisplay = semestersToDisplay.filter(semester => semester.name !== "Semester 5");
-    }
+    let semestersToDisplay = [...batchConfig.semesters]; 
 
     semesterAccordion.innerHTML = ''; 
     if (semestersToDisplay.length === 0) {
         semesterAccordion.innerHTML = '<p>No semester information available for this batch.</p>';
         return;
     }
+    
     semestersToDisplay.forEach(semester => {
-        let noticeHTML = ''; // Notices are now hidden
-        // if (semester.notice) {
-        //     noticeHTML = `
-        //         <div class="notice-box">
-        //             <h4>${semester.notice.title}</h4>
-        //             <p>${semester.notice.text}</p>
-        //         </div>`;
-        // }
+        let noticeHTML = '';
         
         let subjectsHTML = '';
         if (semester.subjects && semester.subjects.length > 0) {
@@ -181,20 +187,12 @@ function updateSemesterAccordion(batchId) {
 
         const contentHTML = semester.content ? `<p>${semester.content}</p>` : '';
         
-        const isCurrentSemester = semester.name === batchConfig.currentSemesterName;
-        // Default isOpen for current semester, or if explicitly set to true.
-        // For Batch 2, other semesters are not open by default.
+        // Default isOpen for current semester, or if explicitly set to true
         let isOpen = semester.isOpen || false;
-        if (batchId === "2" && !isCurrentSemester) {
-            isOpen = false; // Override for non-current Batch 2 semesters
-        }
-         if (isCurrentSemester && batchId !== "2") { // Ensure current semester for other batches is open if marked
-            isOpen = semester.isOpen || false;
-         }
-         if (isCurrentSemester && batchId === "2"){ // Ensure current semester for batch 2 is open
+        const isCurrentSemester = semester.name === batchConfig.currentSemesterName;
+        if (isCurrentSemester) {
             isOpen = true;
-         }
-
+        }
 
         const isOpenClass = isOpen ? 'open' : '';
         const arrowRotateClass = isOpen ? 'rotate' : '';
@@ -222,7 +220,6 @@ function updateUIForBatch(batchId) {
     const batchConfig = allBatchesData.find(b => b.id === batchId);
     if (!batchConfig) {
         console.error("No data for batch:", batchId);
-        // Display some error in the UI if necessary
         heroBatchText.textContent = "Error: Batch data not found.";
         currentBatchIndicator.textContent = `Batch ?`;
         resourceGrid.innerHTML = "";
@@ -230,15 +227,11 @@ function updateUIForBatch(batchId) {
         return;
     }
 
-    currentBatchIndicator.textContent = batchConfig.name; // Use name from data
+    currentBatchIndicator.textContent = batchConfig.name;
     heroBatchText.textContent = batchConfig.heroText;
     
     updateQuickResources(batchId); 
     updateSemesterAccordion(batchId); 
-
-    if (sectionARoutineBtn && batchConfig.routineLink) {
-        sectionARoutineBtn.href = batchConfig.routineLink;
-    }
 
     document.querySelectorAll('.batch-select-btn').forEach(btn => {
         btn.classList.remove('selected');
@@ -278,13 +271,13 @@ async function loadExternalSubjectData() {
 document.addEventListener('DOMContentLoaded', async () => { 
     console.log("DOMContentLoaded event"); 
     await loadExternalSubjectData(); 
-    const savedBatch = localStorage.getItem('selectedBatch') || (allBatchesData.length > 0 ? allBatchesData[0].id : '1'); // Default to first batch ID or '1'
+    const savedBatch = localStorage.getItem('selectedBatch') || (allBatchesData.length > 0 ? allBatchesData[0].id : '1');
     console.log(`Loading saved batch: ${savedBatch}`); 
     updateUIForBatch(savedBatch);
     
     document.querySelectorAll('.notice-banner, .notice-box').forEach(el => {
         if (!el.parentElement || el.parentElement.nodeName !== 'SCRIPT') {
-            // el.style.display = 'none'; 
+            el.style.display = 'none'; 
         }
     });
 });

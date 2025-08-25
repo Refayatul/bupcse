@@ -1,48 +1,3 @@
-  /* Additional styles for batch selection can go here or in style.css */
-  .batch-selection-container {
-    padding: 1.5rem 1rem;
-    text-align: center;
-    background-color: #eef2f7; /* Light background for the section */
-}
-
-.batch-selection-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-}
-
-.batch-selector {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem; /* Space before quick resources */
-}
-
-.batch-select-btn {
-    padding: 0.6rem 1.2rem;
-    border: 2px solid var(--primary-color);
-    background-color: white;
-    color: var(--primary-color);
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-}
-
-.batch-select-btn:hover {
-    background-color: var(--secondary-color);
-    color: white;
-    border-color: var(--secondary-color);
-}
-
-.batch-select-btn.selected {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-}
 :root {
     --primary-color: #0D47A1;
     --secondary-color: #008080;
@@ -136,6 +91,52 @@ body {
     border-color: var(--primary-color);
 }
 
+/* Batch Selection Section */
+.batch-selection-container {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    background-color: #eef2f7;
+}
+
+.batch-selection-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.batch-selector {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.batch-select-btn {
+    padding: 0.6rem 1.2rem;
+    border: 2px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.batch-select-btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+.batch-select-btn.selected {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
 /* Important Notice Banner */
 .notice-banner {
     background-color: var(--yellow);
@@ -180,12 +181,12 @@ header {
 }
 
 #siteLogo {
-    height: 40px; /* Adjust as needed */
+    height: 40px;
     width: auto;
-    margin-right: 5px; /* Space between logo and "CSE" */
+    margin-right: 5px;
 }
 
-.logo svg { /* This was for the old SVG logo, can be removed or kept if SVG might be used elsewhere */
+.logo svg {
     width: 1.5rem;
     height: 1.5rem;
 }
@@ -267,37 +268,61 @@ header {
     margin: 0 auto;
 }
 
+/* Smaller Quick Resource Cards */
 .resource-card {
     display: flex;
     align-items: center;
-    padding: 1rem;
+    padding: 0.75rem;
     background-color: white;
     border-left: 4px solid var(--accent-color);
     border-radius: 6px;
     text-decoration: none;
     color: #333;
     transition: all 0.3s ease;
-}
-
-.resource-card-pdf { /* New style for PDF links */
-    border-left-color: #007bff; /* Example: Blue color for PDF links */
-}
-
-.resource-card-pdf .resource-icon { /* Target icon within PDF links */
-    color: #007bff;
+    font-size: 0.9rem;
 }
 
 .resource-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .resource-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.75rem;
     flex-shrink: 0;
     color: var(--accent-color);
+}
+
+/* Smaller PDF Resource Cards */
+.resource-card-pdf {
+    border-left-color: #007bff;
+}
+
+.resource-card-pdf .resource-icon {
+    color: #007bff;
+}
+
+/* Routine Buttons Container */
+#routineButtons {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+#routineButtons .resource-card {
+    display: inline-flex;
+    width: auto;
+    padding: 0.6rem 1rem;
+    margin: 0 5px;
+    font-size: 0.85rem;
+}
+
+#routineButtons .resource-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
 }
 
 /* Semester Accordion */
@@ -388,6 +413,7 @@ header {
     text-decoration: none;
     color: #333;
     transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .material-link:hover {
@@ -428,6 +454,114 @@ footer {
     color: var(--accent-color);
 }
 
+/* General Modal Styles (reusable) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    animation: fadeInModal 0.3s ease-out;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content-large {
+    background-color: #fefefe;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 8px;
+    position: absolute;
+    top: 15vh;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Course List Modal Specific Styles */
+.course-list-container {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 15px;
+    margin-top: 20px;
+}
+
+/* Style for the initial program info paragraphs */
+.course-list-container > p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+.course-list-container > hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+    margin: 1rem 0 1.5rem 0;
+}
+
+.course-list-container h3 {
+    color: var(--primary-color);
+    background-color: #eef2f7;
+    padding: 0.5rem 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid var(--secondary-color);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 4px 4px 0 0;
+}
+
+.course-list-container ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+
+.course-list-container li {
+    background-color: #fdfdfe;
+    border: 1px solid #eef2f7;
+    padding: 10px 15px;
+    margin-bottom: 6px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+
+.course-list-container li:nth-child(even) {
+    background-color: #f7f9fc;
+}
+
+.course-list-container li:hover {
+    background-color: #e9edf1;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
@@ -465,122 +599,14 @@ footer {
     .material-links {
         grid-template-columns: 1fr;
     }
-}
-
-/* General Modal Styles (reusable) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1001; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
-    /* display: flex; 
-    align-items: center; 
-    justify-content: center;  Removed for absolute positioning of child */
-    animation: fadeInModal 0.3s ease-out; /* This is for the overlay fade-in */
-}
-
-@keyframes fadeInModal {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.modal-content-large {
-    background-color: #fefefe;
-    padding: 25px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    max-width: 900px; /* Max width */
-    border-radius: 8px;
-    position: absolute; /* Position relative to .modal */
-    top: 15vh; /* Position higher, 15% of viewport height from the top */
-    left: 50%;
-    transform: translateX(-50%); /* Center horizontally */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    /* animation: slideInModal 0.4s ease-out; Temporarily remove animation */
-    /* transform: translateY(-50px); Replaced by top: 40% and only X transform */
-}
-
-/* @keyframes slideInModal {
-    from { transform: translateY(0px); opacity: 0; } 
-    to { transform: translateY(-50px); opacity: 1; }
-} */
-
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Course List Modal Specific Styles */
-.course-list-container {
-    max-height: 60vh; /* Make content scrollable, reduced height */
-    overflow-y: auto;
-    padding-right: 15px; /* For scrollbar */
-    margin-top: 20px;
-}
-
-/* Style for the initial program info paragraphs */
-.course-list-container > p {
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
-    color: #444; /* Slightly darker text for program info */
-    font-size: 0.9rem;
-}
-.course-list-container > hr {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
-    margin: 1rem 0 1.5rem 0;
-}
-
-
-.course-list-container h3 {
-    color: var(--primary-color);
-    background-color: #eef2f7; /* Light background for semester headers */
-    padding: 0.5rem 0.75rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-    border-bottom: 2px solid var(--secondary-color);
-    border-left: 3px solid var(--primary-color);
-    border-radius: 4px 4px 0 0;
-}
-
-.course-list-container ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-bottom: 1.5rem; /* Space after each semester's list */
-}
-
-.course-list-container li {
-    background-color: #fdfdfe; /* Default very light background for odd items */
-    border: 1px solid #eef2f7;
-    padding: 10px 15px; /* Increased padding */
-    margin-bottom: 6px;
-    border-radius: 4px;
-    font-size: 0.95rem;
-    transition: background-color 0.2s ease;
-}
-
-.course-list-container li:nth-child(even) {
-    background-color: #f7f9fc; /* Slightly different for even items (zebra striping) */
-}
-
-.course-list-container li:hover {
-    background-color: #e9edf1; /* Hover effect */
+    
+    .batch-selector {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .batch-select-btn {
+        width: 80%;
+        margin-bottom: 0.5rem;
+    }
 }
