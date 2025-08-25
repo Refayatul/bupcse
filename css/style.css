@@ -1209,11 +1209,13 @@ footer p {
         flex-direction: row;
         gap: 0.5rem;
         padding: 0.5rem;
+        flex-wrap: nowrap;
     }
     
     .logo {
         min-width: auto;
         padding: 0;
+        flex-shrink: 0;
     }
     
     .logo span {
@@ -1232,14 +1234,19 @@ footer p {
     
     .mobile-nav-links {
         display: flex;
+        flex-shrink: 0;
     }
     
     .hamburger {
         display: flex;
+        flex-shrink: 0;
     }
     
     .navbar-controls {
         gap: 0.5rem;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
     }
     
     .search-container-nav {
@@ -1416,12 +1423,33 @@ footer p {
         padding: 0.4rem;
         font-size: 0.7rem;
     }
+    
+    /* Mobile action grid - left to right */
+    .mobile-action-grid {
+        flex-wrap: nowrap;
+    }
+    
+    .mobile-action-btn {
+        min-width: 120px;
+        padding: 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .mobile-action-btn i {
+        font-size: 1.2rem;
+    }
+    
+    /* Hide desktop quick actions on mobile */
+    .quick-actions {
+        display: none;
+    }
 }
 
 /* Extra small devices */
 @media (max-width: 480px) {
     .nav-container {
         padding: 0.25rem;
+        flex-wrap: nowrap;
     }
     
     .logo span {
@@ -1471,5 +1499,20 @@ footer p {
     .mobile-nav-links a {
         padding: 0.3rem;
         font-size: 0.65rem;
+    }
+    
+    .mobile-action-btn {
+        min-width: 100px;
+        padding: 0.6rem;
+        font-size: 0.7rem;
+    }
+    
+    .mobile-action-btn i {
+        font-size: 1rem;
+    }
+    
+    /* Hide desktop quick actions on mobile */
+    .quick-actions {
+        display: none;
     }
 }

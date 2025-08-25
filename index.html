@@ -11,7 +11,7 @@
     <!-- Font Awesome for better icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body data-theme="dark">
    <!-- Header -->
 <header>
     <div class="nav-container">
@@ -51,7 +51,7 @@
                 <div id="searchResultsNav" class="search-results-nav"></div>
             </div>
             <button id="darkModeToggle" class="dark-mode-toggle-navbar">
-                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
             </button>
             <div class="hamburger" onclick="toggleMenu()">
                 <div></div>
@@ -65,22 +65,22 @@
     <!-- Mobile Quick Actions -->
     <section class="mobile-quick-actions">
         <div class="mobile-action-grid">
+            <button class="mobile-action-btn" id="showBookmarksMobile">
+                <i class="fas fa-bookmark"></i>
+                <span>My Bookmarks</span>
+            </button>
             <a href="#all-semesters" class="mobile-action-btn">
                 <i class="fas fa-graduation-cap"></i>
                 <span>Browse Courses</span>
-            </a>
-            <a href="mailto:cse@bup.edu.bd" class="mobile-action-btn">
-                <i class="fas fa-envelope"></i>
-                <span>Contact Dept</span>
             </a>
             <a href="https://bup.edu.bd" class="mobile-action-btn" target="_blank">
                 <i class="fas fa-globe"></i>
                 <span>BUP Website</span>
             </a>
-            <button class="mobile-action-btn" id="showBookmarksMobile">
-                <i class="fas fa-bookmark"></i>
-                <span>My Bookmarks</span>
-            </button>
+            <a href="mailto:cse@bup.edu.bd" class="mobile-action-btn">
+                <i class="fas fa-envelope"></i>
+                <span>Contact Dept</span>
+            </a>
         </div>
     </section>
 
@@ -105,25 +105,25 @@
         </div>
     </section>
 
-    <!-- Quick Actions Dashboard -->
-    <section class="quick-actions">
+    <!-- Quick Actions Dashboard (Desktop Only) -->
+    <section class="quick-actions desktop-only">
         <div class="action-grid">
+            <button class="action-btn" id="showBookmarks">
+                <i class="fas fa-bookmark"></i>
+                <span>My Bookmarks</span>
+            </button>
             <a href="#all-semesters" class="action-btn">
                 <i class="fas fa-graduation-cap"></i>
                 <span>Browse Courses</span>
-            </a>
-            <a href="mailto:cse@bup.edu.bd" class="action-btn">
-                <i class="fas fa-envelope"></i>
-                <span>Contact Dept</span>
             </a>
             <a href="https://bup.edu.bd" class="action-btn" target="_blank">
                 <i class="fas fa-globe"></i>
                 <span>BUP Website</span>
             </a>
-            <button class="action-btn" id="showBookmarks">
-                <i class="fas fa-bookmark"></i>
-                <span>My Bookmarks</span>
-            </button>
+            <a href="mailto:cse@bup.edu.bd" class="action-btn">
+                <i class="fas fa-envelope"></i>
+                <span>Contact Dept</span>
+            </a>
         </div>
     </section>
 
