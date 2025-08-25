@@ -11,6 +11,8 @@ const semesterAccordion = document.getElementById('semesterAccordion');
 const resourceSearchNav = document.getElementById('resourceSearchNav');
 const searchResultsNav = document.getElementById('searchResultsNav');
 const clearSearchNav = document.getElementById('clearSearchNav');
+const searchContainerNav = document.querySelector('.search-container-nav');
+const searchIconNav = document.querySelector('.search-icon-nav');
 
 // Modals
 const courseListModal = document.getElementById('courseListModal');
@@ -18,19 +20,12 @@ const courseListBtn = document.getElementById('courseListBtn');
 const closeCourseListModalBtn = document.getElementById('closeCourseListModal');
 const courseListContent = document.getElementById('courseListContent');
 
-const feedbackModal = document.getElementById('feedbackModal');
-const feedbackBtn = document.getElementById('feedbackBtn');
-const closeFeedbackModalBtn = document.getElementById('closeFeedbackModal');
-const feedbackForm = document.getElementById('feedbackForm');
-
 const bookmarksModal = document.getElementById('bookmarksModal');
 const showBookmarksBtn = document.getElementById('showBookmarks');
 const closeBookmarksModalBtn = document.getElementById('closeBookmarksModal');
 const bookmarksList = document.getElementById('bookmarksList');
 
 const darkModeToggle = document.getElementById('darkModeToggle');
-const filterButtons = document.querySelectorAll('.filter-btn');
-const printOverviewBtn = document.getElementById('printOverview');
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
@@ -38,9 +33,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Initialize dark mode
     initDarkMode();
-    
-    // Initialize keyboard shortcuts
-    initKeyboardShortcuts();
     
     // Load data
     await loadExternalSubjectData();
@@ -85,37 +77,31 @@ function setupEventListeners() {
     if (clearSearchNav) {
         clearSearchNav.addEventListener('click', clearSearchNavInput);
     }
-
-    // Filter buttons
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.dataset.filter;
-            updateQuickResources(currentBatchId);
+    
+    // Search icon click to expand search
+    if (searchIconNav) {
+        searchIconNav.addEventListener('click', function() {
+            if (searchContainerNav) {
+                searchContainerNav.classList.add('active');
+                if (resourceSearchNav) {
+                    setTimeout(() => {
+                        resourceSearchNav.focus();
+                    }, 100);
+                }
+            }
         });
+    }
+    
+    // Close search when clicking outside
+    document.addEventListener('click', function(event) {
+        if (searchContainerNav && !searchContainerNav.contains(event.target) && 
+            searchIconNav !== event.target) {
+            searchContainerNav.classList.remove('active');
+            if (searchResultsNav) {
+                searchResultsNav.style.display = 'none';
+            }
+        }
     });
-
-    // Feedback modal
-    if (feedbackBtn) {
-        feedbackBtn.addEventListener('click', () => {
-            if (feedbackModal) {
-                feedbackModal.style.display = "block";
-            }
-        });
-    }
-
-    if (closeFeedbackModalBtn) {
-        closeFeedbackModalBtn.addEventListener('click', () => {
-            if (feedbackModal) {
-                feedbackModal.style.display = "none";
-            }
-        });
-    }
-
-    if (feedbackForm) {
-        feedbackForm.addEventListener('submit', handleFeedbackSubmit);
-    }
 
     // Bookmarks modal
     if (showBookmarksBtn) {
@@ -149,18 +135,10 @@ function setupEventListeners() {
         });
     }
 
-    // Print overview
-    if (printOverviewBtn) {
-        printOverviewBtn.addEventListener('click', printSemesterOverview);
-    }
-
     // Modal close on outside click
     window.addEventListener('click', (event) => {
         if (event.target == courseListModal) {
             courseListModal.style.display = "none";
-        }
-        if (event.target == feedbackModal) {
-            feedbackModal.style.display = "none";
         }
         if (event.target == bookmarksModal) {
             bookmarksModal.style.display = "none";
@@ -216,33 +194,6 @@ async function populateCourseListModal() {
         if (courseListContent) {
             courseListContent.innerHTML = '<p>Error loading course list. Please try again later.</p>';
         }
-    }
-}
-
-function handleFeedbackSubmit(e) {
-    e.preventDefault();
-    
-    // Get form elements safely
-    const nameInput = document.getElementById('feedbackName');
-    const emailInput = document.getElementById('feedbackEmail');
-    const messageInput = document.getElementById('feedbackMessage');
-    
-    const name = nameInput ? nameInput.value : '';
-    const email = emailInput ? emailInput.value : '';
-    const message = messageInput ? messageInput.value : '';
-
-    // In a real app, you would send this to a server
-    console.log('Feedback submitted:', { name, email, message });
-
-    // Show success message
-    alert('Thank you for your feedback! We appreciate your input.');
-
-    // Reset form and close modal
-    if (feedbackForm) {
-        feedbackForm.reset();
-    }
-    if (feedbackModal) {
-        feedbackModal.style.display = "none";
     }
 }
 
@@ -391,96 +342,6 @@ function initDarkMode() {
             darkModeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         });
     }
-}
-
-function initKeyboardShortcuts() {
-    document.addEventListener('keydown', function(e) {
-        // Ctrl/Cmd + K for search
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            if (resourceSearchNav) {
-                resourceSearchNav.focus();
-            }
-        }
-        
-        // Escape to close modals and search results
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = "none";
-            });
-            if (searchResultsNav) {
-                searchResultsNav.style.display = "none";
-            }
-        }
-        
-        // Number keys for batch selection
-        if (e.key >= '1' && e.key <= '4') {
-            const batchBtn = document.querySelector(`[data-batch="${e.key}"]`);
-            if (batchBtn) {
-                batchBtn.click();
-            }
-        }
-    });
-
-    // Show keyboard shortcuts hint
-    setTimeout(() => {
-        const hint = document.createElement('div');
-        hint.className = 'keyboard-shortcuts';
-        hint.innerHTML = '⌨️ Keyboard shortcuts: Ctrl+K to search, Esc to close, 1-4 for batches';
-        document.body.appendChild(hint);
-        
-        setTimeout(() => {
-            hint.style.display = 'block';
-            setTimeout(() => {
-                hint.style.display = 'none';
-            }, 5000);
-        }, 1000);
-    }, 3000);
-}
-
-function printSemesterOverview() {
-    const batchConfig = allBatchesData.find(b => b.id === currentBatchId);
-    if (!batchConfig) return;
-
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) {
-        alert('Please allow popups to print the overview');
-        return;
-    }
-    
-    printWindow.document.write(`
-        <html>
-        <head>
-            <title>Semester Overview - ${batchConfig.name}</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 20px; }
-                h1 { color: #0D47A1; }
-                h2 { color: #008080; margin-top: 20px; }
-                ul { list-style-type: none; padding-left: 0; }
-                li { padding: 5px 0; border-bottom: 1px solid #eee; }
-                .semester { margin-bottom: 30px; }
-            </style>
-        </head>
-        <body>
-            <h1>${batchConfig.heroText || 'BUP CSE Resources'}</h1>
-            <h2>Current Semester: ${batchConfig.currentSemesterName || 'Not specified'}</h2>
-            ${(batchConfig.semesters || []).map(semester => `
-                <div class="semester">
-                    <h2>${semester.name || 'Semester'}</h2>
-                    ${(semester.subjects || []).length > 0 ? `
-                        <ul>
-                            ${(semester.subjects || []).map(subject => `
-                                <li>${subject.name || 'Subject'}</li>
-                            `).join('')}
-                        </ul>
-                    ` : '<p>No detailed subjects available</p>'}
-                </div>
-            `).join('')}
-        </body>
-        </html>
-    `);
-    printWindow.document.close();
-    printWindow.print();
 }
 
 function updateQuickResources(batchId) {
@@ -717,10 +578,14 @@ async function loadExternalSubjectData() {
     }
 }
 
+// Improved mobile menu toggle
 function toggleMenu() {
     const nav = document.getElementById('mobile-nav');
-    if (nav) {
+    const hamburger = document.querySelector('.hamburger');
+    
+    if (nav && hamburger) {
         nav.classList.toggle('active');
+        hamburger.classList.toggle('active');
     }
 }
 
@@ -761,18 +626,16 @@ function toggleFAQ(element) {
     }
 }
 
+// Close mobile menu when clicking outside
 document.addEventListener('click', function(event) {
     const nav = document.getElementById('mobile-nav');
     const hamburger = document.querySelector('.hamburger');
     
-    if (nav && hamburger && !nav.contains(event.target) && !hamburger.contains(event.target) && nav.classList.contains('active')) {
-        nav.classList.remove('active');
-    }
-    
-    // Close search results when clicking outside
-    if (searchResultsNav && !searchResultsNav.contains(event.target) && 
-        !resourceSearchNav.contains(event.target) && 
-        !clearSearchNav.contains(event.target)) {
-        searchResultsNav.style.display = "none";
+    if (nav && hamburger && nav.classList.contains('active')) {
+        // Check if click is outside nav and hamburger
+        if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+            nav.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
     }
 });

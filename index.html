@@ -21,17 +21,6 @@
             <span class="batch-indicator" id="currentBatch">Batch 1</span>
         </div>
         
-        <div class="search-container-nav">
-            <div class="search-wrapper-nav">
-                <i class="fas fa-search search-icon-nav"></i>
-                <input type="text" id="resourceSearchNav" placeholder="Search resources...">
-                <button id="clearSearchNav" class="clear-search-nav">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div id="searchResultsNav" class="search-results-nav"></div>
-        </div>
-        
         <nav class="nav-links" id="mobile-nav">
             <a href="#all-semesters"><i class="fas fa-graduation-cap"></i> Semesters</a>
             <a href="https://drive.google.com/drive/folders/1rtMMO0iTKQCMBesbmRIVS3COeyEbfsPv?usp=sharing" target="_blank"><i class="fas fa-folder-open"></i> Resources</a>
@@ -41,6 +30,16 @@
         
         <!-- Enhanced Navbar Controls -->
         <div class="navbar-controls">
+            <div class="search-container-nav">
+                <div class="search-wrapper-nav">
+                    <i class="fas fa-search search-icon-nav"></i>
+                    <input type="text" id="resourceSearchNav" placeholder="Search...">
+                    <button id="clearSearchNav" class="clear-search-nav">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="searchResultsNav" class="search-results-nav"></div>
+            </div>
             <button id="darkModeToggle" class="dark-mode-toggle-navbar">
                 <i class="fas fa-moon"></i>
             </button>
@@ -53,7 +52,7 @@
     </div>
 </header>
 
-    <section class="hero">
+    <section class="hero desktop-only">
         <div class="hero-content">
             <h1>Department of Computer Science & Engineering</h1>
             <p id="heroBatchText">Batch 1 Academic Resources</p>
@@ -89,38 +88,9 @@
                 <i class="fas fa-globe"></i>
                 <span>BUP Website</span>
             </a>
-            <button class="action-btn" id="feedbackBtn">
-                <i class="fas fa-comment"></i>
-                <span>Feedback</span>
-            </button>
-            <button class="action-btn" id="printOverview">
-                <i class="fas fa-print"></i>
-                <span>Print Overview</span>
-            </button>
             <button class="action-btn" id="showBookmarks">
                 <i class="fas fa-bookmark"></i>
                 <span>My Bookmarks</span>
-            </button>
-        </div>
-    </section>
-
-    <!-- Resource Filter -->
-    <section class="filter-section">
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">
-                <i class="fas fa-th-large"></i> All Resources
-            </button>
-            <button class="filter-btn" data-filter="pdf">
-                <i class="fas fa-file-pdf"></i> PDFs
-            </button>
-            <button class="filter-btn" data-filter="drive">
-                <i class="fab fa-google-drive"></i> Google Drive
-            </button>
-            <button class="filter-btn" data-filter="routine">
-                <i class="fas fa-calendar-alt"></i> Routines
-            </button>
-            <button class="filter-btn" data-filter="full">
-                <i class="fas fa-folder"></i> Full Semesters
             </button>
         </div>
     </section>
@@ -188,7 +158,7 @@
                     <span class="faq-arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
-                    <p>This website is updated every 2/3 months with new resources and announcements. Check back frequently for the latest materials.</p>
+                    <p>This website is updated every 2/3 months with new resources. Contact the dev for the latest materials.</p>
                 </div>
             </div>
         </div>
@@ -216,30 +186,6 @@
             <h2><i class="fas fa-list"></i> Course List</h2>
             <div id="courseListContent" class="course-list-container">
             </div>
-        </div>
-    </div>
-
-    <div id="feedbackModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeFeedbackModal">&times;</span>
-            <h2><i class="fas fa-comment"></i> Send Feedback</h2>
-            <form id="feedbackForm">
-                <div class="form-group">
-                    <label for="feedbackName"><i class="fas fa-user"></i> Name (Optional):</label>
-                    <input type="text" id="feedbackName" placeholder="Your name">
-                </div>
-                <div class="form-group">
-                    <label for="feedbackEmail"><i class="fas fa-envelope"></i> Email (Optional):</label>
-                    <input type="email" id="feedbackEmail" placeholder="your.email@bup.edu.bd">
-                </div>
-                <div class="form-group">
-                    <label for="feedbackMessage"><i class="fas fa-comment-dots"></i> Message *:</label>
-                    <textarea id="feedbackMessage" placeholder="Your feedback or suggestions..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> Send Feedback
-                </button>
-            </form>
         </div>
     </div>
 
