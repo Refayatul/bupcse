@@ -56,6 +56,7 @@ header {
         transform: translateY(-100%);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -85,7 +86,7 @@ header {
     height: 45px;
     width: auto;
     transition: var(--transition);
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .logo span {
@@ -105,9 +106,17 @@ header {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Search in Navbar */
@@ -361,7 +370,7 @@ header {
     background: var(--primary-gradient);
     padding: 1rem;
     z-index: 999;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     border-radius: 0 0 20px 20px;
     animation: slideDown 0.3s ease-out;
 }
@@ -404,14 +413,19 @@ header {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
     transform: rotate(30deg);
     animation: rotate 20s linear infinite;
 }
 
 @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .hero-content {
@@ -424,7 +438,7 @@ header {
 .hero h1 {
     font-size: 2rem;
     margin-bottom: 0.75rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     animation: slideUp 0.8s ease-out;
 }
 
@@ -512,9 +526,17 @@ header {
 }
 
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 .mobile-action-btn:hover {
@@ -542,14 +564,19 @@ header {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
     transform: rotate(30deg);
     animation: rotate 20s linear infinite;
 }
 
 @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .hero-content {
@@ -562,7 +589,7 @@ header {
 .hero h1 {
     font-size: 2rem;
     margin-bottom: 0.75rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     animation: slideUp 0.8s ease-out;
 }
 
@@ -682,7 +709,7 @@ header {
     font-weight: 700;
     margin-bottom: 1.25rem;
     color: var(--primary-color);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .batch-selector {
@@ -1097,7 +1124,7 @@ footer p {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     animation: fadeIn 0.3s ease-out;
     backdrop-filter: blur(5px);
 }
@@ -1113,7 +1140,7 @@ footer p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     color: var(--text-color);
     animation: modalSlide 0.4s ease-out;
 }
@@ -1129,7 +1156,7 @@ footer p {
     top: 10vh;
     left: 50%;
     transform: translateX(-50%);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     color: var(--text-color);
     max-height: 80vh;
     overflow-y: auto;
@@ -1141,6 +1168,7 @@ footer p {
         transform: translate(-50%, -30%);
         opacity: 0;
     }
+
     to {
         transform: translate(-50%, -50%);
         opacity: 1;
@@ -1168,7 +1196,7 @@ footer p {
 .close-btn:hover,
 .close-btn:focus {
     color: var(--text-color);
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
     transform: rotate(90deg);
 }
 
@@ -1188,13 +1216,13 @@ footer p {
     background: var(--card-bg);
     border-radius: 10px;
     margin-bottom: 0.75rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     transition: var(--transition);
 }
 
 .bookmark-item:hover {
     transform: translateX(5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .bookmark-item:last-child {
@@ -1245,14 +1273,14 @@ footer p {
     margin-top: 20px;
 }
 
-.course-list-container > p {
+.course-list-container>p {
     margin-bottom: 0.75rem;
     line-height: 1.7;
     color: var(--text-color);
     font-size: 1rem;
 }
 
-.course-list-container > hr {
+.course-list-container>hr {
     border: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--border-color), transparent);
@@ -1294,13 +1322,18 @@ footer p {
 .course-list-container li:hover {
     background: linear-gradient(90deg, var(--card-bg) 0%, rgba(13, 71, 161, 0.05) 100%);
     transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* Animations */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideUp {
@@ -1308,6 +1341,7 @@ footer p {
         transform: translateY(30px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -1327,234 +1361,234 @@ footer p {
         padding: 0.5rem;
         flex-wrap: nowrap;
     }
-    
+
     .logo {
         min-width: auto;
         padding: 0;
         flex-shrink: 0;
     }
-    
+
     .logo span {
         font-size: 1.2rem;
     }
-    
+
     .batch-indicator {
         font-size: 0.7rem;
         padding: 0.2rem 0.5rem;
         margin-left: 0.5rem;
     }
-    
+
     .nav-links {
         display: none;
     }
-    
+
     .mobile-nav-links {
         display: flex;
         flex-shrink: 0;
     }
-    
+
     .hamburger {
         display: flex;
         flex-shrink: 0;
     }
-    
+
     .navbar-controls {
         gap: 0.5rem;
         display: flex;
         align-items: center;
         flex-shrink: 0;
     }
-    
+
     .search-container-nav {
         width: 35px;
     }
-    
+
     .search-container-nav.active {
         width: 150px;
     }
-    
+
     .search-wrapper-nav {
         height: 35px;
     }
-    
+
     .search-icon-nav {
         left: 10px;
         font-size: 14px;
     }
-    
+
     #resourceSearchNav {
         padding: 8px 30px 8px 30px;
         font-size: 12px;
     }
-    
+
     .clear-search-nav {
         right: 8px;
         font-size: 14px;
         width: 20px;
         height: 20px;
     }
-    
+
     .dark-mode-toggle-navbar {
         width: 35px;
         height: 35px;
         font-size: 16px;
     }
-    
+
     /* Hide Hero Section on Mobile */
     .desktop-only {
         display: none;
     }
-    
+
     .mobile-quick-actions {
         display: block;
     }
-    
+
     .mobile-action-btn:nth-child(2n) {
         animation-delay: 0.2s;
     }
-    
+
     .mobile-action-btn:nth-child(3n) {
         animation-delay: 0.4s;
     }
-    
+
     /* Hero Section */
     .hero {
         padding: 1.5rem 1rem;
     }
-    
+
     .hero h1 {
         font-size: 1.6rem;
     }
-    
+
     .hero p {
         font-size: 1rem;
     }
-    
+
     .hero-stats {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .stat-item {
         padding: 0.6rem 1rem;
         width: 100%;
     }
-    
+
     /* Quick Actions */
     .action-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
-    
+
     .action-btn {
         padding: 1rem;
         font-size: 0.9rem;
     }
-    
+
     .action-btn i {
         font-size: 1.5rem;
     }
-    
+
     /* Resource Grid */
     .resource-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .material-links {
         grid-template-columns: 1fr;
     }
-    
+
     /* Batch Selection - Left to Right */
     .batch-selector {
         flex-direction: row;
         justify-content: center;
         gap: 0.75rem;
     }
-    
+
     .batch-select-btn {
         padding: 0.75rem 1rem;
         font-size: 0.85rem;
         min-width: 70px;
     }
-    
+
     /* Footer - Left to Right Layout */
     .footer-links {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
     }
-    
+
     .footer-links a {
         font-size: 0.8rem;
         padding: 0.3rem 0.6rem;
     }
-    
+
     /* Routine Buttons */
     #routineButtons .resource-card {
         display: block;
         margin: 8px 0;
         width: 100%;
     }
-    
+
     /* Modals */
     .modal-content {
         width: 95%;
         padding: 15px;
     }
-    
+
     .modal-content-large {
         width: 95%;
         top: 5vh;
         max-height: 85vh;
     }
-    
+
     /* Section Titles */
     .section-title {
         font-size: 1.5rem;
     }
-    
+
     /* Accordion */
     .accordion-header {
         padding: 1rem 1.3rem;
         font-size: 0.95rem;
     }
-    
+
     .accordion-content.open {
         padding: 1.3rem;
     }
-    
+
     /* Search Results */
     .search-results-nav {
         left: 0;
         right: 0;
         margin-top: 5px;
     }
-    
+
     .search-result-item-nav {
         padding: 10px 15px;
         font-size: 0.9rem;
     }
-    
+
     .mobile-nav-links a {
         padding: 0.4rem;
         font-size: 0.7rem;
     }
-    
+
     /* Mobile action grid - left to right */
     .mobile-action-grid {
         flex-wrap: nowrap;
     }
-    
+
     .mobile-action-btn {
         min-width: 120px;
         padding: 0.8rem;
         font-size: 0.8rem;
     }
-    
+
     .mobile-action-btn i {
         font-size: 1.2rem;
     }
-    
+
     /* Hide desktop quick actions on mobile */
     .quick-actions {
         display: none;
@@ -1567,72 +1601,72 @@ footer p {
         padding: 0.25rem;
         flex-wrap: nowrap;
     }
-    
+
     .logo span {
         font-size: 1.1rem;
     }
-    
+
     .batch-indicator {
         font-size: 0.6rem;
         padding: 0.15rem 0.4rem;
     }
-    
+
     .hero h1 {
         font-size: 1.4rem;
     }
-    
+
     .hero p {
         font-size: 0.9rem;
     }
-    
+
     .action-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .section-title {
         font-size: 1.3rem;
     }
-    
+
     .batch-select-btn {
         padding: 0.6rem 0.8rem;
         font-size: 0.8rem;
         min-width: 65px;
     }
-    
+
     .stat-item {
         padding: 0.5rem 0.8rem;
         font-size: 0.9rem;
     }
-    
+
     footer p {
         font-size: 0.9rem;
     }
-    
+
     .footer-links a {
         font-size: 0.75rem;
         padding: 0.25rem 0.5rem;
     }
-    
+
     .mobile-nav-links a {
         padding: 0.3rem;
         font-size: 0.65rem;
     }
-    
+
     .mobile-action-btn {
         min-width: 100px;
         padding: 0.6rem;
         font-size: 0.7rem;
     }
-    
+
     .mobile-action-btn i {
         font-size: 1rem;
     }
-    
+
     /* Hide desktop quick actions on mobile */
     .quick-actions {
         display: none;
     }
-    
+
     /* Batch Selection - Stack on very small screens */
     @media (max-width: 360px) {
         .batch-selector {
@@ -1640,7 +1674,7 @@ footer p {
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .batch-select-btn {
             width: 90%;
         }
