@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Educational Website</title>
+    <style>
 :root {
     --primary-color: #0D47A1;
     --primary-gradient: linear-gradient(135deg, #0D47A1 0%, #1976D2 100%);
@@ -63,22 +70,23 @@ header {
 }
 
 .nav-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.75rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    min-width: 0;
     animation: fadeIn 1s ease-out;
-    min-width: 150px;
 }
 
 #siteLogo {
@@ -92,6 +100,9 @@ header {
     font-weight: 600;
     font-size: 1.4rem;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .batch-indicator {
@@ -102,6 +113,7 @@ header {
     margin-left: 0.75rem;
     backdrop-filter: blur(10px);
     animation: pulse 2s infinite;
+    flex-shrink: 0;
 }
 
 @keyframes pulse {
@@ -115,6 +127,7 @@ header {
     position: relative;
     width: 40px;
     transition: width 0.3s ease;
+    flex-shrink: 0;
 }
 
 .search-container-nav.active {
@@ -267,6 +280,7 @@ header {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    flex-shrink: 0;
 }
 
 /* Mobile Nav Links in Navbar */
@@ -274,6 +288,10 @@ header {
     display: none;
     gap: 0.5rem;
     align-items: center;
+    flex-shrink: 1;
+    min-width: 0;
+    overflow-x: auto;
+    padding: 0.2rem;
 }
 
 .mobile-nav-links a {
@@ -288,6 +306,8 @@ header {
     gap: 0.3rem;
     font-size: 0.8rem;
     background: rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .mobile-nav-links a:hover {
@@ -310,6 +330,7 @@ header {
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .dark-mode-toggle-navbar:hover {
@@ -324,6 +345,7 @@ header {
     cursor: pointer;
     padding: 0.5rem;
     z-index: 1000;
+    flex-shrink: 0;
 }
 
 .hamburger div {
@@ -379,6 +401,9 @@ header {
     margin-bottom: 0.5rem;
     transition: var(--transition);
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .mobile-menu a:hover {
@@ -509,6 +534,7 @@ header {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     animation: float 3s ease-in-out infinite;
+    white-space: nowrap;
 }
 
 @keyframes float {
@@ -522,87 +548,6 @@ header {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     color: var(--primary-color);
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-    color: white;
-    padding: 2rem 1rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    animation: fadeIn 1s ease-out;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    transform: rotate(30deg);
-    animation: rotate 20s linear infinite;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero h1 {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    animation: slideUp 0.8s ease-out;
-}
-
-.hero p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-    animation: slideUp 1s ease-out;
-}
-
-.hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
-}
-
-.stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.75rem 1.25rem;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    transition: var(--transition);
-    animation: fadeIn 1.2s ease-out;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.stat-item:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.stat-item i {
-    font-size: 1.5rem;
 }
 
 /* Quick Actions */
@@ -641,6 +586,7 @@ header {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     animation: float 3s ease-in-out infinite;
+    white-space: nowrap;
 }
 
 .action-btn:nth-child(2n) {
@@ -691,6 +637,8 @@ header {
     gap: 1rem;
     flex-wrap: wrap;
     margin-bottom: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem;
 }
 
 .batch-select-btn {
@@ -707,6 +655,7 @@ header {
     align-items: center;
     gap: 0.75rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
 }
 
 /* Dark Mode Fix for Batch Buttons */
@@ -1322,10 +1271,8 @@ footer p {
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-container {
-        flex-direction: row;
-        gap: 0.5rem;
-        padding: 0.5rem;
         flex-wrap: nowrap;
+        padding: 0.5rem;
     }
     
     .logo {
@@ -1350,6 +1297,15 @@ footer p {
     
     .mobile-nav-links {
         display: flex;
+        flex-shrink: 1;
+        overflow-x: auto;
+        gap: 0.3rem;
+        padding: 0.2rem;
+    }
+    
+    .mobile-nav-links a {
+        padding: 0.4rem;
+        font-size: 0.7rem;
         flex-shrink: 0;
     }
     
@@ -1359,9 +1315,7 @@ footer p {
     }
     
     .navbar-controls {
-        gap: 0.5rem;
-        display: flex;
-        align-items: center;
+        gap: 0.3rem;
         flex-shrink: 0;
     }
     
@@ -1370,7 +1324,7 @@ footer p {
     }
     
     .search-container-nav.active {
-        width: 150px;
+        width: 120px;
     }
     
     .search-wrapper-nav {
@@ -1378,26 +1332,63 @@ footer p {
     }
     
     .search-icon-nav {
-        left: 10px;
+        left: 8px;
         font-size: 14px;
     }
     
     #resourceSearchNav {
-        padding: 8px 30px 8px 30px;
-        font-size: 12px;
+        padding: 6px 25px 6px 25px;
+        font-size: 11px;
     }
     
     .clear-search-nav {
-        right: 8px;
-        font-size: 14px;
-        width: 20px;
-        height: 20px;
+        right: 6px;
+        font-size: 12px;
+        width: 18px;
+        height: 18px;
     }
     
     .dark-mode-toggle-navbar {
         width: 35px;
         height: 35px;
-        font-size: 16px;
+        font-size: 14px;
+    }
+    
+    /* Mobile action grid - updated order */
+    .mobile-action-grid {
+        flex-wrap: nowrap;
+    }
+    
+    .mobile-action-btn {
+        min-width: 120px;
+        padding: 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .mobile-action-btn i {
+        font-size: 1.2rem;
+    }
+    
+    /* Hide desktop quick actions on mobile */
+    .quick-actions {
+        display: none;
+    }
+    
+    /* Batch Selection - Left to Right */
+    .batch-selector {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0.5rem;
+    }
+    
+    .batch-select-btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+        min-width: 70px;
+        flex-shrink: 0;
     }
     
     /* Hide Hero Section on Mobile */
@@ -1458,23 +1449,6 @@ footer p {
     /* Resource Grid */
     .resource-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .material-links {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Batch Selection - Left to Right */
-    .batch-selector {
-        flex-direction: row;
-        justify-content: center;
-        gap: 0.75rem;
-    }
-    
-    .batch-select-btn {
-        padding: 0.75rem 1rem;
-        font-size: 0.85rem;
-        min-width: 70px;
     }
     
     /* Footer - Left to Right Layout */
@@ -1596,7 +1570,7 @@ footer p {
     .batch-select-btn {
         padding: 0.6rem 0.8rem;
         font-size: 0.8rem;
-        min-width: 65px;
+        min-width: 70px;
     }
     
     .stat-item {
@@ -1646,3 +1620,274 @@ footer p {
         }
     }
 }
+    </style>
+</head>
+<body>
+    <!-- This is a placeholder HTML structure for demonstration -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img id="siteLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDJjNC40MiAwIDggMy41OCA4IDhzLTMuNTggOC04IDgtOCAzLjU4LTggMy41OC0zLjU4LTMuNTgtOC04IDMuNTgtOCA4LTh6bTAgNWMxLjY2IDAgMyAxLjM0IDMgM3MtMS4zNCAzLTMgMy0zLTEuMzQtMy0zIDEuMzQtMyAzLTN6Ii8+PC9zdmc+" alt="Logo">
+                <span>University Portal</span>
+                <div class="batch-indicator">2023-24</div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#"><i>🏠</i> Home</a>
+                <a href="#"><i>📚</i> Resources</a>
+                <a href="#"><i>📅</i> Events</a>
+                <a href="#"><i>📞</i> Contact</a>
+            </div>
+            
+            <div class="mobile-nav-links">
+                <a href="#"><i>🏠</i> Home</a>
+                <a href="#"><i>📚</i> Resources</a>
+                <a href="#"><i>📅</i> Events</a>
+            </div>
+            
+            <div class="navbar-controls">
+                <div class="search-container-nav">
+                    <div class="search-wrapper-nav">
+                        <span class="search-icon-nav">🔍</span>
+                        <input type="text" id="resourceSearchNav" placeholder="Search resources...">
+                        <button class="clear-search-nav">×</button>
+                    </div>
+                    <div class="search-results-nav"></div>
+                </div>
+                
+                <button class="dark-mode-toggle-navbar">🌙</button>
+                <div class="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="mobile-menu">
+        <a href="#"><i>🏠</i> Home</a>
+        <a href="#"><i>📚</i> Resources</a>
+        <a href="#"><i>📅</i> Events</a>
+        <a href="#"><i>📞</i> Contact</a>
+    </div>
+    
+    <section class="hero desktop-only">
+        <div class="hero-content">
+            <h1>Welcome to University Portal</h1>
+            <p>Your one-stop destination for academic resources and information</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <i>📚</i>
+                    <span>500+ Resources</span>
+                </div>
+                <div class="stat-item">
+                    <i>🎓</i>
+                    <span>25+ Programs</span>
+                </div>
+                <div class="stat-item">
+                    <i>👥</i>
+                    <span>10,000+ Students</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="mobile-quick-actions">
+        <div class="mobile-action-grid">
+            <button class="mobile-action-btn">
+                <i>📚</i>
+                <span>Study Materials</span>
+            </button>
+            <button class="mobile-action-btn">
+                <i>📅</i>
+                <span>Academic Calendar</span>
+            </button>
+            <button class="mobile-action-btn">
+                <i>📝</i>
+                <span>Examination</span>
+            </button>
+            <button class="mobile-action-btn">
+                <i>🎓</i>
+                <span>Results</span>
+            </button>
+        </div>
+    </div>
+    
+    <section class="quick-actions desktop-only">
+        <div class="action-grid">
+            <button class="action-btn">
+                <i>📚</i>
+                <span>Study Materials</span>
+            </button>
+            <button class="action-btn">
+                <i>📅</i>
+                <span>Academic Calendar</span>
+            </button>
+            <button class="action-btn">
+                <i>📝</i>
+                <span>Examination</span>
+            </button>
+            <button class="action-btn">
+                <i>🎓</i>
+                <span>Results</span>
+            </button>
+        </div>
+    </section>
+    
+    <section class="batch-selection-container">
+        <h2 class="batch-selection-title">Select Your Batch</h2>
+        <div class="batch-selector">
+            <button class="batch-select-btn">2020-21</button>
+            <button class="batch-select-btn selected">2021-22</button>
+            <button class="batch-select-btn">2022-23</button>
+            <button class="batch-select-btn">2023-24</button>
+        </div>
+    </section>
+    
+    <section class="resources-section">
+        <h2 class="section-title">Quick Resources</h2>
+        <div class="resource-grid">
+            <a href="#" class="resource-card">
+                <i class="resource-icon">📘</i>
+                <span>Syllabus Documents</span>
+                <div class="bookmark-icon">🔖</div>
+            </a>
+            <a href="#" class="resource-card resource-card-pdf">
+                <i class="resource-icon">📄</i>
+                <span>Previous Year Papers</span>
+                <div class="bookmark-icon bookmarked">🔖</div>
+            </a>
+            <a href="#" class="resource-card">
+                <i class="resource-icon">🎥</i>
+                <span>Video Lectures</span>
+                <div class="bookmark-icon">🔖</div>
+            </a>
+            <a href="#" class="resource-card">
+                <i class="resource-icon">🧪</i>
+                <span>Lab Manuals</span>
+                <div class="bookmark-icon">🔖</div>
+            </a>
+        </div>
+    </section>
+    
+    <div id="routineButtons">
+        <a href="#" class="resource-card">
+            <i class="resource-icon">📅</i>
+            <span>Class Routine</span>
+        </a>
+        <a href="#" class="resource-card">
+            <i class="resource-icon">📝</i>
+            <span>Exam Schedule</span>
+        </a>
+    </div>
+    
+    <section class="semesters-section">
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <div class="accordion-title">
+                        <i>📘</i>
+                        <span>First Semester</span>
+                    </div>
+                    <i class="accordion-arrow">▼</i>
+                </div>
+                <div class="accordion-content">
+                    <div class="material-links">
+                        <a href="#" class="material-link">
+                            <i class="material-icon">📘</i>
+                            <span>Mathematics I</span>
+                        </a>
+                        <a href="#" class="material-link">
+                            <i class="material-icon">🔬</i>
+                            <span>Physics</span>
+                        </a>
+                        <a href="#" class="material-link">
+                            <i class="material-icon">🧪</i>
+                            <span>Chemistry</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I access study materials?</span>
+                    <i class="faq-arrow">▼</i>
+                </div>
+                <div class="faq-answer">
+                    <p>All study materials are available in the Resources section. You can filter by semester and subject to find what you need.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2023 University Portal. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#"><i>🔒</i> Privacy Policy</a>
+            <a href="#"><i>📋</i> Terms of Service</a>
+            <a href="#"><i>📞</i> Contact Us</a>
+            <a href="#"><i>❓</i> Help Center</a>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple JavaScript for demonstration
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // Search functionality
+            const searchContainer = document.querySelector('.search-container-nav');
+            const searchInput = document.getElementById('resourceSearchNav');
+            
+            searchInput.addEventListener('focus', function() {
+                searchContainer.classList.add('active');
+            });
+            
+            // Close search when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchContainer.contains(e.target)) {
+                    searchContainer.classList.remove('active');
+                }
+            });
+            
+            // Accordion functionality
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const arrow = this.querySelector('.accordion-arrow');
+                    
+                    content.classList.toggle('open');
+                    arrow.classList.toggle('rotate');
+                });
+            });
+            
+            // FAQ functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const arrow = this.querySelector('.faq-arrow');
+                    
+                    answer.classList.toggle('open');
+                    arrow.classList.toggle('rotate');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

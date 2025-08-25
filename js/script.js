@@ -51,7 +51,43 @@ document.addEventListener('DOMContentLoaded', async () => {
             el.style.display = 'none';
         }
     });
+    
+    // Handle window resize for dynamic navbar
+    handleDynamicNavbar();
+    window.addEventListener('resize', handleDynamicNavbar);
 });
+
+function handleDynamicNavbar() {
+    const navContainer = document.querySelector('.nav-container');
+    const logo = document.querySelector('.logo');
+    const mobileNavLinks = document.querySelector('.mobile-nav-links');
+    const navbarControls = document.querySelector('.navbar-controls');
+    const hamburger = document.querySelector('.hamburger');
+    
+    if (!navContainer || !logo || !mobileNavLinks || !navbarControls || !hamburger) return;
+    
+    // Reset display
+    mobileNavLinks.style.display = 'flex';
+    hamburger.style.display = 'flex';
+    
+    // Check available space
+    const containerWidth = navContainer.offsetWidth;
+    const logoWidth = logo.offsetWidth;
+    const controlsWidth = navbarControls.offsetWidth;
+    const navLinksWidth = mobileNavLinks.offsetWidth;
+    const hamburgerWidth = hamburger.offsetWidth;
+    
+    const totalWidth = logoWidth + navLinksWidth + controlsWidth + hamburgerWidth + 40; // 40px buffer
+    
+    // If content doesn't fit, hide nav links and show hamburger
+    if (totalWidth > containerWidth) {
+        mobileNavLinks.style.display = 'none';
+        hamburger.style.display = 'flex';
+    } else {
+        mobileNavLinks.style.display = 'flex';
+        hamburger.style.display = 'none';
+    }
+}
 
 function setupEventListeners() {
     // Batch selection
@@ -331,19 +367,35 @@ function clearSearchNavInput() {
 }
 
 function initDarkMode() {
-    // Set dark mode by default
-    document.documentElement.setAttribute('data-theme', 'dark');
+    // Check if user has a saved preference, otherwise use dark as default
+    const savedTheme = localStorage.getItem('theme');
+    
+    // Set theme (dark by default, but respect user preference if saved)
+    let theme = 'dark'; // Default to dark
+    if (savedTheme) {
+        theme = savedTheme;
+    }
+    
+    // Apply the theme
+    document.documentElement.setAttribute('data-theme', theme);
+    
     if (darkModeToggle) {
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        // Set initial icon based on theme
+        darkModeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         
-        darkModeToggle.addEventListener('click', () => {
+        darkModeToggle.addEventListener('click', function() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
+            // Apply new theme
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
-            darkModeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            // Update button icon
+            this.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            
+            // Force reflow to ensure styles are applied
+            document.body.offsetHeight;
         });
     }
 }
@@ -635,5 +687,20 @@ document.addEventListener('click', function(event) {
             mobileMenu.classList.remove('active');
             hamburger.classList.remove('active');
         }
+    }
+});
+
+// Handle quick action button clicks to prevent icon disappearance
+document.addEventListener('click', function(event) {
+    // Handle mobile quick action buttons
+    if (event.target.closest('.mobile-action-btn') || event.target.closest('.action-btn')) {
+        // Prevent default behavior that might cause icon issues
+        const button = event.target.closest('.mobile-action-btn') || event.target.closest('.action-btn');
+        if (button && button.tagName === 'A') {
+            // For anchor buttons, let them navigate normally
+            return;
+        }
+        // For button elements, handle click manually
+        event.preventDefault();
     }
 });
