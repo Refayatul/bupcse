@@ -7,7 +7,7 @@
     <link rel="icon" href="assets/images/logo/BUP_Logopng.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <!-- Manifest for PWA -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="data/manifest.json">
     <!-- Font Awesome for better icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -170,7 +170,7 @@
                     <span class="faq-arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
-                    <p>All Google Drive links require BUP email authentication. Make sure you're logged into your BUP Google account before clicking on any Drive links.</p>
+                    <p>Make sure you're logged into your Google account before clicking on any Drive links.</p>
                 </div>
             </div>
             <div class="faq-item">
@@ -255,7 +255,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('/js/sw.js')
                 .then(function(registration) {
                     console.log('SW registered: ', registration);
                 })

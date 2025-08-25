@@ -4,8 +4,10 @@ const urlsToCache = [
     '/index.html',
     '/css/style.css',
     '/js/script.js',
+    '/js/sw.js',
     '/assets/images/logo/BUP_Logopng.png',
-    '/data/subjects.json'
+    '/data/subjects.json',
+    '/data/manifest.json'
 ];
 
 // Install Service Worker

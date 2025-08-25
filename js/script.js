@@ -2,6 +2,7 @@ let allBatchesData = [];
 let currentBatchId = '1';
 let currentFilter = 'all';
 
+// DOM Elements
 const batchSelector = document.getElementById('batchSelector');
 const currentBatchIndicator = document.getElementById('currentBatch');
 const heroBatchText = document.getElementById('heroBatchText');
@@ -11,6 +12,7 @@ const resourceSearch = document.getElementById('resourceSearch');
 const searchResults = document.getElementById('searchResults');
 const clearSearch = document.getElementById('clearSearch');
 
+// Modals
 const courseListModal = document.getElementById('courseListModal');
 const courseListBtn = document.getElementById('courseListBtn');
 const closeCourseListModalBtn = document.getElementById('closeCourseListModal');
@@ -28,6 +30,7 @@ const bookmarksList = document.getElementById('bookmarksList');
 
 const darkModeToggle = document.getElementById('darkModeToggle');
 const filterButtons = document.querySelectorAll('.filter-btn');
+const printOverviewBtn = document.getElementById('printOverview');
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
@@ -58,16 +61,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function setupEventListeners() {
     // Batch selection
-    batchSelector.addEventListener('click', (event) => {
-        if (event.target.classList.contains('batch-select-btn')) {
-            const selectedBatch = event.target.dataset.batch;
-            updateUIForBatch(selectedBatch);
-        }
-    });
+    if (batchSelector) {
+        batchSelector.addEventListener('click', (event) => {
+            if (event.target.classList.contains('batch-select-btn') || event.target.parentElement.classList.contains('batch-select-btn')) {
+                const button = event.target.classList.contains('batch-select-btn') ? event.target : event.target.parentElement;
+                const selectedBatch = button.dataset.batch;
+                updateUIForBatch(selectedBatch);
+            }
+        });
+    }
 
     // Search functionality
-    resourceSearch.addEventListener('input', handleSearch);
-    clearSearch.addEventListener('click', clearSearchInput);
+    if (resourceSearch) {
+        resourceSearch.addEventListener('input', handleSearch);
+    }
+    if (clearSearch) {
+        clearSearch.addEventListener('click', clearSearchInput);
+    }
 
     // Filter buttons
     filterButtons.forEach(btn => {
@@ -82,13 +92,17 @@ function setupEventListeners() {
     // Feedback modal
     if (feedbackBtn) {
         feedbackBtn.addEventListener('click', () => {
-            feedbackModal.style.display = "block";
+            if (feedbackModal) {
+                feedbackModal.style.display = "block";
+            }
         });
     }
 
     if (closeFeedbackModalBtn) {
         closeFeedbackModalBtn.addEventListener('click', () => {
-            feedbackModal.style.display = "none";
+            if (feedbackModal) {
+                feedbackModal.style.display = "none";
+            }
         });
     }
 
@@ -103,8 +117,34 @@ function setupEventListeners() {
 
     if (closeBookmarksModalBtn) {
         closeBookmarksModalBtn.addEventListener('click', () => {
-            bookmarksModal.style.display = "none";
+            if (bookmarksModal) {
+                bookmarksModal.style.display = "none";
+            }
         });
+    }
+
+    // Course list modal
+    if (courseListBtn) {
+        courseListBtn.addEventListener('click', async function(event) {
+            event.preventDefault();
+            await populateCourseListModal();
+            if (courseListModal) {
+                courseListModal.style.display = "block";
+            }
+        });
+    }
+
+    if (closeCourseListModalBtn) {
+        closeCourseListModalBtn.addEventListener('click', () => {
+            if (courseListModal) {
+                courseListModal.style.display = "none";
+            }
+        });
+    }
+
+    // Print overview
+    if (printOverviewBtn) {
+        printOverviewBtn.addEventListener('click', printSemesterOverview);
     }
 
     // Modal close on outside click
@@ -119,12 +159,6 @@ function setupEventListeners() {
             bookmarksModal.style.display = "none";
         }
     });
-
-    // Print overview
-    const printOverviewBtn = document.getElementById('printOverview');
-    if (printOverviewBtn) {
-        printOverviewBtn.addEventListener('click', printSemesterOverview);
-    }
 }
 
 async function populateCourseListModal() {
@@ -135,6 +169,8 @@ async function populateCourseListModal() {
         }
         const data = await response.json();
         const courseDataText = data.courseListText;
+
+        if (!courseListContent) return;
 
         if (!courseDataText) {
             courseListContent.innerHTML = '<p>Error: Course list data not found in JSON.</p>';
@@ -167,29 +203,23 @@ async function populateCourseListModal() {
 
     } catch (error) {
         console.error("Could not fetch or parse course data:", error);
-        courseListContent.innerHTML = '<p>Error loading course list. Please try again later.</p>';
-    }
-}
-
-if (courseListBtn) {
-    courseListBtn.onclick = async function(event) {
-        event.preventDefault();
-        await populateCourseListModal();
-        courseListModal.style.display = "block";
-    }
-}
-
-if (closeCourseListModalBtn) {
-    closeCourseListModalBtn.onclick = function() {
-        courseListModal.style.display = "none";
+        if (courseListContent) {
+            courseListContent.innerHTML = '<p>Error loading course list. Please try again later.</p>';
+        }
     }
 }
 
 function handleFeedbackSubmit(e) {
     e.preventDefault();
-    const name = document.getElementById('feedbackName').value;
-    const email = document.getElementById('feedbackEmail').value;
-    const message = document.getElementById('feedbackMessage').value;
+    
+    // Get form elements safely
+    const nameInput = document.getElementById('feedbackName');
+    const emailInput = document.getElementById('feedbackEmail');
+    const messageInput = document.getElementById('feedbackMessage');
+    
+    const name = nameInput ? nameInput.value : '';
+    const email = emailInput ? emailInput.value : '';
+    const message = messageInput ? messageInput.value : '';
 
     // In a real app, you would send this to a server
     console.log('Feedback submitted:', { name, email, message });
@@ -198,12 +228,19 @@ function handleFeedbackSubmit(e) {
     alert('Thank you for your feedback! We appreciate your input.');
 
     // Reset form and close modal
-    feedbackForm.reset();
-    feedbackModal.style.display = "none";
+    if (feedbackForm) {
+        feedbackForm.reset();
+    }
+    if (feedbackModal) {
+        feedbackModal.style.display = "none";
+    }
 }
 
 function showBookmarks() {
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+    
+    if (!bookmarksList) return;
+    
     if (bookmarks.length === 0) {
         bookmarksList.innerHTML = '<p>No bookmarks yet. Click the bookmark icon on any resource to save it here.</p>';
     } else {
@@ -218,7 +255,10 @@ function showBookmarks() {
         });
         bookmarksList.innerHTML = html;
     }
-    bookmarksModal.style.display = "block";
+    
+    if (bookmarksModal) {
+        bookmarksModal.style.display = "block";
+    }
 }
 
 function toggleBookmark(resourceLink, resourceName) {
@@ -248,18 +288,23 @@ function removeBookmark(resourceLink) {
 function updateBookmarkIcons() {
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
     document.querySelectorAll('.bookmark-icon').forEach(icon => {
-        const link = icon.closest('a').href;
-        if (bookmarks.some(b => b.link === link)) {
-            icon.classList.add('bookmarked');
-            icon.textContent = '🔖';
-        } else {
-            icon.classList.remove('bookmarked');
-            icon.textContent = '📑';
+        const linkElement = icon.closest('a');
+        if (linkElement && linkElement.href) {
+            const link = linkElement.href;
+            if (bookmarks.some(b => b.link === link)) {
+                icon.classList.add('bookmarked');
+                icon.textContent = '🔖';
+            } else {
+                icon.classList.remove('bookmarked');
+                icon.textContent = '📑';
+            }
         }
     });
 }
 
 function handleSearch() {
+    if (!resourceSearch || !searchResults || !clearSearch) return;
+    
     const searchTerm = resourceSearch.value.toLowerCase().trim();
     
     if (searchTerm === '') {
@@ -275,7 +320,7 @@ function handleSearch() {
 
     // Search in resources
     const allResources = [
-        ...batchConfig.resources,
+        ...(batchConfig.resources || []),
         ...batchConfig.semesters.flatMap(s => s.subjects || [])
     ];
 
@@ -305,6 +350,8 @@ function handleSearch() {
 }
 
 function clearSearchInput() {
+    if (!resourceSearch || !searchResults || !clearSearch) return;
+    
     resourceSearch.value = '';
     searchResults.style.display = 'none';
     clearSearch.style.display = 'none';
@@ -316,7 +363,7 @@ function initDarkMode() {
     if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
         if (darkModeToggle) {
-            darkModeToggle.textContent = '☀️';
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
     }
 
@@ -328,7 +375,7 @@ function initDarkMode() {
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
-            darkModeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            darkModeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
         });
     }
 }
@@ -338,7 +385,9 @@ function initKeyboardShortcuts() {
         // Ctrl/Cmd + K for search
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
-            resourceSearch.focus();
+            if (resourceSearch) {
+                resourceSearch.focus();
+            }
         }
         
         // Escape to close modals
@@ -378,6 +427,11 @@ function printSemesterOverview() {
     if (!batchConfig) return;
 
     const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+        alert('Please allow popups to print the overview');
+        return;
+    }
+    
     printWindow.document.write(`
         <html>
         <head>
@@ -392,15 +446,15 @@ function printSemesterOverview() {
             </style>
         </head>
         <body>
-            <h1>${batchConfig.heroText}</h1>
-            <h2>Current Semester: ${batchConfig.currentSemesterName}</h2>
-            ${batchConfig.semesters.map(semester => `
+            <h1>${batchConfig.heroText || 'BUP CSE Resources'}</h1>
+            <h2>Current Semester: ${batchConfig.currentSemesterName || 'Not specified'}</h2>
+            ${(batchConfig.semesters || []).map(semester => `
                 <div class="semester">
-                    <h2>${semester.name}</h2>
-                    ${semester.subjects ? `
+                    <h2>${semester.name || 'Semester'}</h2>
+                    ${(semester.subjects || []).length > 0 ? `
                         <ul>
-                            ${semester.subjects.map(subject => `
-                                <li>${subject.name}</li>
+                            ${(semester.subjects || []).map(subject => `
+                                <li>${subject.name || 'Subject'}</li>
                             `).join('')}
                         </ul>
                     ` : '<p>No detailed subjects available</p>'}
@@ -418,7 +472,9 @@ function updateQuickResources(batchId) {
     const batchConfig = allBatchesData.find(b => b.id === batchId);
     if (!batchConfig) {
         console.error(`updateQuickResources: Batch config not found for ID ${batchId}`);
-        resourceGrid.innerHTML = '<p>Error: Batch data not found.</p>';
+        if (resourceGrid) {
+            resourceGrid.innerHTML = '<p>Error: Batch data not found.</p>';
+        }
         return;
     }
 
@@ -435,13 +491,13 @@ function updateQuickResources(batchId) {
         baseResources = baseResources.filter(resource => {
             switch (currentFilter) {
                 case 'pdf':
-                    return resource.link.toLowerCase().endsWith('.pdf');
+                    return resource.link && resource.link.toLowerCase().endsWith('.pdf');
                 case 'drive':
-                    return resource.link.includes('drive.google.com');
+                    return resource.link && resource.link.includes('drive.google.com');
                 case 'routine':
-                    return resource.name.toLowerCase().includes('routine');
+                    return resource.name && resource.name.toLowerCase().includes('routine');
                 case 'full':
-                    return resource.name.toLowerCase().includes('full');
+                    return resource.name && resource.name.toLowerCase().includes('full');
                 default:
                     return true;
             }
@@ -449,8 +505,8 @@ function updateQuickResources(batchId) {
     }
     
     // Separate PDFs from other links for correct ordering
-    const pdfLinks = baseResources.filter(r => r.link.toLowerCase().endsWith('.pdf'));
-    const otherBaseLinks = baseResources.filter(r => !r.link.toLowerCase().endsWith('.pdf') && !r.name.includes('Routine'));
+    const pdfLinks = baseResources.filter(r => r.link && r.link.toLowerCase().endsWith('.pdf'));
+    const otherBaseLinks = baseResources.filter(r => r.link && !r.link.toLowerCase().endsWith('.pdf') && (!r.name || !r.name.includes('Routine')));
     
     // Only show routine links for the current semester
     const currentSemester = batchConfig.semesters.find(s => s.name === batchConfig.currentSemesterName);
@@ -458,55 +514,57 @@ function updateQuickResources(batchId) {
     
     // Look for routine links in the main resources first
     const mainRoutineLinks = baseResources.filter(r => 
-        r.name.includes('Routine') || r.name.includes('routine')
+        r.name && (r.name.includes('Routine') || r.name.includes('routine'))
     );
     routineLinks = routineLinks.concat(mainRoutineLinks);
 
     // Combine resources in proper order: PDFs first, then other links
     let orderedResourcesToShow = pdfLinks.concat(otherBaseLinks);
 
-    resourceGrid.innerHTML = ''; 
-    if (orderedResourcesToShow.length === 0) {
-        resourceGrid.innerHTML = '<p>No quick resources available for this batch.</p>';
-        return;
-    }
-    
-    orderedResourcesToShow.forEach(resource => {
-        const isPdf = resource.link.toLowerCase().endsWith('.pdf');
-        const cardClass = isPdf ? 'resource-card resource-card-pdf' : 'resource-card';
-        const resourceEl = `
-            <a href="${resource.link}" target="_blank" class="${cardClass}">
-                <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
-                </svg>
-                ${resource.name}
-                <span class="bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${resource.link}', '${resource.name}')">📑</span>
-            </a>`;
-        resourceGrid.innerHTML += resourceEl;
-    });
-
-    // Add routine buttons only if there are routine links
-    if (routineLinks.length > 0) {
-        const routineContainer = document.createElement('div');
-        routineContainer.id = 'routineButtons';
+    if (resourceGrid) {
+        resourceGrid.innerHTML = ''; 
+        if (orderedResourcesToShow.length === 0) {
+            resourceGrid.innerHTML = '<p>No quick resources available for this batch.</p>';
+            return;
+        }
         
-        routineLinks.forEach((routine, index) => {
-            const routineBtn = document.createElement('a');
-            routineBtn.href = routine.link;
-            routineBtn.target = '_blank';
-            routineBtn.className = 'resource-card';
-            routineBtn.innerHTML = `
-                <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
-                </svg>
-                ${routine.name}
-                <span class="bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${routine.link}', '${routine.name}')">📑</span>
-            `;
-            routineContainer.appendChild(routineBtn);
+        orderedResourcesToShow.forEach(resource => {
+            const isPdf = resource.link && resource.link.toLowerCase().endsWith('.pdf');
+            const cardClass = isPdf ? 'resource-card resource-card-pdf' : 'resource-card';
+            const resourceEl = `
+                <a href="${resource.link}" target="_blank" class="${cardClass}">
+                    <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                    </svg>
+                    ${resource.name || 'Resource'}
+                    <span class="bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${resource.link}', '${resource.name || 'Resource'}')">📑</span>
+                </a>`;
+            resourceGrid.innerHTML += resourceEl;
         });
-        
-        // Insert routine buttons after the resource grid
-        resourceGrid.parentNode.insertBefore(routineContainer, resourceGrid.nextSibling);
+
+        // Add routine buttons only if there are routine links
+        if (routineLinks.length > 0) {
+            const routineContainer = document.createElement('div');
+            routineContainer.id = 'routineButtons';
+            
+            routineLinks.forEach((routine, index) => {
+                const routineBtn = document.createElement('a');
+                routineBtn.href = routine.link;
+                routineBtn.target = '_blank';
+                routineBtn.className = 'resource-card';
+                routineBtn.innerHTML = `
+                    <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                    </svg>
+                    ${routine.name || 'Routine'}
+                    <span class="bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${routine.link}', '${routine.name || 'Routine'}')">📑</span>
+                `;
+                routineContainer.appendChild(routineBtn);
+            });
+            
+            // Insert routine buttons after the resource grid
+            resourceGrid.parentNode.insertBefore(routineContainer, resourceGrid.nextSibling);
+        }
     }
 
     // Update bookmark icons
@@ -517,65 +575,69 @@ function updateSemesterAccordion(batchId) {
     const batchConfig = allBatchesData.find(b => b.id === batchId);
     if (!batchConfig || !batchConfig.semesters) {
         console.error(`updateSemesterAccordion: Batch config or semesters not found for ID ${batchId}`);
-        semesterAccordion.innerHTML = '<p>Error: Semester data not found.</p>';
+        if (semesterAccordion) {
+            semesterAccordion.innerHTML = '<p>Error: Semester data not found.</p>';
+        }
         return;
     }
 
     let semestersToDisplay = [...batchConfig.semesters];
 
-    semesterAccordion.innerHTML = '';
-    if (semestersToDisplay.length === 0) {
-        semesterAccordion.innerHTML = '<p>No semester information available for this batch.</p>';
-        return;
-    }
-    
-    semestersToDisplay.forEach(semester => {
-        let noticeHTML = '';
+    if (semesterAccordion) {
+        semesterAccordion.innerHTML = '';
+        if (semestersToDisplay.length === 0) {
+            semesterAccordion.innerHTML = '<p>No semester information available for this batch.</p>';
+            return;
+        }
         
-        let subjectsHTML = '';
-        if (semester.subjects && semester.subjects.length > 0) {
-            subjectsHTML = '<div class="material-links">';
-            semester.subjects.forEach(subject => {
-                subjectsHTML += `
-                    <a href="${subject.link}" target="_blank" class="material-link">
-                        <svg class="material-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+        semestersToDisplay.forEach(semester => {
+            let noticeHTML = '';
+            
+            let subjectsHTML = '';
+            if (semester.subjects && semester.subjects.length > 0) {
+                subjectsHTML = '<div class="material-links">';
+                semester.subjects.forEach(subject => {
+                    subjectsHTML += `
+                        <a href="${subject.link}" target="_blank" class="material-link">
+                            <svg class="material-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
+                            </svg>
+                            ${subject.name || 'Subject'}
+                            <span class="bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${subject.link}', '${subject.name || 'Subject'}')">📑</span>
+                        </a>`;
+                });
+                subjectsHTML += '</div>';
+            }
+
+            const contentHTML = semester.content ? `<p>${semester.content}</p>` : '';
+            
+            // Default isOpen for current semester, or if explicitly set to true
+            let isOpen = semester.isOpen || false;
+            const isCurrentSemester = semester.name === batchConfig.currentSemesterName;
+            if (isCurrentSemester) {
+                isOpen = true;
+            }
+
+            const isOpenClass = isOpen ? 'open' : '';
+            const arrowRotateClass = isOpen ? 'rotate' : '';
+
+            const itemEl = `
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-title">${semester.name || 'Semester'}</span>
+                        <svg class="accordion-arrow ${arrowRotateClass}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        ${subject.name}
-                        <span class="bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${subject.link}', '${subject.name}')">📑</span>
-                    </a>`;
-            });
-            subjectsHTML += '</div>';
-        }
-
-        const contentHTML = semester.content ? `<p>${semester.content}</p>` : '';
-        
-        // Default isOpen for current semester, or if explicitly set to true
-        let isOpen = semester.isOpen || false;
-        const isCurrentSemester = semester.name === batchConfig.currentSemesterName;
-        if (isCurrentSemester) {
-            isOpen = true;
-        }
-
-        const isOpenClass = isOpen ? 'open' : '';
-        const arrowRotateClass = isOpen ? 'rotate' : '';
-
-        const itemEl = `
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span class="accordion-title">${semester.name}</span>
-                    <svg class="accordion-arrow ${arrowRotateClass}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div class="accordion-content ${isOpenClass}">
-                    ${noticeHTML}
-                    ${contentHTML}
-                    ${subjectsHTML} 
-                </div>
-            </div>`;
-        semesterAccordion.innerHTML += itemEl;
-    });
+                    </div>
+                    <div class="accordion-content ${isOpenClass}">
+                        ${noticeHTML}
+                        ${contentHTML}
+                        ${subjectsHTML} 
+                    </div>
+                </div>`;
+            semesterAccordion.innerHTML += itemEl;
+        });
+    }
 
     // Update bookmark icons after accordion is rendered
     setTimeout(updateBookmarkIcons, 100);
@@ -586,15 +648,27 @@ function updateUIForBatch(batchId) {
     const batchConfig = allBatchesData.find(b => b.id === batchId);
     if (!batchConfig) {
         console.error("No data for batch:", batchId);
-        heroBatchText.textContent = "Error: Batch data not found.";
-        currentBatchIndicator.textContent = `Batch ?`;
-        resourceGrid.innerHTML = "";
-        semesterAccordion.innerHTML = "";
+        if (heroBatchText) {
+            heroBatchText.textContent = "Error: Batch data not found.";
+        }
+        if (currentBatchIndicator) {
+            currentBatchIndicator.textContent = `Batch ?`;
+        }
+        if (resourceGrid) {
+            resourceGrid.innerHTML = "";
+        }
+        if (semesterAccordion) {
+            semesterAccordion.innerHTML = "";
+        }
         return;
     }
 
-    currentBatchIndicator.textContent = batchConfig.name;
-    heroBatchText.textContent = batchConfig.heroText;
+    if (currentBatchIndicator) {
+        currentBatchIndicator.textContent = batchConfig.name || `Batch ${batchId}`;
+    }
+    if (heroBatchText) {
+        heroBatchText.textContent = batchConfig.heroText || `Batch ${batchId} Academic Resources`;
+    }
     
     updateQuickResources(batchId);
     updateSemesterAccordion(batchId);
@@ -629,7 +703,9 @@ async function loadExternalSubjectData() {
 
 function toggleMenu() {
     const nav = document.getElementById('mobile-nav');
-    nav.classList.toggle('active');
+    if (nav) {
+        nav.classList.toggle('active');
+    }
 }
 
 function toggleAccordion(element) {
@@ -640,12 +716,20 @@ function toggleAccordion(element) {
 
     document.querySelectorAll('.accordion-content.open').forEach(el => {
         el.classList.remove('open');
-        el.previousElementSibling.querySelector('.accordion-arrow').classList.remove('rotate');
+        const header = el.previousElementSibling;
+        if (header) {
+            const arrowEl = header.querySelector('.accordion-arrow');
+            if (arrowEl) {
+                arrowEl.classList.remove('rotate');
+            }
+        }
     });
     
     if (!currentlyOpen) {
         content.classList.toggle('open');
-        arrow.classList.toggle('rotate');
+        if (arrow) {
+            arrow.classList.toggle('rotate');
+        }
     }
 }
 
@@ -653,8 +737,12 @@ function toggleFAQ(element) {
     const answer = element.nextElementSibling;
     const arrow = element.querySelector('.faq-arrow');
     
-    answer.classList.toggle('open');
-    arrow.classList.toggle('rotate');
+    if (answer) {
+        answer.classList.toggle('open');
+    }
+    if (arrow) {
+        arrow.classList.toggle('rotate');
+    }
 }
 
 document.addEventListener('click', function(event) {

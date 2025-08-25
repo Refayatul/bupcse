@@ -7,6 +7,12 @@
     --accent-gradient: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
     --yellow: #FFC107;
     --yellow-gradient: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+    --purple: #9C27B0;
+    --purple-gradient: linear-gradient(135deg, #9C27B0 0%, #E91E63 100%);
+    --orange: #FF5722;
+    --orange-gradient: linear-gradient(135deg, #FF5722 0%, #FF9800 100%);
+    --pink: #E91E63;
+    --pink-gradient: linear-gradient(135deg, #E91E63 0%, #9C27B0 100%);
     --dark-bg: rgba(0, 0, 0, 0.5);
     --light-bg: #f8f9fa;
     --card-bg: #ffffff;
@@ -23,6 +29,11 @@
     --text-color: #ffffff;
     --border-color: #2d3748;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    /* Fixed dark mode issues */
+    --batch-selection-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --batch-btn-bg: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+    --action-btn-bg: rgba(26, 26, 46, 0.95);
+    --filter-btn-bg: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
 }
 
 * {
@@ -247,12 +258,13 @@ header {
     backdrop-filter: blur(10px);
     transition: var(--transition);
     animation: fadeIn 1.2s ease-out;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .stat-item:hover {
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
 }
 
 .stat-item i {
@@ -400,6 +412,23 @@ header {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     animation: float 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.action-btn:hover::before {
+    left: 100%;
 }
 
 @keyframes float {
@@ -459,6 +488,24 @@ header {
     align-items: center;
     gap: 0.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.filter-btn:hover::after {
+    transform: translateX(100%);
 }
 
 .filter-btn:hover {
@@ -482,6 +529,11 @@ header {
     margin: 2rem 0;
     border-radius: 20px;
     animation: fadeIn 0.9s ease-out;
+}
+
+/* Dark Mode Fix for Batch Selection */
+[data-theme="dark"] .batch-selection-container {
+    background: var(--batch-selection-bg);
 }
 
 .batch-selection-title {
@@ -514,6 +566,31 @@ header {
     align-items: center;
     gap: 0.75rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.batch-select-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.batch-select-btn:hover::after {
+    transform: translateX(100%);
+}
+
+/* Dark Mode Fix for Batch Buttons */
+[data-theme="dark"] .batch-select-btn {
+    background: var(--batch-btn-bg);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 .batch-select-btn:hover {
@@ -723,6 +800,24 @@ header {
     font-weight: 600;
     font-size: 1.1rem;
     color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.accordion-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.accordion-header:hover::after {
+    transform: translateX(100%);
 }
 
 .accordion-header:hover {
@@ -779,6 +874,23 @@ header {
     font-size: 1rem;
     position: relative;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.material-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.material-link:hover::before {
+    transform: translateX(100%);
 }
 
 .material-link:hover {
@@ -832,6 +944,24 @@ header {
     font-weight: 600;
     color: var(--text-color);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-question::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.faq-question:hover::after {
+    transform: translateX(100%);
 }
 
 .faq-question:hover {
@@ -1041,6 +1171,24 @@ footer p {
     justify-content: center;
     gap: 0.75rem;
     box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.submit-btn:hover::after {
+    transform: translateX(100%);
 }
 
 .submit-btn:hover {
@@ -1066,6 +1214,24 @@ footer p {
     margin-bottom: 0.75rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.bookmark-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.bookmark-item:hover::after {
+    transform: translateX(100%);
 }
 
 .bookmark-item:hover {
@@ -1106,6 +1272,24 @@ footer p {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.remove-bookmark::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.remove-bookmark:hover::after {
+    transform: translateX(100%);
 }
 
 .remove-bookmark:hover {
@@ -1165,6 +1349,24 @@ footer p {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-list-container li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.course-list-container li:hover::after {
+    transform: translateX(100%);
 }
 
 .course-list-container li:hover {
@@ -1315,6 +1517,10 @@ footer p {
     .course-list-container {
         max-height: 70vh;
     }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1341,5 +1547,28 @@ footer p {
     
     .accordion-content.open {
         padding: 1.5rem;
+    }
+    
+    .stat-item {
+        padding: 0.75rem 1rem;
+    }
+    
+    .batch-select-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .filter-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .action-btn {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .action-btn i {
+        font-size: 1.5rem;
     }
 }
