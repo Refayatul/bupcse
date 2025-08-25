@@ -31,7 +31,7 @@ const darkModeToggle = document.getElementById('darkModeToggle');
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("DOMContentLoaded event");
     
-    // Initialize dark mode
+    // Initialize dark mode (set to dark by default)
     initDarkMode();
     
     // Load data
@@ -323,12 +323,10 @@ function clearSearchNavInput() {
 }
 
 function initDarkMode() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        if (darkModeToggle) {
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
+    // Set dark mode by default
+    document.documentElement.setAttribute('data-theme', 'dark');
+    if (darkModeToggle) {
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
     }
 
     if (darkModeToggle) {
