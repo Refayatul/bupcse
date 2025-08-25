@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Manifest for PWA -->
     <link rel="manifest" href="manifest.json">
+    <!-- Font Awesome for better icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Dark Mode Toggle -->
-    <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
-    
     <!-- Header -->
     <header>
         <div class="nav-container">
@@ -23,29 +22,54 @@
             </div>
             
             <nav class="nav-links" id="mobile-nav">
-                <a href="#all-semesters">All Semesters</a>
-                <a href="https://drive.google.com/drive/folders/1rtMMO0iTKQCMBesbmRIVS3COeyEbfsPv?usp=sharing" target="_blank">Resources(Softwares & Pdfs)</a>
-                <a href="https://bup.edu.bd/department_home/8" target="_blank">About Dept.</a>
+                <a href="#all-semesters"><i class="fas fa-graduation-cap"></i> All Semesters</a>
+                <a href="https://drive.google.com/drive/folders/1rtMMO0iTKQCMBesbmRIVS3COeyEbfsPv?usp=sharing" target="_blank"><i class="fas fa-folder-open"></i> Resources</a>
+                <a href="https://bup.edu.bd/department_home/8" target="_blank"><i class="fas fa-building"></i> About Dept.</a>
             </nav>
             
-            <div class="hamburger" onclick="toggleMenu()">
-                <div></div>
-                <div></div>
-                <div></div>
+            <!-- Dark Mode Toggle in Navbar -->
+            <div class="navbar-controls">
+                <button id="darkModeToggle" class="dark-mode-toggle-navbar">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
         </div>
     </header>
 
     <section class="hero">
-        <h1>Department of Computer Science & Engineering</h1>
-        <p id="heroBatchText">Batch 1 Academic Resources</p>
+        <div class="hero-content">
+            <h1>Department of Computer Science & Engineering</h1>
+            <p id="heroBatchText">Batch 1 Academic Resources</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <i class="fas fa-book"></i>
+                    <span>40+ Courses</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <span>4 Batches</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>200+ Resources</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Search Bar -->
     <section class="search-container">
         <div class="search-wrapper">
+            <i class="fas fa-search search-icon"></i>
             <input type="text" id="resourceSearch" placeholder="Search resources, courses, or keywords...">
-            <button id="clearSearch" class="clear-search" style="display: none;">×</button>
+            <button id="clearSearch" class="clear-search">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
         <div id="searchResults" class="search-results"></div>
     </section>
@@ -53,23 +77,51 @@
     <!-- Quick Actions Dashboard -->
     <section class="quick-actions">
         <div class="action-grid">
-            <a href="#all-semesters" class="action-btn">📚 Browse Courses</a>
-            <a href="mailto:cse@bup.edu.bd" class="action-btn">📧 Contact Dept</a>
-            <a href="https://bup.edu.bd" class="action-btn" target="_blank">🌐 BUP Website</a>
-            <button class="action-btn" id="feedbackBtn">💬 Feedback</button>
-            <button class="action-btn" id="printOverview">🖨️ Print Overview</button>
-            <button class="action-btn" id="showBookmarks">🔖 My Bookmarks</button>
+            <a href="#all-semesters" class="action-btn">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Browse Courses</span>
+            </a>
+            <a href="mailto:cse@bup.edu.bd" class="action-btn">
+                <i class="fas fa-envelope"></i>
+                <span>Contact Dept</span>
+            </a>
+            <a href="https://bup.edu.bd" class="action-btn" target="_blank">
+                <i class="fas fa-globe"></i>
+                <span>BUP Website</span>
+            </a>
+            <button class="action-btn" id="feedbackBtn">
+                <i class="fas fa-comment"></i>
+                <span>Feedback</span>
+            </button>
+            <button class="action-btn" id="printOverview">
+                <i class="fas fa-print"></i>
+                <span>Print Overview</span>
+            </button>
+            <button class="action-btn" id="showBookmarks">
+                <i class="fas fa-bookmark"></i>
+                <span>My Bookmarks</span>
+            </button>
         </div>
     </section>
 
     <!-- Resource Filter -->
     <section class="filter-section">
         <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">All Resources</button>
-            <button class="filter-btn" data-filter="pdf">PDFs</button>
-            <button class="filter-btn" data-filter="drive">Google Drive</button>
-            <button class="filter-btn" data-filter="routine">Routines</button>
-            <button class="filter-btn" data-filter="full">Full Semesters</button>
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-th-large"></i> All Resources
+            </button>
+            <button class="filter-btn" data-filter="pdf">
+                <i class="fas fa-file-pdf"></i> PDFs
+            </button>
+            <button class="filter-btn" data-filter="drive">
+                <i class="fab fa-google-drive"></i> Google Drive
+            </button>
+            <button class="filter-btn" data-filter="routine">
+                <i class="fas fa-calendar-alt"></i> Routines
+            </button>
+            <button class="filter-btn" data-filter="full">
+                <i class="fas fa-folder"></i> Full Semesters
+            </button>
         </div>
     </section>
 
@@ -77,10 +129,18 @@
     <section class="batch-selection-container">
         <h2 class="batch-selection-title">Select Your Batch</h2>
         <div class="batch-selector" id="batchSelector">
-            <button class="batch-select-btn" data-batch="1">Batch 1</button>
-            <button class="batch-select-btn" data-batch="2">Batch 2</button>
-            <button class="batch-select-btn" data-batch="3">Batch 3</button>
-            <button class="batch-select-btn" data-batch="4">Batch 4</button>
+            <button class="batch-select-btn" data-batch="1">
+                <i class="fas fa-user-graduate"></i> Batch 1
+            </button>
+            <button class="batch-select-btn" data-batch="2">
+                <i class="fas fa-user-graduate"></i> Batch 2
+            </button>
+            <button class="batch-select-btn" data-batch="3">
+                <i class="fas fa-user-graduate"></i> Batch 3
+            </button>
+            <button class="batch-select-btn" data-batch="4">
+                <i class="fas fa-user-graduate"></i> Batch 4
+            </button>
         </div>
     </section>
 
@@ -106,8 +166,8 @@
         <div class="faq-container">
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>How do I access Google Drive resources?</span>
-                    <span class="faq-arrow">▼</span>
+                    <span><i class="fas fa-question-circle"></i> How do I access Google Drive resources?</span>
+                    <span class="faq-arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
                     <p>All Google Drive links require BUP email authentication. Make sure you're logged into your BUP Google account before clicking on any Drive links.</p>
@@ -115,8 +175,8 @@
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>What should I do if a link is not working?</span>
-                    <span class="faq-arrow">▼</span>
+                    <span><i class="fas fa-exclamation-triangle"></i> What should I do if a link is not working?</span>
+                    <span class="faq-arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
                     <p>If any resource link is broken, please report it using the Feedback button. You can also check the main Google Drive folder for the most up-to-date resources.</p>
@@ -124,8 +184,8 @@
             </div>
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>How often is this website updated?</span>
-                    <span class="faq-arrow">▼</span>
+                    <span><i class="fas fa-sync-alt"></i> How often is this website updated?</span>
+                    <span class="faq-arrow"><i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
                     <p>This website is updated regularly with new resources and announcements. Check back frequently for the latest materials.</p>
@@ -136,12 +196,12 @@
 
     <footer>
         <div class="container mx-auto">
-            <p>&copy; 2024 BUP CSE Batch. All rights reserved.</p>
+            <p>&copy; 2025 BUP CSE Batch. All rights reserved.</p>
             <p class="mt-1">Developed by Refayatul (Batch - 01)</p>
             <div class="footer-links">
-                <a href="#all-semesters">All Semesters</a>
-                <a href="#resources">Resources</a>
-                <a href="https://bup.edu.bd/department_home/8" target="_blank">About Dept.</a>
+                <a href="#all-semesters"><i class="fas fa-graduation-cap"></i> All Semesters</a>
+                <a href="#resources"><i class="fas fa-book"></i> Resources</a>
+                <a href="https://bup.edu.bd/department_home/8" target="_blank"><i class="fas fa-building"></i> About Dept.</a>
             </div>
         </div>
     </footer>
@@ -150,7 +210,7 @@
     <div id="courseListModal" class="modal">
         <div class="modal-content-large">
             <span class="close-btn" id="closeCourseListModal">&times;</span>
-            <h2>Course List</h2>
+            <h2><i class="fas fa-list"></i> Course List</h2>
             <div id="courseListContent" class="course-list-container">
             </div>
         </div>
@@ -159,21 +219,23 @@
     <div id="feedbackModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="closeFeedbackModal">&times;</span>
-            <h2>Send Feedback</h2>
+            <h2><i class="fas fa-comment"></i> Send Feedback</h2>
             <form id="feedbackForm">
                 <div class="form-group">
-                    <label for="feedbackName">Name (Optional):</label>
+                    <label for="feedbackName"><i class="fas fa-user"></i> Name (Optional):</label>
                     <input type="text" id="feedbackName" placeholder="Your name">
                 </div>
                 <div class="form-group">
-                    <label for="feedbackEmail">Email (Optional):</label>
+                    <label for="feedbackEmail"><i class="fas fa-envelope"></i> Email (Optional):</label>
                     <input type="email" id="feedbackEmail" placeholder="your.email@bup.edu.bd">
                 </div>
                 <div class="form-group">
-                    <label for="feedbackMessage">Message *:</label>
+                    <label for="feedbackMessage"><i class="fas fa-comment-dots"></i> Message *:</label>
                     <textarea id="feedbackMessage" placeholder="Your feedback or suggestions..." required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Send Feedback</button>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send Feedback
+                </button>
             </form>
         </div>
     </div>
@@ -181,7 +243,7 @@
     <div id="bookmarksModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" id="closeBookmarksModal">&times;</span>
-            <h2>My Bookmarked Resources</h2>
+            <h2><i class="fas fa-bookmark"></i> My Bookmarked Resources</h2>
             <div id="bookmarksList" class="bookmarks-list">
                 <p>No bookmarks yet. Click the bookmark icon on any resource to save it here.</p>
             </div>
