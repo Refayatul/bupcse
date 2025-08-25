@@ -26,6 +26,8 @@ const closeBookmarksModalBtn = document.getElementById('closeBookmarksModal');
 const bookmarksList = document.getElementById('bookmarksList');
 
 const darkModeToggle = document.getElementById('darkModeToggle');
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
@@ -106,6 +108,12 @@ function setupEventListeners() {
     // Bookmarks modal
     if (showBookmarksBtn) {
         showBookmarksBtn.addEventListener('click', showBookmarks);
+    }
+
+    // Mobile bookmarks button
+    const mobileBookmarksBtn = document.getElementById('showBookmarksMobile');
+    if (mobileBookmarksBtn) {
+        mobileBookmarksBtn.addEventListener('click', showBookmarks);
     }
 
     if (closeBookmarksModalBtn) {
@@ -327,9 +335,7 @@ function initDarkMode() {
     document.documentElement.setAttribute('data-theme', 'dark');
     if (darkModeToggle) {
         darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-
-    if (darkModeToggle) {
+        
         darkModeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -578,11 +584,8 @@ async function loadExternalSubjectData() {
 
 // Improved mobile menu toggle
 function toggleMenu() {
-    const nav = document.getElementById('mobile-nav');
-    const hamburger = document.querySelector('.hamburger');
-    
-    if (nav && hamburger) {
-        nav.classList.toggle('active');
+    if (mobileMenu && hamburger) {
+        mobileMenu.classList.toggle('active');
         hamburger.classList.toggle('active');
     }
 }
@@ -626,13 +629,10 @@ function toggleFAQ(element) {
 
 // Close mobile menu when clicking outside
 document.addEventListener('click', function(event) {
-    const nav = document.getElementById('mobile-nav');
-    const hamburger = document.querySelector('.hamburger');
-    
-    if (nav && hamburger && nav.classList.contains('active')) {
-        // Check if click is outside nav and hamburger
-        if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
-            nav.classList.remove('active');
+    if (mobileMenu && hamburger && mobileMenu.classList.contains('active')) {
+        // Check if click is outside menu and hamburger
+        if (!mobileMenu.contains(event.target) && !hamburger.contains(event.target)) {
+            mobileMenu.classList.remove('active');
             hamburger.classList.remove('active');
         }
     }

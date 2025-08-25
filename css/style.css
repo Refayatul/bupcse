@@ -351,6 +351,122 @@ header {
     background-color: var(--yellow);
 }
 
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--primary-gradient);
+    padding: 1rem;
+    z-index: 999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 0 0 20px 20px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.mobile-menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.mobile-menu a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-out;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    transform: rotate(30deg);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    animation: slideUp 0.8s ease-out;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    animation: slideUp 1s ease-out;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    animation: fadeIn 1.2s ease-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.stat-item i {
+    font-size: 1.5rem;
+}
+
 /* Mobile Quick Actions */
 .mobile-quick-actions {
     display: none;
@@ -1348,17 +1464,17 @@ footer p {
         grid-template-columns: 1fr;
     }
     
-    /* Batch Selection */
+    /* Batch Selection - Left to Right */
     .batch-selector {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        justify-content: center;
         gap: 0.75rem;
     }
     
     .batch-select-btn {
-        width: 90%;
         padding: 0.75rem 1rem;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        min-width: 70px;
     }
     
     /* Footer - Left to Right Layout */
@@ -1479,7 +1595,8 @@ footer p {
     
     .batch-select-btn {
         padding: 0.6rem 0.8rem;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        min-width: 65px;
     }
     
     .stat-item {
@@ -1514,5 +1631,18 @@ footer p {
     /* Hide desktop quick actions on mobile */
     .quick-actions {
         display: none;
+    }
+    
+    /* Batch Selection - Stack on very small screens */
+    @media (max-width: 360px) {
+        .batch-selector {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .batch-select-btn {
+            width: 90%;
+        }
     }
 }
