@@ -32,26 +32,26 @@ const mobileMenu = document.getElementById('mobileMenu');
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("DOMContentLoaded event");
-    
+
     // Initialize dark mode (set to dark by default)
     initDarkMode();
-    
+
     // Load data
     await loadExternalSubjectData();
     const savedBatch = localStorage.getItem('selectedBatch') || (allBatchesData.length > 0 ? allBatchesData[0].id : '1');
     console.log(`Loading saved batch: ${savedBatch}`);
     updateUIForBatch(savedBatch);
-    
+
     // Set up event listeners
     setupEventListeners();
-    
+
     // Hide notices
     document.querySelectorAll('.notice-banner, .notice-box').forEach(el => {
         if (!el.parentElement || el.parentElement.nodeName !== 'SCRIPT') {
             el.style.display = 'none';
         }
     });
-    
+
     // Handle window resize for dynamic navbar
     handleDynamicNavbar();
     window.addEventListener('resize', handleDynamicNavbar);
@@ -63,22 +63,22 @@ function handleDynamicNavbar() {
     const mobileNavLinks = document.querySelector('.mobile-nav-links');
     const navbarControls = document.querySelector('.navbar-controls');
     const hamburger = document.querySelector('.hamburger');
-    
+
     if (!navContainer || !logo || !mobileNavLinks || !navbarControls || !hamburger) return;
-    
+
     // Reset display
     mobileNavLinks.style.display = 'flex';
     hamburger.style.display = 'flex';
-    
+
     // Check available space
     const containerWidth = navContainer.offsetWidth;
     const logoWidth = logo.offsetWidth;
     const controlsWidth = navbarControls.offsetWidth;
     const navLinksWidth = mobileNavLinks.offsetWidth;
     const hamburgerWidth = hamburger.offsetWidth;
-    
+
     const totalWidth = logoWidth + navLinksWidth + controlsWidth + hamburgerWidth + 40; // 40px buffer
-    
+
     // If content doesn't fit, hide nav links and show hamburger
     if (totalWidth > containerWidth) {
         mobileNavLinks.style.display = 'none';
@@ -94,13 +94,13 @@ function setupEventListeners() {
     if (batchSelector) {
         batchSelector.addEventListener('click', (event) => {
             let button = event.target;
-            
+
             // Find the button element (could be the icon or the button itself)
             while (button && !button.classList.contains('batch-select-btn')) {
                 button = button.parentElement;
                 if (!button) break;
             }
-            
+
             if (button && button.classList.contains('batch-select-btn')) {
                 const selectedBatch = button.dataset.batch;
                 updateUIForBatch(selectedBatch);
@@ -115,10 +115,10 @@ function setupEventListeners() {
     if (clearSearchNav) {
         clearSearchNav.addEventListener('click', clearSearchNavInput);
     }
-    
+
     // Search icon click to expand search
     if (searchIconNav) {
-        searchIconNav.addEventListener('click', function() {
+        searchIconNav.addEventListener('click', function () {
             if (searchContainerNav) {
                 searchContainerNav.classList.add('active');
                 if (resourceSearchNav) {
@@ -129,10 +129,10 @@ function setupEventListeners() {
             }
         });
     }
-    
+
     // Close search when clicking outside
-    document.addEventListener('click', function(event) {
-        if (searchContainerNav && !searchContainerNav.contains(event.target) && 
+    document.addEventListener('click', function (event) {
+        if (searchContainerNav && !searchContainerNav.contains(event.target) &&
             searchIconNav !== event.target) {
             searchContainerNav.classList.remove('active');
             if (searchResultsNav) {
@@ -162,7 +162,7 @@ function setupEventListeners() {
 
     // Course list modal
     if (courseListBtn) {
-        courseListBtn.addEventListener('click', async function(event) {
+        courseListBtn.addEventListener('click', async function (event) {
             event.preventDefault();
             await populateCourseListModal();
             if (courseListModal) {
@@ -243,9 +243,9 @@ async function populateCourseListModal() {
 
 function showBookmarks() {
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-    
+
     if (!bookmarksList) return;
-    
+
     if (bookmarks.length === 0) {
         bookmarksList.innerHTML = '<p>No bookmarks yet. Click the bookmark icon on any resource to save it here.</p>';
     } else {
@@ -260,7 +260,7 @@ function showBookmarks() {
         });
         bookmarksList.innerHTML = html;
     }
-    
+
     if (bookmarksModal) {
         bookmarksModal.style.display = "block";
     }
@@ -309,9 +309,9 @@ function updateBookmarkIcons() {
 
 function handleSearchNav() {
     if (!resourceSearchNav || !searchResultsNav || !clearSearchNav) return;
-    
+
     const searchTerm = resourceSearchNav.value.toLowerCase().trim();
-    
+
     if (searchTerm === '') {
         searchResultsNav.style.display = 'none';
         clearSearchNav.style.display = 'none';
@@ -319,7 +319,7 @@ function handleSearchNav() {
     }
 
     clearSearchNav.style.display = 'block';
-    
+
     const batchConfig = allBatchesData.find(b => b.id === currentBatchId);
     if (!batchConfig) return;
 
@@ -359,7 +359,7 @@ function handleSearchNav() {
 
 function clearSearchNavInput() {
     if (!resourceSearchNav || !searchResultsNav || !clearSearchNav) return;
-    
+
     resourceSearchNav.value = '';
     searchResultsNav.style.display = 'none';
     clearSearchNav.style.display = 'none';
@@ -369,31 +369,31 @@ function clearSearchNavInput() {
 function initDarkMode() {
     // Check if user has a saved preference, otherwise use dark as default
     const savedTheme = localStorage.getItem('theme');
-    
+
     // Set theme (dark by default, but respect user preference if saved)
     let theme = 'dark'; // Default to dark
     if (savedTheme) {
         theme = savedTheme;
     }
-    
+
     // Apply the theme
     document.documentElement.setAttribute('data-theme', theme);
-    
+
     if (darkModeToggle) {
         // Set initial icon based on theme
         darkModeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        
-        darkModeToggle.addEventListener('click', function() {
+
+        darkModeToggle.addEventListener('click', function () {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
+
             // Apply new theme
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            
+
             // Update button icon
             this.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            
+
             // Force reflow to ensure styles are applied
             document.body.offsetHeight;
         });
@@ -412,13 +412,13 @@ function updateQuickResources(batchId) {
     }
 
     let baseResources = batchConfig.resources ? [...batchConfig.resources] : [];
-    
+
     // Remove any existing routine buttons container
     const existingRoutineContainer = document.getElementById('routineButtons');
     if (existingRoutineContainer) {
         existingRoutineContainer.remove();
     }
-    
+
     // Apply filter
     if (currentFilter !== 'all') {
         baseResources = baseResources.filter(resource => {
@@ -436,17 +436,17 @@ function updateQuickResources(batchId) {
             }
         });
     }
-    
+
     // Separate PDFs from other links for correct ordering
     const pdfLinks = baseResources.filter(r => r.link && r.link.toLowerCase().endsWith('.pdf'));
     const otherBaseLinks = baseResources.filter(r => r.link && !r.link.toLowerCase().endsWith('.pdf') && (!r.name || !r.name.includes('Routine')));
-    
+
     // Only show routine links for the current semester
     const currentSemester = batchConfig.semesters.find(s => s.name === batchConfig.currentSemesterName);
     let routineLinks = [];
-    
+
     // Look for routine links in the main resources first
-    const mainRoutineLinks = baseResources.filter(r => 
+    const mainRoutineLinks = baseResources.filter(r =>
         r.name && (r.name.includes('Routine') || r.name.includes('routine'))
     );
     routineLinks = routineLinks.concat(mainRoutineLinks);
@@ -455,12 +455,12 @@ function updateQuickResources(batchId) {
     let orderedResourcesToShow = pdfLinks.concat(otherBaseLinks);
 
     if (resourceGrid) {
-        resourceGrid.innerHTML = ''; 
+        resourceGrid.innerHTML = '';
         if (orderedResourcesToShow.length === 0) {
             resourceGrid.innerHTML = '<p>No quick resources available for this batch.</p>';
             return;
         }
-        
+
         orderedResourcesToShow.forEach(resource => {
             const isPdf = resource.link && resource.link.toLowerCase().endsWith('.pdf');
             const cardClass = isPdf ? 'resource-card resource-card-pdf' : 'resource-card';
@@ -479,7 +479,7 @@ function updateQuickResources(batchId) {
         if (routineLinks.length > 0) {
             const routineContainer = document.createElement('div');
             routineContainer.id = 'routineButtons';
-            
+
             routineLinks.forEach((routine, index) => {
                 const routineBtn = document.createElement('a');
                 routineBtn.href = routine.link;
@@ -494,7 +494,7 @@ function updateQuickResources(batchId) {
                 `;
                 routineContainer.appendChild(routineBtn);
             });
-            
+
             // Insert routine buttons after the resource grid
             resourceGrid.parentNode.insertBefore(routineContainer, resourceGrid.nextSibling);
         }
@@ -522,10 +522,10 @@ function updateSemesterAccordion(batchId) {
             semesterAccordion.innerHTML = '<p>No semester information available for this batch.</p>';
             return;
         }
-        
+
         semestersToDisplay.forEach(semester => {
             let noticeHTML = '';
-            
+
             let subjectsHTML = '';
             if (semester.subjects && semester.subjects.length > 0) {
                 subjectsHTML = '<div class="material-links">';
@@ -543,7 +543,7 @@ function updateSemesterAccordion(batchId) {
             }
 
             const contentHTML = semester.content ? `<p>${semester.content}</p>` : '';
-            
+
             // Default isOpen for current semester, or if explicitly set to true
             let isOpen = semester.isOpen || false;
             const isCurrentSemester = semester.name === batchConfig.currentSemesterName;
@@ -602,7 +602,7 @@ function updateUIForBatch(batchId) {
     if (heroBatchText) {
         heroBatchText.textContent = batchConfig.heroText || `Batch ${batchId} Academic Resources`;
     }
-    
+
     updateQuickResources(batchId);
     updateSemesterAccordion(batchId);
 
@@ -645,7 +645,7 @@ function toggleMenu() {
 function toggleAccordion(element) {
     const content = element.nextElementSibling;
     const arrow = element.querySelector('.accordion-arrow');
-    
+
     const currentlyOpen = content.classList.contains('open');
 
     document.querySelectorAll('.accordion-content.open').forEach(el => {
@@ -658,7 +658,7 @@ function toggleAccordion(element) {
             }
         }
     });
-    
+
     if (!currentlyOpen) {
         content.classList.toggle('open');
         if (arrow) {
@@ -670,7 +670,7 @@ function toggleAccordion(element) {
 function toggleFAQ(element) {
     const answer = element.nextElementSibling;
     const arrow = element.querySelector('.faq-arrow');
-    
+
     if (answer) {
         answer.classList.toggle('open');
     }
@@ -680,7 +680,7 @@ function toggleFAQ(element) {
 }
 
 // Close mobile menu when clicking outside
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     if (mobileMenu && hamburger && mobileMenu.classList.contains('active')) {
         // Check if click is outside menu and hamburger
         if (!mobileMenu.contains(event.target) && !hamburger.contains(event.target)) {
@@ -691,7 +691,7 @@ document.addEventListener('click', function(event) {
 });
 
 // Handle quick action button clicks to prevent icon disappearance
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     // Handle mobile quick action buttons
     if (event.target.closest('.mobile-action-btn') || event.target.closest('.action-btn')) {
         // Prevent default behavior that might cause icon issues
