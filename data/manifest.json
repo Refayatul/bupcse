@@ -1,0 +1,21 @@
+{
+    "name": "BUP CSE Resources",
+    "short_name": "BUP CSE",
+    "description": "Academic resources for BUP Computer Science & Engineering Department",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0D47A1",
+    "theme_color": "#0D47A1",
+    "icons": [
+        {
+            "src": "assets/images/logo/BUP_Logopng.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/logo/BUP_Logopng.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
