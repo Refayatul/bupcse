@@ -28,6 +28,16 @@
             <a href="https://bupbloodbank.xyz/" target="_blank"><i class="fas fa-tint"></i> Blood Bank</a>
         </nav>
         
+        <!-- Mobile Nav Links in Navbar -->
+        <div class="mobile-nav-links">
+            <a href="https://drive.google.com/drive/folders/1rtMMO0iTKQCMBesbmRIVS3COeyEbfsPv?usp=sharing" target="_blank">
+                <i class="fas fa-folder-open"></i> Resources
+            </a>
+            <a href="https://bupbloodbank.xyz/" target="_blank">
+                <i class="fas fa-tint"></i> Blood Bank
+            </a>
+        </div>
+        
         <!-- Enhanced Navbar Controls -->
         <div class="navbar-controls">
             <div class="search-container-nav">
@@ -51,6 +61,28 @@
         </div>
     </div>
 </header>
+
+    <!-- Mobile Quick Actions -->
+    <section class="mobile-quick-actions">
+        <div class="mobile-action-grid">
+            <a href="#all-semesters" class="mobile-action-btn">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Browse Courses</span>
+            </a>
+            <a href="mailto:cse@bup.edu.bd" class="mobile-action-btn">
+                <i class="fas fa-envelope"></i>
+                <span>Contact Dept</span>
+            </a>
+            <a href="https://bup.edu.bd" class="mobile-action-btn" target="_blank">
+                <i class="fas fa-globe"></i>
+                <span>BUP Website</span>
+            </a>
+            <button class="mobile-action-btn" id="showBookmarksMobile">
+                <i class="fas fa-bookmark"></i>
+                <span>My Bookmarks</span>
+            </button>
+        </div>
+    </section>
 
     <section class="hero desktop-only">
         <div class="hero-content">
@@ -213,6 +245,14 @@
                 });
             });
         }
+        
+        // Add mobile bookmarks button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileBookmarksBtn = document.getElementById('showBookmarksMobile');
+            if (mobileBookmarksBtn) {
+                mobileBookmarksBtn.addEventListener('click', showBookmarks);
+            }
+        });
     </script>
 </body>
 </html>
