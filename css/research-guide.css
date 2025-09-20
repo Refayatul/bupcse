@@ -408,8 +408,73 @@
     color: var(--accent-color);
 }
 
-/* Responsive Design */
+/* Mobile Navigation */
 @media (max-width: 768px) {
+    /* Hide desktop nav-links on mobile */
+    .nav-links {
+        display: none !important;
+    }
+
+    /* Mobile menu should be hidden by default, shown only when active */
+    .mobile-menu {
+        display: none;
+    }
+
+    .mobile-menu.active {
+        display: block;
+    }
+
+    /* Adjust header for mobile */
+    .nav-container {
+        padding: 0.5rem;
+        flex-wrap: nowrap;
+    }
+
+    .logo {
+        min-width: auto;
+        flex-shrink: 0;
+    }
+
+    .logo span {
+        font-size: 1.2rem;
+    }
+
+    .batch-indicator {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    /* Adjust search for mobile */
+    .search-container-nav {
+        width: 35px;
+    }
+
+    .search-container-nav.active {
+        width: 150px;
+    }
+
+    .search-wrapper-nav {
+        height: 35px;
+    }
+
+    .search-icon-nav {
+        left: 10px;
+        font-size: 14px;
+    }
+
+    #resourceSearchNav {
+        padding: 8px 30px 8px 30px;
+        font-size: 12px;
+    }
+
+    .clear-search-nav {
+        right: 8px;
+        font-size: 14px;
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Content adjustments for mobile */
     .research-content {
         padding: 0 1rem;
     }
@@ -445,6 +510,23 @@
 
     .research-content h4 {
         font-size: 1.2rem;
+    }
+
+    /* Improve touch targets for mobile */
+    .resource-link {
+        padding: 1.2rem 1rem;
+        min-height: 44px; /* iOS touch target minimum */
+    }
+
+    .tool-link {
+        padding: 0.6rem 1.2rem;
+        min-height: 44px;
+    }
+
+    /* Mobile menu improvements */
+    .mobile-menu a {
+        padding: 1rem;
+        font-size: 0.95rem;
     }
 }
 
