@@ -45,7 +45,7 @@
           "isOpen": false
         },
         { 
-          "name": "Semester 5", 
+          "name": "Semester 5",
           "subjects": [
             { "name": "Compiler", "link": "https://drive.google.com/drive/folders/1jZSLwQhKPZrdIByNEkmgw3NK7EOnrxRf?usp=drive_link" },
             { "name": "Data Communication", "link": "https://drive.google.com/drive/folders/11YQa3n_hGFMfjrsn1c5YtPWxB9Pa8JEP?usp=drive_link" },
@@ -112,18 +112,36 @@
       "id": "2",
       "name": "Batch 2",
       "heroText": "Batch 2 Academic Resources",
-      "currentSemesterName": "Semester 4 (Current)",
+      "currentSemesterName": "Semester 5 (Current)",
       "resources": [
-        { "name": "Full Google Drive CSE-2", "link":"https://drive.google.com/drive/folders/1nIFPmV0Y4l8bHY0-TlSX-dbLnVJ-waA1?usp=drive_link" },
+        { "name": "Full Batch 2 Drive", "link": "https://drive.google.com/drive/folders/1nIFPmV0Y4l8bHY0-TlSX-dbLnVJ-waA1" },
+        { "name": "Compiler - CSE 3103", "link": "https://drive.google.com/drive/folders/1bGAxjLQHmjm0Kt58YL23bU4VFNSH7UNE?usp=drive_link" },
+        { "name": "Data Com - CSE 3109", "link": "https://drive.google.com/drive/folders/1PpfIjqtlRWGaZ24k9R6XIo-w_oXGHiud?usp=drive_link" },
+        { "name": "DBMS - CSE 3101", "link": "https://drive.google.com/drive/folders/10KaDwK2CqIcvVYYc_F4vM26YGUw9T2GQ?usp=drive_link" },
+        { "name": "Microprocessor - CSE 3105", "link": "https://drive.google.com/drive/folders/1PdZk5yjbDZtiFtpR9Hs9kHxtTG902Zxk?usp=drive_link" },
+        { "name": "OS - CSE 3107", "link": "https://drive.google.com/drive/folders/1Nd5mXgo1NEAObgq9nmCWeFxBcY20Pj93?usp=drive_link" },
+        { "name": "Question Bank Merge", "link": "https://drive.google.com/drive/folders/1Avtdcx86Zxj0nkP7XNJgUHnQEkaYijjS?usp=drive_link" },
+        { "name": "Essential Software", "link": "https://bupedubd-my.sharepoint.com/personal/23524202030_student_bup_edu_bd/_layouts/15/onedrive.aspx?id=%2Fpersonal%2F23524202030%5Fstudent%5Fbup%5Fedu%5Fbd%2FDocuments%2F3%2D1%2FEssential%20Software&ga=1" },
+        { "name": "Adeb's Personal Drive", "link": "https://bupedubd-my.sharepoint.com/personal/23524202030_student_bup_edu_bd/_layouts/15/onedrive.aspx?id=%2Fpersonal%2F23524202030%5Fstudent%5Fbup%5Fedu%5Fbd%2FDocuments%2F3%2D1&ga=1" },
         { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
         { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
         { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
-      ], 
+      ],
       "routineLink": "assets/images/routine_b2_placeholder.png",
       "semesters": [
-        { "name": "Semester 5", "subjects": [], "isOpen": false }, 
-        { 
-          "name": "Semester 4 (Current)", 
+        {
+          "name": "Semester 5 (Current)",
+          "subjects": [
+            { "name": "Compiler - CSE 3103", "link": "https://drive.google.com/drive/folders/1bGAxjLQHmjm0Kt58YL23bU4VFNSH7UNE?usp=drive_link" },
+            { "name": "Data Com - CSE 3109", "link": "https://drive.google.com/drive/folders/1PpfIjqtlRWGaZ24k9R6XIo-w_oXGHiud?usp=drive_link" },
+            { "name": "DBMS - CSE 3101", "link": "https://drive.google.com/drive/folders/10KaDwK2CqIcvVYYc_F4vM26YGUw9T2GQ?usp=drive_link" },
+            { "name": "Microprocessor - CSE 3105", "link": "https://drive.google.com/drive/folders/1PdZk5yjbDZtiFtpR9Hs9kHxtTG902Zxk?usp=drive_link" },
+            { "name": "OS - CSE 3107", "link": "https://drive.google.com/drive/folders/1Nd5mXgo1NEAObgq9nmCWeFxBcY20Pj93?usp=drive_link" }
+          ],
+          "isOpen": true
+        },
+        {
+          "name": "Semester 4",
           "subjects": [
             { "name": "Statistics - MATH 2211", "link": "https://drive.google.com/drive/folders/144xtB0-5jV4-vVe4vjhFBHail9MSi0zw" },
             { "name": "OOP II - CSE 2208", "link": "https://drive.google.com/drive/folders/13uWNMuOD0TLDOjSBKZ65D-QxoGh-Km-0" },
@@ -132,8 +150,8 @@
             { "name": "DSA II - CSE 2205", "link": "https://drive.google.com/drive/folders/13qXrYYJCMT9KM0hxoc5D4KviSdYPwqI3" },
             { "name": "DEPT - ICE 2209", "link": "https://drive.google.com/drive/folders/13ulSBpRdNJDaRKyjAi9wFdOJPmRfJsIY" },
             { "name": "CA - CSE 2203", "link": "https://drive.google.com/drive/folders/13p5gQA8ZrTq5jVDVGyr6jn_CvS6Y5jgf" }
-          ], 
-          "isOpen": true 
+          ],
+          "isOpen": false
         },
         { 
           "name": "Semester 3", 
@@ -160,8 +178,8 @@
           ],
           "isOpen": false
         },
-        { 
-          "name": "Semester 1", 
+        {
+          "name": "Semester 1",
           "subjects": [
             { "name": "Chemistry", "link": "https://drive.google.com/drive/folders/1rEWVJPAO1B5w-UwbW8-5C5e84g80PqLU" },
             { "name": "ECA", "link": "https://drive.google.com/drive/folders/1sbkcOaBAzZa6jk5ntoqvU0msvNwSmLnr" },
@@ -181,6 +199,7 @@
       "heroText": "Batch 3 Academic Resources",
       "currentSemesterName": "Semester 2 (Current)",
       "resources": [
+        { "name": "Full Semester 3 Drive", "link": "https://drive.google.com/drive/folders/1xMGLZRZ1Wg5zqUeTvOJWb1PZ3DM7voCj" },
         { "name": "DSA", "link": "https://drive.google.com/drive/folders/11veb5qTdh8iou9HngAYtZ2A0qPNBnPIf " },
         { "name": "EDI", "link": "https://drive.google.com/drive/folders/1tq7OLTBE00_ltfMxVnfNMjWQH8x6fSFR " },
         { "name": "Math", "link": "https://drive.google.com/drive/folders/1LdWhyC5ZLbWHo-j7wPZLlZz1Kx3A1NJs " },
@@ -190,8 +209,7 @@
         { "name": "Lab Materials", "link": "https://drive.google.com/drive/folders/1KKxJ10Rl6f9ape7VfxdTtiyx7EtCYjOD " },
         { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
         { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
-        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" },
-        { "name": "Full Google Drive CSE-3", "link": "https://drive.google.com/drive/folders/1xMGLZRZ1Wg5zqUeTvOJWb1PZ3DM7voCj" }
+        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
       ],
       "routineLink": "assets/images/routine_b3_placeholder.png",
       "semesters": [
@@ -271,6 +289,25 @@
             { "name": "Physics", "link": "https://drive.google.com/drive/folders/1xnyp6qgWvR75ICrPDzbwTZ72hViWoouM  " },
             { "name": "Physics Laboratory", "link": "https://drive.google.com/drive/folders/1giZl_wkpuGOKv4jbYVC8zD716zF6y1NK  " }
           ],
+          "isOpen": true
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Batch 5",
+      "heroText": "Batch 5 Academic Resources",
+      "currentSemesterName": "Semester 1 (Current)",
+      "resources": [
+        { "name": "Assignment Cover Page", "link": "assets/pdfs/Assignment CoverPage.pdf" },
+        { "name": "Lab Report Cover Page", "link": "assets/pdfs/Cover Page for LAB REPORT.pdf" },
+        { "name": "Academic Calendar 2025", "link": "assets/pdfs/Academic-Calender-2025.pdf" }
+      ],
+      "routineLink": "assets/images/routine_b5_placeholder.png",
+      "semesters": [
+        {
+          "name": "Semester 1 (Current)",
+          "subjects": [],
           "isOpen": true
         }
       ]
