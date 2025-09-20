@@ -82,11 +82,37 @@ header {
     min-width: 150px;
 }
 
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo img {
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.logo a span {
+    vertical-align: middle;
+    line-height: 1;
+}
+
 #siteLogo {
     height: 45px;
     width: auto;
     transition: var(--transition);
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo a:hover {
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo span {
@@ -278,14 +304,14 @@ header {
     gap: 0.75rem;
 }
 
-/* Mobile Nav Links in Navbar */
-.mobile-nav-links {
-    display: none;
+/* Nav Links in Navbar */
+.nav-links {
+    display: flex;
     gap: 0.5rem;
     align-items: center;
 }
 
-.mobile-nav-links a {
+.nav-links a {
     color: white;
     text-decoration: none;
     font-weight: 500;
@@ -299,9 +325,14 @@ header {
     background: rgba(255, 255, 255, 0.2);
 }
 
-.mobile-nav-links a:hover {
+.nav-links a:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
+}
+
+/* Mobile Nav Links in Navbar - Hidden on desktop */
+.mobile-nav-links {
+    display: none;
 }
 
 /* Dark Mode Toggle in Navbar */
