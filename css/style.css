@@ -688,7 +688,7 @@ header {
 /* Quick Resources */
 .resources-section {
     background: var(--light-bg);
-    padding: 2rem 1rem;
+    padding: 0.5rem 1rem 2rem;
     animation: fadeIn 1s ease-out;
 }
 
@@ -809,7 +809,7 @@ header {
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
-    margin: 1.5rem auto;
+    margin: 0.75rem auto 1rem;
     padding: 0 1rem;
     max-width: 1200px;
     animation: slideUp 0.5s ease-out;
