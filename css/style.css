@@ -805,20 +805,21 @@ header {
 
 /* Routine Buttons Container */
 #routineButtons {
-    text-align: center;
-    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1.5rem auto;
     padding: 0 1rem;
+    max-width: 1200px;
     animation: slideUp 0.5s ease-out;
 }
 
 #routineButtons .resource-card {
-    display: inline-flex;
-    width: auto;
-    padding: 0.9rem 1.3rem;
-    margin: 0 8px;
-    font-size: 0.9rem;
-    border-left-width: 4px;
-    background: linear-gradient(135deg, var(--card-bg) 0%, #f0f8ff 100%);
+    flex: 1;
+    min-width: 250px;
+    max-width: 450px;
+    margin: 0;
 }
 
 #routineButtons .resource-icon {
@@ -1928,3 +1929,4 @@ header { background: rgba(13, 71, 161, 0.8) !important; backdrop-filter: blur(15
     text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
 .resource-icon, .material-icon { display: none !important; }
+

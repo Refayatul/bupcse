@@ -892,4 +892,5 @@ function handleSpotlightNavigation(e) {
     } else if (e.key === 'Escape') {
         closeSpotlightSearch();
     }
-}
+}
+
