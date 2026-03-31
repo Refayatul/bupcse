@@ -29,6 +29,12 @@ const darkModeToggle = document.getElementById('darkModeToggle');
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 
+// Spotlight Search
+const spotlightSearchModal = document.getElementById('spotlightSearchModal');
+const spotlightSearchInput = document.getElementById('spotlightSearchInput');
+const spotlightSearchResults = document.getElementById('spotlightSearchResults');
+const closeSpotlight = document.getElementById('closeSpotlight');
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("DOMContentLoaded event");
@@ -189,6 +195,36 @@ function setupEventListeners() {
         }
         if (event.target == searchResultsNav) {
             searchResultsNav.style.display = "none";
+        }
+        if (event.target == spotlightSearchModal) {
+            closeSpotlightSearch();
+        }
+    });
+
+    // Spotlight search input handling
+    if (spotlightSearchInput) {
+        spotlightSearchInput.addEventListener('input', (e) => {
+            performSpotlightSearch(e.target.value);
+        });
+
+        spotlightSearchInput.addEventListener('keydown', (e) => {
+            handleSpotlightNavigation(e);
+        });
+    }
+
+    if (closeSpotlight) {
+        closeSpotlight.addEventListener('click', closeSpotlightSearch);
+    }
+
+    // Global keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            toggleSpotlightSearch();
+        }
+        if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            toggleSpotlightSearch();
         }
     });
 }
@@ -400,6 +436,21 @@ function initDarkMode() {
     }
 }
 
+function getResourceBadgeHTML(link, name) {
+    if (!link) return '';
+    const lLink = link.toLowerCase();
+    const lName = (name || '').toLowerCase();
+    if (lLink.includes('drive.google.com/drive/folders/')) return '<span class="rc-badge badge-drive"><i class="fab fa-google-drive"></i> Folder</span>';
+    if (lLink.includes('drive.google.com/file/d/')) return '<span class="rc-badge badge-file"><i class="fas fa-file"></i> File</span>';
+    if (lLink.endsWith('.pdf')) return '<span class="rc-badge badge-pdf"><i class="fas fa-file-pdf"></i> PDF</span>';
+    if (lName.includes('routine')) return '<span class="rc-badge badge-routine"><i class="fas fa-calendar-alt"></i> Routine</span>';
+    return '<span class="rc-badge badge-link"><i class="fas fa-link"></i> Link</span>';
+}
+
+function getCopyLinkBtn(link) {
+    return `<span class="rc-btn" onclick="event.preventDefault(); navigator.clipboard.writeText('${link}').then(() => alert('Copied!'))" title="Copy Link"><i class="fas fa-copy"></i></span>`;
+}
+
 function updateQuickResources(batchId) {
     currentBatchId = batchId;
     const batchConfig = allBatchesData.find(b => b.id === batchId);
@@ -462,15 +513,18 @@ function updateQuickResources(batchId) {
         }
 
         orderedResourcesToShow.forEach(resource => {
-            const isPdf = resource.link && resource.link.toLowerCase().endsWith('.pdf');
-            const cardClass = isPdf ? 'resource-card resource-card-pdf' : 'resource-card';
+            const badgeHTML = getResourceBadgeHTML(resource.link, resource.name);
+            const copyBtnHTML = getCopyLinkBtn(resource.link);
             const resourceEl = `
-                <a href="${resource.link}" target="_blank" class="${cardClass}">
-                    <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
-                    </svg>
-                    ${resource.name || 'Resource'}
-                    <span class="bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${resource.link}', '${resource.name || 'Resource'}')">📑</span>
+                <a href="${resource.link}" target="_blank" class="resource-card">
+                    <div class="rc-info">
+                        <span class="rc-title" title="${resource.name || 'Resource'}">${resource.name || 'Resource'}</span>
+                        ${badgeHTML}
+                    </div>
+                    <div class="rc-actions">
+                        ${copyBtnHTML}
+                        <span class="rc-btn bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${resource.link}', '${resource.name || 'Resource'}')">📑</span>
+                    </div>
                 </a>`;
             resourceGrid.innerHTML += resourceEl;
         });
@@ -485,12 +539,17 @@ function updateQuickResources(batchId) {
                 routineBtn.href = routine.link;
                 routineBtn.target = '_blank';
                 routineBtn.className = 'resource-card';
+                const badgeHTML = getResourceBadgeHTML(routine.link, routine.name || 'Routine');
+                const copyBtnHTML = getCopyLinkBtn(routine.link);
                 routineBtn.innerHTML = `
-                    <svg class="resource-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
-                    </svg>
-                    ${routine.name || 'Routine'}
-                    <span class="bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${routine.link}', '${routine.name || 'Routine'}')">📑</span>
+                    <div class="rc-info">
+                        <span class="rc-title" title="${routine.name || 'Routine'}">${routine.name || 'Routine'}</span>
+                        ${badgeHTML}
+                    </div>
+                    <div class="rc-actions">
+                        ${copyBtnHTML}
+                        <span class="rc-btn bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${routine.link}', '${routine.name || 'Routine'}')">📑</span>
+                    </div>
                 `;
                 routineContainer.appendChild(routineBtn);
             });
@@ -530,13 +589,18 @@ function updateSemesterAccordion(batchId) {
             if (semester.subjects && semester.subjects.length > 0) {
                 subjectsHTML = '<div class="material-links">';
                 semester.subjects.forEach(subject => {
+                    const badgeHTML = getResourceBadgeHTML(subject.link, subject.name || 'Subject');
+                    const copyBtnHTML = getCopyLinkBtn(subject.link);
                     subjectsHTML += `
                         <a href="${subject.link}" target="_blank" class="material-link">
-                            <svg class="material-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 5V19H13V5H15ZM11 5V19H9V5H11ZM7 5V19H5V5H7ZM19 5V19H17V5H19Z" fill="currentColor"/>
-                            </svg>
-                            ${subject.name || 'Subject'}
-                            <span class="bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${subject.link}', '${subject.name || 'Subject'}')">📑</span>
+                            <div class="rc-info">
+                                <span class="rc-title" title="${subject.name || 'Subject'}">${subject.name || 'Subject'}</span>
+                                ${badgeHTML}
+                            </div>
+                            <div class="rc-actions">
+                                ${copyBtnHTML}
+                                <span class="rc-btn bookmark-icon" onclick="event.preventDefault(); toggleBookmark('${subject.link}', '${subject.name || 'Subject'}')">📑</span>
+                            </div>
                         </a>`;
                 });
                 subjectsHTML += '</div>';
@@ -563,9 +627,11 @@ function updateSemesterAccordion(batchId) {
                         </svg>
                     </div>
                     <div class="accordion-content ${isOpenClass}">
-                        ${noticeHTML}
-                        ${contentHTML}
-                        ${subjectsHTML} 
+                        <div>
+                            ${noticeHTML}
+                            ${contentHTML}
+                            ${subjectsHTML}
+                        </div>
                     </div>
                 </div>`;
             semesterAccordion.innerHTML += itemEl;
@@ -643,27 +709,32 @@ function toggleMenu() {
 }
 
 function toggleAccordion(element) {
+    const item = element.parentElement;
     const content = element.nextElementSibling;
     const arrow = element.querySelector('.accordion-arrow');
 
     const currentlyOpen = content.classList.contains('open');
 
-    document.querySelectorAll('.accordion-content.open').forEach(el => {
-        el.classList.remove('open');
-        const header = el.previousElementSibling;
-        if (header) {
-            const arrowEl = header.querySelector('.accordion-arrow');
-            if (arrowEl) {
-                arrowEl.classList.remove('rotate');
-            }
-        }
+    // Close all other accordions
+    document.querySelectorAll('.accordion-item').forEach(el => {
+        el.classList.remove('active');
+        const contentEl = el.querySelector('.accordion-content');
+        const arrowEl = el.querySelector('.accordion-arrow');
+        if (contentEl) contentEl.classList.remove('open');
+        if (arrowEl) arrowEl.classList.remove('rotate');
     });
 
     if (!currentlyOpen) {
-        content.classList.toggle('open');
+        item.classList.add('active');
+        content.classList.add('open');
         if (arrow) {
-            arrow.classList.toggle('rotate');
+            arrow.classList.add('rotate');
         }
+        
+        // Liquid scroll into view
+        setTimeout(() => {
+            item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 300);
     }
 }
 
@@ -704,3 +775,121 @@ document.addEventListener('click', function (event) {
         event.preventDefault();
     }
 });
+
+/* --- SPOTLIGHT SEARCH LOGIC --- */
+function toggleSpotlightSearch() {
+    if (!spotlightSearchModal) return;
+    if (spotlightSearchModal.classList.contains('active')) {
+        closeSpotlightSearch();
+    } else {
+        spotlightSearchModal.style.display = 'block';
+        setTimeout(() => {
+            spotlightSearchModal.classList.add('active');
+            spotlightSearchInput.focus();
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeSpotlightSearch() {
+    if (!spotlightSearchModal) return;
+    spotlightSearchModal.classList.remove('active');
+    setTimeout(() => {
+        spotlightSearchModal.style.display = 'none';
+    }, 300);
+    document.body.style.overflow = 'auto';
+    spotlightSearchInput.value = '';
+    spotlightSearchResults.innerHTML = '';
+}
+
+function performSpotlightSearch(query) {
+    if (!query || query.trim().length < 2) {
+        spotlightSearchResults.innerHTML = '';
+        return;
+    }
+
+    const results = [];
+    const lQuery = query.toLowerCase().trim();
+
+    allBatchesData.forEach(batch => {
+        // Search in Batch Resources (Quick Actions)
+        const batchRes = batch.resources || [];
+        batchRes.forEach(res => {
+            if ((res.name && res.name.toLowerCase().includes(lQuery))) {
+                results.push({ name: res.name, link: res.link, type: 'Resource', context: batch.name });
+            }
+        });
+
+        // Search in Semesters/Subjects
+        const semesters = batch.semesters || [];
+        semesters.forEach(sem => {
+            const subjects = sem.subjects || [];
+            subjects.forEach(sub => {
+                if ((sub.name && sub.name.toLowerCase().includes(lQuery))) {
+                    results.push({ name: sub.name, link: sub.link, type: 'Subject', context: `${batch.name} - ${sem.name}` });
+                }
+            });
+        });
+    });
+
+    renderSpotlightResults(results);
+}
+
+function renderSpotlightResults(results) {
+    if (!spotlightSearchResults) return;
+    if (results.length === 0) {
+        spotlightSearchResults.innerHTML = '<div style="padding: 2.5rem; text-align: center; opacity: 0.5;">No matching results found for this query...</div>';
+        return;
+    }
+
+    let html = '';
+    // Limit to top 10 results
+    results.slice(0, 10).forEach((item, index) => {
+        const isPdf = item.link.toLowerCase().endsWith('.pdf');
+        const isDrive = item.link.toLowerCase().includes('drive.google.com');
+        const iconClass = isPdf ? 'fa-file-pdf' : (isDrive ? 'fa-google-drive' : 'fa-link');
+        const iconBrandClass = isDrive ? 'fab' : 'fas';
+
+        html += `
+            <a href="${item.link}" target="_blank" class="spotlight-result-item ${index === 0 ? 'selected' : ''}" onclick="closeSpotlightSearch()">
+                <i class="${iconBrandClass} ${iconClass}"></i>
+                <div class="spotlight-result-info">
+                    <span class="spotlight-result-title">${item.name}</span>
+                    <span class="spotlight-result-meta">${item.context} | ${item.type}</span>
+                </div>
+            </a>`;
+    });
+    spotlightSearchResults.innerHTML = html;
+}
+
+function handleSpotlightNavigation(e) {
+    const results = spotlightSearchResults.querySelectorAll('.spotlight-result-item');
+    if (results.length === 0) return;
+
+    let selectedIndex = -1;
+    results.forEach((el, i) => { if (el.classList.contains('selected')) selectedIndex = i; });
+
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (selectedIndex < results.length - 1) {
+            results[selectedIndex]?.classList.remove('selected');
+            results[selectedIndex + 1].classList.add('selected');
+            results[selectedIndex + 1].scrollIntoView({ block: 'nearest' });
+        }
+    } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (selectedIndex > 0) {
+            results[selectedIndex]?.classList.remove('selected');
+            results[selectedIndex - 1].classList.add('selected');
+            results[selectedIndex - 1].scrollIntoView({ block: 'nearest' });
+        }
+    } else if (e.key === 'Enter') {
+        if (selectedIndex !== -1) {
+            e.preventDefault();
+            results[selectedIndex].click();
+            closeSpotlightSearch();
+        }
+    } else if (e.key === 'Escape') {
+        closeSpotlightSearch();
+    }
+}
