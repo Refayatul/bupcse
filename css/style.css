@@ -606,8 +606,9 @@ header {
 
 .action-btn:hover {
     background: white;
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    animation-play-state: paused;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     color: var(--primary-color);
 }
 
@@ -742,9 +743,8 @@ header {
 }
 
 .resource-card:hover {
-    transform: translateY(-5px) scale(1.02);
+    transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    border-left-width: 8px;
 }
 
 .resource-icon {
@@ -938,9 +938,8 @@ header {
 }
 
 .material-link:hover {
-    transform: translateX(8px);
+    transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    border-left-width: 8px;
 }
 
 .material-icon {
@@ -992,7 +991,6 @@ header {
 
 .faq-question:hover {
     background: linear-gradient(90deg, var(--card-bg) 0%, rgba(0, 128, 128, 0.1) 100%);
-    transform: translateX(5px);
 }
 
 .faq-answer {
@@ -1860,9 +1858,8 @@ header { background: rgba(13, 71, 161, 0.8) !important; backdrop-filter: blur(15
 }
 .resource-card:hover, .material-link:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-    transform: translateY(-2px) !important;
+    transform: translateY(-3px) !important;
     border-color: var(--primary-color) !important;
-    border-left-color: var(--secondary-color) !important;
 }
 .rc-info {
     display: flex;
