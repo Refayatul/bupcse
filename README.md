@@ -48,6 +48,7 @@ Special thanks to all the contributors who have helped to improve this website.
 
 ```
 index.html
+research-guide.html
 LICENSE
 README.md
 assets/
@@ -56,7 +57,7 @@ assets/images/3-2 Routine_a.png
 assets/images/batch_1/
 assets/images/batch_1/sec_A_batch_1_sem_6.png
 assets/images/batch_1/sec_A_batch_1_sem_7.jpg
-assets/images/batch_1/sec_B_batch_1_sem_6.png
+assets/images/batch_1/sec_B_batch_1_sem_6.jpg
 assets/images/batch_1/sec_B_batch_1_sem_7.jpg
 assets/images/batch_4/
 assets/images/batch_4/b4_sec_a_sem1.png
@@ -65,15 +66,18 @@ assets/images/logo/
 assets/images/logo/BUP_Logopng.png
 assets/pdfs/
 assets/pdfs/Academic Guideline Undergratuate Programs.pdf
-assets/pdfs/Academic-Calender-2025.pdf
+assets/pdfs/Academic-Calender-2026.pdf
 assets/pdfs/Assignment CoverPage.pdf
 assets/pdfs/BUP Brochure.pdf
 assets/pdfs/Cover Page for LAB REPORT.pdf
 css/
 css/style.css
+css/research-guide.css
 data/
 data/manifest.json
 data/subjects.json
 js/
 js/script.js
+js/research-guide.js
 js/sw.js
+```
