@@ -526,7 +526,7 @@ header {
     text-decoration: none;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -534,27 +534,11 @@ header {
     gap: 0.75rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
 }
 
 .mobile-action-btn:hover {
     background: white;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     color: var(--primary-color);
 }
 
@@ -585,7 +569,7 @@ header {
     text-decoration: none;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -593,22 +577,11 @@ header {
     gap: 0.75rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
-    animation: float 3s ease-in-out infinite;
-}
-
-.action-btn:nth-child(2n) {
-    animation-delay: 0.5s;
-}
-
-.action-btn:nth-child(3n) {
-    animation-delay: 1s;
 }
 
 .action-btn:hover {
     background: white;
-    animation-play-state: paused;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     color: var(--primary-color);
 }
 
@@ -674,7 +647,6 @@ header {
     background: var(--secondary-gradient);
     color: white;
     border-color: var(--secondary-color);
-    transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -683,7 +655,6 @@ header {
     color: white;
     border-color: var(--primary-color);
     box-shadow: 0 6px 20px rgba(13, 71, 161, 0.3);
-    transform: translateY(-2px);
 }
 
 /* Quick Resources */
@@ -743,7 +714,6 @@ header {
 }
 
 .resource-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
@@ -871,7 +841,7 @@ header {
 
 .accordion-item.active .accordion-header {
     background: rgba(13, 71, 161, 0.1);
-    border-left: 4px solid var(--primary-color);
+    box-shadow: inset 4px 0 0 var(--primary-color);
 }
 
 .accordion-title {
@@ -938,7 +908,6 @@ header {
 }
 
 .material-link:hover {
-    transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -1665,10 +1634,10 @@ header { background: rgba(13, 71, 161, 0.8) !important; backdrop-filter: blur(15
 .hero { padding: 1rem 1rem !important; }
 .hero h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
 .hero p { margin-bottom: 0; }
-.action-btn { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.action-btn:hover { background: rgba(255, 255, 255, 1); transform: translateY(-8px) scale(1.03); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); border: 1px solid var(--primary-color); }
+.action-btn { transition: background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease; }
+.action-btn:hover { background: rgba(255, 255, 255, 1); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); color: var(--primary-color); }
 .batch-select-btn { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.batch-select-btn.selected { box-shadow: 0 0 20px rgba(13, 71, 161, 0.5); transform: translateY(-3px); }
+.batch-select-btn.selected { box-shadow: 0 0 20px rgba(13, 71, 161, 0.5); }
 
 /* --- MOBILE Hero Responsive Fixes --- */
 @media (max-width: 768px) {
@@ -1858,7 +1827,6 @@ header { background: rgba(13, 71, 161, 0.8) !important; backdrop-filter: blur(15
 }
 .resource-card:hover, .material-link:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-    transform: translateY(-3px) !important;
     border-color: var(--primary-color) !important;
 }
 .rc-info {
